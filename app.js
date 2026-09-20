@@ -81,16 +81,28 @@ export default function App() {
     setActiveTab('exams');
   };
 
-  // Qlobal Axtarış Nəticələri (Dərslər və İmtahanlar üzrə)
+  // Klaviatura qısayolları (Escape ilə axtarışı və mobil menyunu təmizlə)
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        if (searchQuery) setSearchQuery('');
+        if (mobileMenuOpen) setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [searchQuery, mobileMenuOpen]);
+
+  // Qlobal Axtarış Nəticələri (Dərslər və İmtahanlar üzrə təhlükəsiz süzgəc)
   const searchResults = searchQuery.trim() ? {
     lessons: lessons.filter(l =>
-      l.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      l.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      l.unit.toLowerCase().includes(searchQuery.toLowerCase())
+      (l.title || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (l.summary || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (l.unit || '').toLowerCase().includes(searchQuery.toLowerCase())
     ),
     exams: exams.filter(e =>
-      e.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      e.subjectId.toLowerCase().includes(searchQuery.toLowerCase())
+      (e.title || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (e.subjectId || '').toLowerCase().includes(searchQuery.toLowerCase())
     )
   } : null;
 
