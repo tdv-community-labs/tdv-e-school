@@ -15,7 +15,11 @@ import { StorageService } from './services/storageService.js';
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem('mekteb_plus_dark') === 'true';
+    const hubTheme = localStorage.getItem('tdv_theme');
+    if (hubTheme) return hubTheme === 'dark';
+    const legacy = localStorage.getItem('mekteb_plus_dark');
+    if (legacy !== null) return legacy === 'true';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
   const [isToolsOpen, setIsToolsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -31,14 +35,16 @@ export default function App() {
   const [pvpQuestions, setPvpQuestions] = useState(() => StorageService.getPvpQuestions());
   const [userStats, setUserStats] = useState(() => StorageService.getUserStats());
 
-  // Qaranlıq rejim sinifinin tətbiqi
+  // Qaranlıq rejim sinifinin tətbiqi (Ekosistem ilə sinxron)
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark');
       localStorage.setItem('mekteb_plus_dark', 'true');
+      localStorage.setItem('tdv_theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('mekteb_plus_dark', 'false');
+      localStorage.setItem('tdv_theme', 'light');
     }
   }, [darkMode]);
 
