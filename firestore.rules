@@ -1,10 +1,59 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // TDV E-School Məlumat Bazası Qaydaları
-    // Dərslər, imtahanlar, PvP sualları və liderlik cədvəli açıq oxunur və yazılır
+    // =========================================================================
+    // TDV E-School — Kibertəhlükəsizlik və Məlumat Bazasının Mühafizə Qaydaları
+    // =========================================================================
+
+    // Köməkçi Təhlükəsizlik Funksiyaları
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isValidLeaderboardEntry() {
+      let data = request.resource.data;
+      return data.name is string &&
+             data.name.size() >= 1 &&
+             data.name.size() <= 60 &&
+             data.points is number &&
+             data.points >= 0 &&
+             data.points <= 500000 &&
+             (!('wins' in data) || (data.wins is number && data.wins >= 0)) &&
+             (!('schoolGrade' in data) || (data.schoolGrade is number && data.schoolGrade >= 1 && data.schoolGrade <= 12));
+    }
+
+    // 1. Dərslər (Lessons): Hər kəs üçün oxunaqlı, yalnız autentifikasiya olunmuş adminlər yaza bilər
+    match /lessons/{lessonId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+      allow delete: if false; // Anonim və ya təsadüfi silinmə tam qadağandır
+    }
+
+    // 2. İmtahanlar (Exams): Hər kəs üçün oxunaqlı, yalnız autentifikasiya olunmuş adminlər yaza bilər
+    match /exams/{examId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+      allow delete: if false;
+    }
+
+    // 3. PvP Sualları (PVP Questions): Şagirdlər oxuya bilər, silinmə tam qadağandır
+    match /pvp_questions/{questionId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+      allow delete: if false;
+    }
+
+    // 4. Liderlik Cədvəli (Leaderboard):
+    // Oxumaq açıqdır; xal yazılışı ciddi tip və həcm məhdudiyyətləri ilə mühafizə olunur
+    match /leaderboard/{userId} {
+      allow read: if true;
+      allow create, update: if isValidLeaderboardEntry();
+      allow delete: if false; // Reytinq cədvəlinin silinməsi qadağandır
+    }
+
+    // Standart Təhlükəsizlik Qaydası (Deny by default): Bütün digər kolleksiyalar tam bağlıdır
     match /{document=**} {
-      allow read, write: if true;
+      allow read, write: if false;
     }
   }
 }
