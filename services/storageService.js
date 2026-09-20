@@ -114,15 +114,16 @@ export const StorageService = {
     } catch (e) { console.warn(e); }
   },
 
-  // İlkin məlumatları Firestore-a yükləmə (Seeding)
+  // İlkin məlumatları Firestore-a yükləmə (Seeding - Paralel qeydiyyat)
   async seedCollection(colName, items) {
     if (!isFirestoreReady || !db || !Array.isArray(items)) return;
     try {
       console.log(`🌱 [Firestore Seed] '${colName}' kolleksiyası doldurulur (${items.length} element)...`);
-      for (const item of items) {
+      const promises = items.map(item => {
         const docId = String(item.id || `item_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`);
-        await setDoc(doc(db, colName, docId), JSON.parse(JSON.stringify(item)), { merge: true });
-      }
+        return setDoc(doc(db, colName, docId), JSON.parse(JSON.stringify(item)), { merge: true });
+      });
+      await Promise.all(promises);
       console.log(`✅ [Firestore Seed] '${colName}' uğurla tamamlandı!`);
     } catch (e) {
       console.warn(`Firestore seed error for ${colName}:`, e);
