@@ -1,18 +1,134 @@
-// MəktəbPlus - Yerli Yaddaş və Məlumat İdarəetmə Xidməti (Storage Service)
+// MəktəbPlus - Yerli Yaddaş və Firebase Firestore İnteqrasiyalı Məlumat Xidməti (Storage Service)
 
 import { MOCK_LESSONS } from '../data/lessons.js';
 import { MOCK_EXAMS } from '../data/exams.js';
 import { MOCK_PVP_QUESTIONS } from '../data/pvpQuestions.js';
+import { firebaseConfig, useRealFirebase } from './firebase-config.js';
+
+// Firebase Modular SDK
+import { initializeApp, getApps, getApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+import {
+  getFirestore,
+  collection,
+  doc,
+  getDocs,
+  setDoc,
+  onSnapshot
+} from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+
+let db = null;
+let isFirestoreReady = false;
+const listeners = new Set();
+
+// Firebase Başlatma
+try {
+  if (useRealFirebase) {
+    const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+    db = getFirestore(app);
+    isFirestoreReady = true;
+    console.log('🔥 [Firebase] TDV E-School Firestore uğurla qoşuldu:', firebaseConfig.projectId);
+  }
+} catch (e) {
+  console.warn('⚠️ [Firebase] Qoşulma xətası, yerli yaddaşdan istifadə olunur:', e);
+}
 
 const STORAGE_KEYS = {
   LESSONS: 'mekteb_plus_lessons_v10',
   EXAMS: 'mekteb_plus_exams_v1',
   PVP_QUESTIONS: 'mekteb_plus_pvp_questions_v1',
   USER_STATS: 'mekteb_plus_user_stats_v1',
-  THEME: 'mekteb_plus_theme_v1'
+  THEME: 'mekteb_plus_theme_v1',
+  LEADERBOARD: 'mekteb_plus_leaderboard_v1',
+  SEEDED: 'mekteb_plus_firestore_seeded_v1'
 };
 
 export const StorageService = {
+  // Realtime Dəyişiklik İzləyicisi
+  subscribe(callback) {
+    listeners.add(callback);
+    return () => listeners.delete(callback);
+  },
+
+  notifyListeners(type, data) {
+    listeners.forEach(cb => {
+      try { cb(type, data); } catch (e) { console.error(e); }
+    });
+  },
+
+  // Firestore ilə Sinxronizasiyanı Başlat
+  initSync(onUpdate) {
+    if (onUpdate) this.subscribe(onUpdate);
+    if (!isFirestoreReady || !db) return;
+
+    // 1. Dərsləri Firestore-dan oxu və canlı izlə
+    try {
+      onSnapshot(collection(db, 'lessons'), (snapshot) => {
+        if (!snapshot.empty) {
+          const cloudLessons = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+          localStorage.setItem(STORAGE_KEYS.LESSONS, JSON.stringify(cloudLessons));
+          this.notifyListeners('lessons', cloudLessons);
+        } else {
+          // Baza boşdursa ilkin dərsləri yüklə (Seed)
+          this.seedCollection('lessons', this.getLessons());
+        }
+      }, (err) => console.warn('Firestore lessons snapshot error:', err));
+    } catch (e) { console.warn(e); }
+
+    // 2. İmtahanları oxu və canlı izlə
+    try {
+      onSnapshot(collection(db, 'exams'), (snapshot) => {
+        if (!snapshot.empty) {
+          const cloudExams = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+          localStorage.setItem(STORAGE_KEYS.EXAMS, JSON.stringify(cloudExams));
+          this.notifyListeners('exams', cloudExams);
+        } else {
+          this.seedCollection('exams', this.getExams());
+        }
+      }, (err) => console.warn('Firestore exams snapshot error:', err));
+    } catch (e) { console.warn(e); }
+
+    // 3. PvP Suallarını oxu və canlı izlə
+    try {
+      onSnapshot(collection(db, 'pvp_questions'), (snapshot) => {
+        if (!snapshot.empty) {
+          const cloudQuestions = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+          localStorage.setItem(STORAGE_KEYS.PVP_QUESTIONS, JSON.stringify(cloudQuestions));
+          this.notifyListeners('pvp_questions', cloudQuestions);
+        } else {
+          this.seedCollection('pvp_questions', this.getPvpQuestions());
+        }
+      }, (err) => console.warn('Firestore pvp_questions snapshot error:', err));
+    } catch (e) { console.warn(e); }
+
+    // 4. Liderlik Cədvəlini oxu və canlı izlə
+    try {
+      onSnapshot(collection(db, 'leaderboard'), (snapshot) => {
+        if (!snapshot.empty) {
+          const cloudLeaderboard = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+          cloudLeaderboard.sort((a, b) => (b.points || 0) - (a.points || 0));
+          cloudLeaderboard.forEach((item, index) => { item.rank = index + 1; });
+          localStorage.setItem(STORAGE_KEYS.LEADERBOARD, JSON.stringify(cloudLeaderboard));
+          this.notifyListeners('leaderboard', cloudLeaderboard);
+        }
+      }, (err) => console.warn('Firestore leaderboard snapshot error:', err));
+    } catch (e) { console.warn(e); }
+  },
+
+  // İlkin məlumatları Firestore-a yükləmə (Seeding)
+  async seedCollection(colName, items) {
+    if (!isFirestoreReady || !db || !Array.isArray(items)) return;
+    try {
+      console.log(`🌱 [Firestore Seed] '${colName}' kolleksiyası doldurulur (${items.length} element)...`);
+      for (const item of items) {
+        const docId = String(item.id || `item_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`);
+        await setDoc(doc(db, colName, docId), JSON.parse(JSON.stringify(item)), { merge: true });
+      }
+      console.log(`✅ [Firestore Seed] '${colName}' uğurla tamamlandı!`);
+    } catch (e) {
+      console.warn(`Firestore seed error for ${colName}:`, e);
+    }
+  },
+
   // Dərsləri oxu
   getLessons() {
     try {
@@ -35,6 +151,15 @@ export const StorageService = {
     } catch (e) {
       console.error('LocalStorage save lesson error:', e);
     }
+
+    // Firestore-a yaz
+    if (isFirestoreReady && db) {
+      const docId = String(newLesson.id || Date.now());
+      setDoc(doc(db, 'lessons', docId), JSON.parse(JSON.stringify(newLesson)), { merge: true })
+        .catch(err => console.error('Firestore saveLesson error:', err));
+    }
+
+    this.notifyListeners('lessons', updated);
     return updated;
   },
 
@@ -67,6 +192,15 @@ export const StorageService = {
     } catch (e) {
       console.error('LocalStorage save exam error:', e);
     }
+
+    // Firestore-a yaz
+    if (isFirestoreReady && db) {
+      const docId = String(newExam.id || Date.now());
+      setDoc(doc(db, 'exams', docId), JSON.parse(JSON.stringify(newExam)), { merge: true })
+        .catch(err => console.error('Firestore saveExam error:', err));
+    }
+
+    this.notifyListeners('exams', updated);
     return updated;
   },
 
@@ -76,6 +210,9 @@ export const StorageService = {
     const exam = exams.find(e => e.id === examId);
     if (!exam) return false;
 
+    if (!Array.isArray(exam.questions)) {
+      exam.questions = [];
+    }
     exam.questions.push(question);
     exam.totalQuestions = exam.questions.length;
     this.saveExam(exam);
@@ -104,13 +241,22 @@ export const StorageService = {
     } catch (e) {
       console.error('LocalStorage save PvP question error:', e);
     }
+
+    // Firestore-a yaz
+    if (isFirestoreReady && db) {
+      const docId = String(question.id || Date.now());
+      setDoc(doc(db, 'pvp_questions', docId), JSON.parse(JSON.stringify(question)), { merge: true })
+        .catch(err => console.error('Firestore addPvpQuestion error:', err));
+    }
+
+    this.notifyListeners('pvp_questions', updated);
     return updated;
   },
 
   // Bütün bazanı JSON kimi ixrac et
   exportDatabaseJson() {
     const data = {
-      version: '1.0',
+      version: '2.0-firestore',
       exportedAt: new Date().toISOString(),
       lessons: this.getLessons(),
       exams: this.getExams(),
@@ -125,14 +271,17 @@ export const StorageService = {
       const parsed = JSON.parse(jsonString);
       if (parsed.lessons && Array.isArray(parsed.lessons)) {
         localStorage.setItem(STORAGE_KEYS.LESSONS, JSON.stringify(parsed.lessons));
+        if (isFirestoreReady && db) this.seedCollection('lessons', parsed.lessons);
       }
       if (parsed.exams && Array.isArray(parsed.exams)) {
         localStorage.setItem(STORAGE_KEYS.EXAMS, JSON.stringify(parsed.exams));
+        if (isFirestoreReady && db) this.seedCollection('exams', parsed.exams);
       }
       if (parsed.pvpQuestions && Array.isArray(parsed.pvpQuestions)) {
         localStorage.setItem(STORAGE_KEYS.PVP_QUESTIONS, JSON.stringify(parsed.pvpQuestions));
+        if (isFirestoreReady && db) this.seedCollection('pvp_questions', parsed.pvpQuestions);
       }
-      return { success: true, message: 'Məlumat bazası uğurla idxal edildi!' };
+      return { success: true, message: 'Məlumat bazası uğurla idxal edildi və Firestore ilə sinxronlaşdırıldı!' };
     } catch (e) {
       return { success: false, message: 'Yanlış JSON formatı: ' + e.message };
     }
@@ -180,15 +329,14 @@ export const StorageService = {
     return updated;
   },
 
-  // Canlı Liderlər Cədvəli (Yalnız real oynayan istifadəçilər)
+  // Canlı Liderlər Cədvəli
   getLeaderboard() {
     try {
-      const stored = localStorage.getItem('mekteb_plus_leaderboard_v1');
+      const stored = localStorage.getItem(STORAGE_KEYS.LEADERBOARD);
       if (stored) {
         return JSON.parse(stored);
       }
     } catch (e) {}
-    // Əgər baza boşdursa, yalnız cari real istifadəçini daxil edirik
     const user = this.getUserStats();
     return [
       {
@@ -208,12 +356,15 @@ export const StorageService = {
   recordMatchToLeaderboard(playerName, grade, won, pointsGained) {
     const list = this.getLeaderboard();
     const existing = list.find(u => u.name === playerName);
+    let targetUser;
+
     if (existing) {
-      existing.points += pointsGained;
-      if (won) existing.wins += 1;
+      existing.points = Math.max(0, (existing.points || 0) + pointsGained);
+      if (won) existing.wins = (existing.wins || 0) + 1;
+      targetUser = existing;
     } else {
-      list.push({
-        id: `user-${Date.now()}`,
+      targetUser = {
+        id: `user_${playerName.toLowerCase().replace(/[^a-z0-9]/g, '_')}_${Date.now()}`,
         rank: list.length + 1,
         name: playerName,
         schoolGrade: grade,
@@ -222,14 +373,24 @@ export const StorageService = {
         wins: won ? 1 : 0,
         winRate: won ? 100 : 0,
         badge: '⚡ Yeni Oyunçu'
-      });
+      };
+      list.push(targetUser);
     }
 
     list.sort((a, b) => b.points - a.points);
     list.forEach((item, index) => { item.rank = index + 1; });
     try {
-      localStorage.setItem('mekteb_plus_leaderboard_v1', JSON.stringify(list));
+      localStorage.setItem(STORAGE_KEYS.LEADERBOARD, JSON.stringify(list));
     } catch (e) {}
+
+    // Firestore leaderboard kolleksiyasına yaz
+    if (isFirestoreReady && db) {
+      const docId = targetUser.id;
+      setDoc(doc(db, 'leaderboard', docId), JSON.parse(JSON.stringify(targetUser)), { merge: true })
+        .catch(err => console.error('Firestore recordMatch error:', err));
+    }
+
+    this.notifyListeners('leaderboard', list);
     return list;
   }
 };

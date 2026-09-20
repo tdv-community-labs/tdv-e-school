@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // TDV E-School Məlumat Bazası Qaydaları
+    // Dərslər, imtahanlar, PvP sualları və liderlik cədvəli açıq oxunur və yazılır
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

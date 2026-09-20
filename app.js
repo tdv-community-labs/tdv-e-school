@@ -42,6 +42,17 @@ export default function App() {
     }
   }, [darkMode]);
 
+  // Firebase Firestore Real-Time Sinxronizasiyası
+  useEffect(() => {
+    const unsubscribe = StorageService.subscribe((type, data) => {
+      if (type === 'lessons') setLessons(data);
+      if (type === 'exams') setExams(data);
+      if (type === 'pvp_questions') setPvpQuestions(data);
+    });
+    StorageService.initSync();
+    return () => unsubscribe();
+  }, []);
+
   // Məlumatlar dəyişdikdə yeniləmə funksiyası
   const refreshData = () => {
     setLessons(StorageService.getLessons());
