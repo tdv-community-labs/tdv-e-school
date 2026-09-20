@@ -46,10 +46,10 @@ export const Navbar = ({
             React.createElement(
               'div',
               { className: 'flex items-center space-x-2' },
-              React.createElement('span', { className: 'font-black text-xl tracking-tight bg-gradient-to-r from-indigo-600 to-cyan-600 dark:from-indigo-400 dark:to-cyan-400 bg-clip-text text-transparent' }, 'MəktəbPlus'),
+              React.createElement('span', { className: 'font-black text-xl tracking-tight bg-gradient-to-r from-indigo-600 to-cyan-600 dark:from-indigo-400 dark:to-cyan-400 bg-clip-text text-transparent' }, 'TDV E-School'),
               React.createElement('span', { className: 'text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800' }, 'v2.5')
             ),
-            React.createElement('p', { className: 'text-[10px] text-slate-500 dark:text-slate-400 -mt-0.5' }, 'Milli Təhsil və İmtahan Portalı')
+            React.createElement('p', { className: 'text-[10px] text-slate-500 dark:text-slate-400 -mt-0.5' }, 'MəktəbPlus Təhsil Portalı')
           )
         ),
 
@@ -136,6 +136,7 @@ export const Navbar = ({
             {
               onClick: () => setDarkMode(!darkMode),
               title: darkMode ? 'İşıqlı rejimə keç' : 'Qaranlıq rejimə keç',
+              'aria-label': darkMode ? 'İşıqlı rejimə keç' : 'Qaranlıq rejimə keç',
               className: 'p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition'
             },
             React.createElement('i', { className: darkMode ? 'fas fa-sun text-amber-400' : 'fas fa-moon text-indigo-600' })
