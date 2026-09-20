@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TDV E-School — Milli Təhsil və İmtahan Portalı</title>
 
+  <!-- Cybersecurity: Content Security Policy (CSP) & Hardening Headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.gstatic.com https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; connect-src 'self' https://esm.sh https://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://www.googleapis.com; frame-src 'none'; object-src 'none'; base-uri 'self';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
   <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,8 +55,14 @@
   <!-- Custom Stylesheet (Print styles, scrollbars, animations) -->
   <link rel="stylesheet" href="styles.css">
 
-  <!-- Error Boundary Listener -->
+  <!-- Error Boundary Listener & Anti-XSS Sanitizer -->
   <script>
+    function escapeHTML(str) {
+      return String(str || '').replace(/[&<>'"]/g, function(tag) {
+        return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[tag] || tag;
+      });
+    }
+
     window.addEventListener('error', function(e) {
       console.error('System error:', e);
       const root = document.getElementById('root');
@@ -60,7 +71,7 @@
           <div class="min-h-screen flex flex-col items-center justify-center bg-slate-900 text-white p-6 text-center">
             <div class="w-12 h-12 rounded-2xl bg-rose-500/20 text-rose-500 flex items-center justify-center text-2xl mb-4">⚠️</div>
             <h1 class="text-lg font-bold mb-1">Məlumat Yüklənmə Bildirişi</h1>
-            <p class="text-xs text-slate-400 max-w-md mb-4">${e.message || 'Səhifə yenilənir...'}</p>
+            <p class="text-xs text-slate-400 max-w-md mb-4">${escapeHTML(e.message || 'Səhifə yenilənir...')}</p>
             <button onclick="location.reload()" class="px-4 py-2 bg-indigo-600 rounded-xl text-xs font-bold hover:bg-indigo-700">Yenidən Yüklə</button>
           </div>
         `;
