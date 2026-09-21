@@ -27,6 +27,7 @@
 
   <!-- Tailwind CSS Play CDN with Dark Mode -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="env.js" onerror="this.remove()"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -56,6 +57,7 @@
   <link rel="stylesheet" href="styles.css">
 
   <!-- Error Boundary Listener & Anti-XSS Sanitizer -->
+  <script src="env.js" onerror="this.remove()"></script>
   <script>
     function escapeHTML(str) {
       return String(str || '').replace(/[&<>'"]/g, function(tag) {
