@@ -112,6 +112,57 @@ export const Sidebar = ({
               )
             );
           })
+        ),
+
+        // Ekosistem Portallar (Mobil Keid)
+        React.createElement(
+          'div',
+          { className: 'mt-6 pt-4 border-t border-slate-200/80 dark:border-slate-800' },
+          React.createElement(
+            'div',
+            { className: 'text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2.5 px-1' },
+            'TDV Ekosistem Portallar'
+          ),
+          React.createElement(
+            'div',
+            { className: 'grid grid-cols-2 gap-2' },
+            React.createElement(
+              'a',
+              {
+                href: 'https://tdv-community-labs.github.io/tdv-hub/',
+                className: 'p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/70 text-slate-700 dark:text-slate-200 hover:text-blue-500 flex items-center space-x-2 text-xs font-semibold'
+              },
+              React.createElement('i', { className: 'fas fa-house text-blue-500 text-xs' }),
+              React.createElement('span', null, 'M?rk?z')
+            ),
+            React.createElement(
+              'a',
+              {
+                href: 'https://school-minifootball-tournament-2.vercel.app/',
+                target: '_blank',
+                rel: 'noopener noreferrer',
+                className: 'p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/70 text-slate-700 dark:text-slate-200 hover:text-blue-500 flex items-center space-x-2 text-xs font-semibold'
+              },
+              React.createElement('i', { className: 'fas fa-trophy text-blue-500 text-xs' }),
+              React.createElement('span', null, 'Sports')
+            ),
+            React.createElement(
+              'a',
+              {
+                href: 'https://tdv-community-labs.github.io/tdv-hub/games.html',
+                target: '_blank',
+                rel: 'noopener noreferrer',
+                className: 'col-span-2 p-2.5 rounded-xl bg-purple-500/10 dark:bg-purple-950/40 border border-purple-500/20 text-purple-600 dark:text-purple-300 hover:bg-purple-500/20 flex items-center justify-between text-xs font-semibold'
+              },
+              React.createElement(
+                'div',
+                { className: 'flex items-center space-x-2' },
+                React.createElement('i', { className: 'fas fa-gamepad text-purple-500 text-xs' }),
+                React.createElement('span', null, 'Games')
+              ),
+              React.createElement('span', { className: 'text-[9px] px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-400 font-bold border border-purple-500/30' }, 'Mafia')
+            )
+          )
         )
       ),
 
