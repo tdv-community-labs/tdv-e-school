@@ -11,10 +11,12 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 
-# Environment variables
+# Environment variables & Secrets
 .env
 .env.local
 .env.*.local
+*.env
+env.js
 
 # Vercel
 .vercel
