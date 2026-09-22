@@ -146,7 +146,7 @@ export const LessonsView = ({
     // Yuxarı Fənn və Sinif Filtrləri
     React.createElement(
       'div',
-      { className: 'flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm' },
+      { className: 'flex flex-col sm:flex-row sm:items-center justify-between gap-4 bento-card p-4 rounded-2xl bg-slate-900/80 backdrop-blur-xl border border-white/10 shadow-lg' },
       
       // Fənn Seçimi Scroll Bar
       React.createElement(
@@ -235,7 +235,7 @@ export const LessonsView = ({
         { className: 'lg:col-span-4 space-y-4' },
         React.createElement(
           'div',
-          { className: 'bg-white dark:bg-slate-900 rounded-3xl p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm sticky top-24' },
+          { className: 'bento-card rounded-3xl p-5 bg-slate-900/80 backdrop-blur-xl border border-white/10 shadow-xl sticky top-24' },
           
           React.createElement(
             'div',
@@ -321,7 +321,7 @@ export const LessonsView = ({
         
         currentLesson ? React.createElement(
           'article',
-          { className: 'bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-6' },
+          { className: 'bento-card rounded-3xl p-6 sm:p-8 bg-slate-900/80 backdrop-blur-xl border border-white/10 shadow-xl space-y-6' },
           
           // Dərs Başlığı və Metadata (Səsli Oxuma ilə)
           React.createElement(
@@ -370,7 +370,7 @@ export const LessonsView = ({
           // Əsas Düsturlar Paneli (Key Formulas)
           currentLesson.keyFormulas && currentLesson.keyFormulas.length > 0 && React.createElement(
             'div',
-            { className: 'rounded-2xl p-5 bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/60 space-y-3' },
+            { className: 'rounded-2xl p-5 bg-gradient-to-br from-indigo-950/50 to-slate-900/60 border border-indigo-500/30 shadow-inner space-y-3' },
             React.createElement(
               'div',
               { className: 'flex items-center space-x-2 text-indigo-700 dark:text-indigo-300 font-black text-sm' },
@@ -469,7 +469,7 @@ export const LessonsView = ({
           // Dərsin Sonunda "Özünü Yoxla" Mini-Testi
           currentLesson.miniQuiz && currentLesson.miniQuiz.length > 0 && React.createElement(
             'div',
-            { className: 'rounded-2xl p-6 bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 space-y-4 pt-6' },
+            { className: 'rounded-2xl p-6 bg-slate-800/50 backdrop-blur-md border border-white/10 space-y-4 pt-6' },
             React.createElement(
               'div',
               { className: 'flex items-center space-x-2' },
@@ -483,7 +483,7 @@ export const LessonsView = ({
 
               return React.createElement(
                 'div',
-                { key: q.questionId, className: 'p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3' },
+                { key: q.questionId, className: 'p-4 rounded-xl bg-slate-900/80 border border-white/10 space-y-3' },
                 React.createElement(
                   'div',
                   { className: 'text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200' },
