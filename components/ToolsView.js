@@ -66,7 +66,7 @@ export const ToolsView = () => {
     // Yuxarı Başlıq
     React.createElement(
       'div',
-      { className: 'bg-gradient-to-r from-indigo-700 via-blue-700 to-cyan-600 p-6 sm:p-8 rounded-3xl text-white shadow-xl' },
+      { className: 'bento-card bg-gradient-to-r from-indigo-950 via-slate-900 to-cyan-950 p-6 sm:p-8 rounded-3xl text-white border border-white/10 shadow-2xl relative overflow-hidden' },
       React.createElement(
         'div',
         { className: 'max-w-2xl' },
