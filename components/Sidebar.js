@@ -17,7 +17,7 @@ export const Sidebar = ({
     { id: 'dashboard', label: 'Ana Səhifə', icon: 'fa-house', desc: 'Fənlər və son xülasələr' },
     { id: 'lessons', label: 'Dərslər və Nəzəriyyə', icon: 'fa-book-open-reader', desc: 'KaTeX & PhET interaktiv dərsləri' },
     { id: 'tools', label: 'Alətlər & Laboratoriya', icon: 'fa-toolbox', desc: 'Calculus, Törəmə və PhET simulyatorları', badge: 'Sağ Panel' },
-    { id: 'exams', label: 'BSQ / KSQ Arxiv', icon: 'fa-file-lines', desc: 'İnteraktiv test və rəsmi çap vərəqi' },
+    { id: 'exams', label: 'BSQ / KSQ Arxiv', icon: 'fa-file-lines', desc: 'İnteraktiv test və çap vərəqi' },
     { id: 'pvp', label: '1v1 Viktorina Arenası', icon: 'fa-gamepad', desc: 'Dostla oyna & sürətli matç', badge: 'Canlı' },
     { id: 'admin', label: 'İdarəetmə & Skan Paneli', icon: 'fa-database', desc: 'Yeni sual və JSON idarəetməsi' }
   ];
@@ -56,16 +56,16 @@ export const Sidebar = ({
           React.createElement(
             'div',
             { className: 'flex items-center space-x-3' },
-            React.createElement('img', {
-              src: 'assets/tdv-logo.jpg',
-              alt: 'TDV BTL',
-              className: 'w-9 h-9 rounded-full object-cover border-2 border-amber-400/80 shadow'
-            }),
+            React.createElement(
+              'div',
+              { className: 'w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center text-white font-bold shrink-0 shadow-md shadow-indigo-500/20' },
+              React.createElement('i', { className: 'fas fa-graduation-cap' })
+            ),
             React.createElement(
               'div',
               null,
-              React.createElement('span', { className: 'font-black text-base text-slate-800 dark:text-slate-100' }, 'TDV BTL E-School'),
-              React.createElement('p', { className: 'text-[9px] text-amber-600 dark:text-amber-400 font-semibold' }, 'BAKI TÜRK LİSEYİ')
+              React.createElement('span', { className: 'font-black text-base text-slate-800 dark:text-slate-100' }, 'TDV E-School'),
+              React.createElement('p', { className: 'text-[10px] text-slate-400 font-medium' }, 'Bakı Türk Liseyi • Təhsil Portalı')
             )
           ),
           React.createElement(
