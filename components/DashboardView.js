@@ -168,7 +168,7 @@ export const DashboardView = ({
               { className: 'p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-center font-mono text-cyan-300 text-sm py-5 space-y-1' },
               React.createElement('div', { className: 'text-xs text-slate-400' }, 'Nyuton-Leybnits Teoremi:'),
               React.createElement('div', { className: 'text-base font-bold text-white py-1' }, '∫[a, b] f(x) dx = F(b) - F(a)'),
-              React.createElement('div', { className: 'text-[10px] text-slate-500' }, 'F'(x) = f(x) • Törəmə və İnteqral')
+              React.createElement('div', { className: 'text-[10px] text-slate-500' }, "F'(x) = f(x) • Törəmə və İnteqral")
             ),
             React.createElement(
               'div',
