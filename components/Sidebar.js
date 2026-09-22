@@ -56,16 +56,16 @@ export const Sidebar = ({
           React.createElement(
             'div',
             { className: 'flex items-center space-x-3' },
-            React.createElement(
-              'div',
-              { className: 'w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center text-white font-bold' },
-              React.createElement('i', { className: 'fas fa-graduation-cap' })
-            ),
+            React.createElement('img', {
+              src: 'assets/tdv-logo.jpg',
+              alt: 'TDV BTL',
+              className: 'w-9 h-9 rounded-full object-cover border-2 border-amber-400/80 shadow'
+            }),
             React.createElement(
               'div',
               null,
-              React.createElement('span', { className: 'font-black text-lg text-slate-800 dark:text-slate-100' }, 'MəktəbPlus'),
-              React.createElement('p', { className: 'text-[10px] text-slate-400' }, 'Milli Təhsil Platforması')
+              React.createElement('span', { className: 'font-black text-base text-slate-800 dark:text-slate-100' }, 'TDV BTL E-School'),
+              React.createElement('p', { className: 'text-[9px] text-amber-600 dark:text-amber-400 font-semibold' }, 'BAKI TÜRK LİSEYİ')
             )
           ),
           React.createElement(
