@@ -55,20 +55,20 @@ export const DashboardView = ({
           React.createElement(
             'div',
             { className: 'inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-500/15 border border-indigo-400/30 text-xs font-medium text-indigo-300 backdrop-blur-md' },
-            React.createElement('span', { className: 'w-2 h-2 rounded-full bg-cyan-400 animate-pulse' }),
-            React.createElement('span', { className: 'font-bold text-white' }, 'TDV BTL'),
-            React.createElement('span', { className: 'text-indigo-300/90' }, '• Təhsil Portalı')
+            React.createElement('span', { className: 'w-2 h-2 rounded-full bg-cyan-400' }),
+            React.createElement('span', { className: 'font-bold text-white' }, 'TDV Community Labs'),
+            React.createElement('span', { className: 'text-indigo-300/90' }, '• E-School Portalı')
           ),
           React.createElement(
             'h1',
             { className: 'text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.15] text-white' },
-            'Akademik Zəka, BSQ/KSQ İmtahanları və ',
-            React.createElement('span', { className: 'bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent' }, '1v1 Bilik Arenası')
+            'TDV E-School • ',
+            React.createElement('span', { className: 'bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent' }, 'Tədris və Qiymətləndirmə')
           ),
           React.createElement(
             'p',
             { className: 'text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed font-normal' },
-            'Bütün fənlər üzrə KaTeX düsturlu nəzəriyyə konspektləri, PhET laboratoriyaları, imtahan test vərəqləri və dostlarınızla canlı yarışlar.'
+            'Bütün fənlər üzrə tədris konspektləri, KSQ və BSQ sınaq imtahanları arxivi və interaktiv tədris alətləri.'
           ),
 
           // Actions Suite
@@ -141,89 +141,73 @@ export const DashboardView = ({
           )
         ),
 
-        // Right Column: Interactive Live Spotlight Bento Card
+        // Right Column: Academic Resource Overview Card
         React.createElement(
           'div',
           { className: 'lg:col-span-4 hidden lg:block' },
           React.createElement(
             'div',
-            { className: 'rounded-2xl bg-slate-950/80 border border-white/10 p-5 shadow-2xl backdrop-blur-xl space-y-4' },
+            { className: 'rounded-2xl bg-slate-950/80 border border-white/10 p-5 shadow-2xl backdrop-blur-xl space-y-3' },
             React.createElement(
               'div',
-              { className: 'flex items-center justify-between' },
+              { className: 'flex items-center justify-between border-b border-slate-800 pb-2.5' },
               React.createElement(
                 'span',
                 { className: 'text-[11px] font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5' },
-                React.createElement('span', { className: 'w-2 h-2 rounded-full bg-cyan-400 animate-pulse' }),
-                'Canlı Formula Spotlight'
+                React.createElement('span', { className: 'w-2 h-2 rounded-full bg-cyan-400' }),
+                'Akademik Resurslar'
               ),
               React.createElement(
                 'span',
                 { className: 'text-[10px] font-mono text-slate-400' },
-                'Calculus & Fizika'
+                'TDV Community Labs'
               )
             ),
             React.createElement(
               'div',
-              { className: 'p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-center font-mono text-cyan-300 text-sm py-5 space-y-1' },
-              React.createElement('div', { className: 'text-xs text-slate-400' }, 'Nyuton-Leybnits Teoremi:'),
-              React.createElement('div', { className: 'text-base font-bold text-white py-1' }, '∫[a, b] f(x) dx = F(b) - F(a)'),
-              React.createElement('div', { className: 'text-[10px] text-slate-500' }, "F'(x) = f(x) • Törəmə və İnteqral")
+              { className: 'space-y-2' },
+              React.createElement(
+                'div',
+                { className: 'p-2.5 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-center justify-between' },
+                React.createElement('div', { className: 'flex items-center gap-2 text-xs text-slate-300' },
+                  React.createElement('i', { className: 'fas fa-graduation-cap text-indigo-400' }),
+                  React.createElement('span', null, 'Tədris Fənləri')
+                ),
+                React.createElement('span', { className: 'text-xs font-mono font-bold text-white' }, `${SUBJECTS.length} Fənn`)
+              ),
+              React.createElement(
+                'div',
+                { className: 'p-2.5 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-center justify-between' },
+                React.createElement('div', { className: 'flex items-center gap-2 text-xs text-slate-300' },
+                  React.createElement('i', { className: 'fas fa-book-open text-cyan-400' }),
+                  React.createElement('span', null, 'Dərs Konspektləri')
+                ),
+                React.createElement('span', { className: 'text-xs font-mono font-bold text-white' }, `${lessons.length}+ Mövzu`)
+              ),
+              React.createElement(
+                'div',
+                { className: 'p-2.5 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-center justify-between' },
+                React.createElement('div', { className: 'flex items-center gap-2 text-xs text-slate-300' },
+                  React.createElement('i', { className: 'fas fa-file-signature text-emerald-400' }),
+                  React.createElement('span', null, 'İmtahan Arxivi')
+                ),
+                React.createElement('span', { className: 'text-xs font-mono font-bold text-white' }, `${exams.length} KSQ/BSQ`)
+              )
             ),
             React.createElement(
               'div',
-              { className: 'flex items-center justify-between text-xs pt-1' },
-              React.createElement('span', { className: 'text-slate-400' }, 'Fənn laboratoriyası:'),
+              { className: 'pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs' },
+              React.createElement('span', { className: 'text-slate-400' }, 'Bal kalkulyatoru:'),
               React.createElement(
                 'button',
                 {
                   onClick: onOpenTools,
-                  className: 'text-indigo-400 hover:text-indigo-300 font-bold flex items-center gap-1 cursor-pointer'
+                  className: 'text-cyan-400 hover:text-cyan-300 font-bold flex items-center gap-1 cursor-pointer'
                 },
                 'Kalkulyatoru Aç →'
               )
             )
           )
-        )
-      )
-    ),
-
-    // 2. Günün PvP Çağırışı (Bento Gamification Strip)
-    React.createElement(
-      'div',
-      {
-        className: 'rounded-2xl p-5 bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-rose-500/10 border border-amber-400/30 flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm'
-      },
-      React.createElement(
-        'div',
-        { className: 'flex items-center space-x-4' },
-        React.createElement(
-          'div',
-          { className: 'w-12 h-12 rounded-2xl bg-amber-500 flex items-center justify-center text-2xl text-slate-950 shadow-lg shadow-amber-500/30 shrink-0' },
-          '⚔️'
-        ),
-        React.createElement(
-          'div',
-          null,
-          React.createElement(
-            'div',
-            { className: 'flex items-center gap-2' },
-            React.createElement('h3', { className: 'font-extrabold text-slate-900 dark:text-slate-100 text-base' }, 'Günün Canlı PvP Çağırışı'),
-            React.createElement('span', { className: 'text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-amber-500 text-slate-950' }, '+150 Bonus XP')
-          ),
-          React.createElement('p', { className: 'text-xs text-slate-600 dark:text-slate-300 mt-0.5' }, 'Günün təsadüfi rəqibi ilə 5 suallıq sürətli dueldə yarış, həftəlik liderlər cədvəlində yüksəl!')
-        )
-      ),
-      React.createElement(
-        'div',
-        { className: 'flex items-center space-x-2 w-full md:w-auto' },
-        React.createElement(
-          'button',
-          {
-            onClick: () => onStartPvp('quick'),
-            className: 'w-full md:w-auto px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-black text-xs shadow-md transition cursor-pointer'
-          },
-          'Çağırışı Qəbul Et'
         )
       )
     ),
