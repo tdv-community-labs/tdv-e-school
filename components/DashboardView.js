@@ -50,9 +50,8 @@ export const DashboardView = ({
         React.createElement(
           'div',
           { className: 'inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-xs font-semibold mb-4 border border-white/20' },
-          React.createElement('img', { src: 'assets/tdv-logo.jpg', alt: 'TDV BTL', className: 'w-4 h-4 rounded-full object-cover border border-amber-400' }),
-          React.createElement('span', { className: 'text-amber-300 font-bold' }, 'TDV BTL'),
-          React.createElement('span', null, '• Bakı Türk Liseyi Rəsmi Tədris Portalı')
+          React.createElement('span', { className: 'text-amber-300 font-bold' }, '✦'),
+          React.createElement('span', null, 'Bakı Türk Liseyi Tədris Portalı')
         ),
         React.createElement(
           'h1',
@@ -62,7 +61,7 @@ export const DashboardView = ({
         React.createElement(
           'p',
           { className: 'text-sm sm:text-base text-indigo-100 mb-6 leading-relaxed' },
-          'Bütün fənlər üzrə KaTeX dəstəkli nəzəriyyə konspektləri, PhET laboratoriyaları, rəsmi məktəb standartlı BSQ/KSQ test vərəqləri və dostlarınızla canlı yarış!'
+          'Bütün fənlər üzrə KaTeX dəstəkli nəzəriyyə konspektləri, PhET laboratoriyaları, məktəb standartlı BSQ/KSQ test vərəqləri və dostlarınızla canlı yarış!'
         ),
         
         // Fəaliyyət düymələri
