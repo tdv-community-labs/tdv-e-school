@@ -50,8 +50,9 @@ export const DashboardView = ({
         React.createElement(
           'div',
           { className: 'inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-xs font-semibold mb-4 border border-white/20' },
-          React.createElement('span', { className: 'text-amber-300' }, '✦'),
-          React.createElement('span', null, 'Azərbaycan Respublikası Tədris Proqramına Uyğun')
+          React.createElement('img', { src: 'assets/tdv-logo.jpg', alt: 'TDV BTL', className: 'w-4 h-4 rounded-full object-cover border border-amber-400' }),
+          React.createElement('span', { className: 'text-amber-300 font-bold' }, 'TDV BTL'),
+          React.createElement('span', null, '• Bakı Türk Liseyi Rəsmi Tədris Portalı')
         ),
         React.createElement(
           'h1',
