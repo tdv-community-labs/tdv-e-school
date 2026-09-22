@@ -394,7 +394,7 @@ export const PvpArenaView = ({
       // Sual Kartı və Variantlar
       React.createElement(
         'div',
-        { className: 'bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-md space-y-6' },
+        { className: 'bento-card p-6 sm:p-8 rounded-3xl bg-slate-900/80 backdrop-blur-xl border border-white/10 shadow-2xl space-y-6' },
         
         React.createElement(
           'div',
@@ -593,7 +593,7 @@ export const PvpArenaView = ({
       // 2. Dostla Oyna (Otaq Kodu)
       React.createElement(
         'div',
-        { className: 'bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4' },
+        { className: 'bento-card p-6 rounded-3xl bg-slate-900/80 backdrop-blur-xl border border-white/10 shadow-xl space-y-4' },
         React.createElement(
           'div',
           { className: 'space-y-1' },
