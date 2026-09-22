@@ -138,7 +138,7 @@ export const Sidebar = ({
             React.createElement(
               'a',
               {
-                href: 'https://school-minifootball-tournament-2.vercel.app/',
+                href: 'https://school-minifootball-tournament.vercel.app/',
                 target: '_blank',
                 rel: 'noopener noreferrer',
                 className: 'p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/70 text-slate-700 dark:text-slate-200 hover:text-blue-500 flex items-center space-x-2 text-xs font-semibold'
