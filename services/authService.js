@@ -17,14 +17,12 @@ export const authService = {
       if (ssoTicket) {
         const decoded = JSON.parse(decodeURIComponent(escape(atob(ssoTicket))));
         if (decoded && (decoded.username || decoded.userId)) {
-          // Bilet etibarlıdır, yaddaşa yaz
           const sessionData = {
             ...decoded,
             expiresAt: decoded.expiresAt || (Date.now() + 30 * 24 * 60 * 60 * 1000)
           };
           localStorage.setItem(SESSION_KEY, JSON.stringify(sessionData));
           
-          // URL-i təmizlə
           urlParams.delete('sso_ticket');
           const newSearch = urlParams.toString();
           const cleanUrl = window.location.pathname + (newSearch ? '?' + newSearch : '') + window.location.hash;
@@ -45,7 +43,6 @@ export const authService = {
         if (session && session.expiresAt && session.expiresAt > Date.now()) {
           return session;
         } else if (session) {
-          // Vaxtı keçib
           localStorage.removeItem(SESSION_KEY);
         }
       }
@@ -76,13 +73,12 @@ export const authService = {
       avatar: avatar,
       token: 'tdv_token_' + Math.random().toString(36).substring(2) + Date.now().toString(36),
       createdAt: Date.now(),
-      expiresAt: Date.now() + (30 * 24 * 60 * 60 * 1000) // 30 gün etibarlılıq
+      expiresAt: Date.now() + (30 * 24 * 60 * 60 * 1000)
     };
 
     try {
       localStorage.setItem(SESSION_KEY, JSON.stringify(session));
       
-      // Mövcud E-School statistikası ilə də sinxronlaşdır
       const existingStatsRaw = localStorage.getItem('mekteb_plus_user_stats_v1');
       const existingStats = existingStatsRaw ? JSON.parse(existingStatsRaw) : {};
       localStorage.setItem('mekteb_plus_user_stats_v1', JSON.stringify({
@@ -99,6 +95,57 @@ export const authService = {
   },
 
   /**
+   * Yeni istifadəçi qeydiyyatı (Ad, Soyad, İstifadəçi adı, Sinif, Şifrə və Avatar ilə)
+   */
+  register({ fullName, username, grade = 10, schoolClass = '', pin = '', avatar = '🧑‍🎓', role = 'student' }) {
+    const trimmedUser = (username || '').trim();
+    const trimmedName = (fullName || '').trim() || trimmedUser;
+    if (!trimmedUser) throw new Error('Zəhmət olmasa istifadəçi adını daxil edin.');
+
+    const cleanGrade = Number(grade) || 10;
+    const finalClass = schoolClass || (cleanGrade > 0 ? `${cleanGrade}A` : 'Müəllim');
+    const finalAvatar = avatar || (role === 'teacher' ? '👨‍🏫' : (cleanGrade >= 10 ? '🧑‍🎓' : '🎒'));
+
+    const session = {
+      userId: 'tdv-usr-' + Date.now().toString(36),
+      username: trimmedUser,
+      fullName: trimmedName,
+      grade: cleanGrade,
+      schoolClass: finalClass,
+      role: role || 'student',
+      avatar: finalAvatar,
+      token: 'tdv_token_' + Math.random().toString(36).substring(2) + Date.now().toString(36),
+      createdAt: Date.now(),
+      expiresAt: Date.now() + (30 * 24 * 60 * 60 * 1000)
+    };
+
+    try {
+      const regUsersRaw = localStorage.getItem('tdv_registered_users_v1');
+      const regUsers = regUsersRaw ? JSON.parse(regUsersRaw) : [];
+      regUsers.push({
+        ...session,
+        pin: pin || ''
+      });
+      localStorage.setItem('tdv_registered_users_v1', JSON.stringify(regUsers));
+
+      localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+
+      const existingStatsRaw = localStorage.getItem('mekteb_plus_user_stats_v1');
+      const existingStats = existingStatsRaw ? JSON.parse(existingStatsRaw) : {};
+      localStorage.setItem('mekteb_plus_user_stats_v1', JSON.stringify({
+        ...existingStats,
+        name: session.fullName,
+        grade: session.grade,
+        avatar: session.avatar
+      }));
+    } catch (e) {
+      console.error('⚠️ [Auth] Qeydiyyat yaddaşa yazıla bilmədi:', e);
+    }
+
+    return session;
+  },
+
+  /**
    * Sürətli şagird və ya müəllim testi üçün hazır profil girişi
    */
   loginWithDemo(type = 'student-10') {
@@ -108,12 +155,11 @@ export const authService = {
     if (type === 'teacher') {
       return this.login('Aysel Müəllimə (Dəqiq Fənlər)', 10, 'teacher2026', 'teacher');
     }
-    // Default student-10
     return this.login('Orxan Əliyev', 10, '1000', 'student');
   },
 
   /**
-   * Çıxış funksiyası: Bütün vahid sessiyanı təmizləyir
+   * Çıxış funksiyası
    */
   logout() {
     try {
@@ -124,7 +170,7 @@ export const authService = {
   },
 
   /**
-   * Cross-domain SSO üçün təhlükəsiz bilet generasiyası
+   * Cross-domain SSO bilet generasiyası
    */
   createSsoTicket(session) {
     if (!session) return '';
