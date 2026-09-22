@@ -120,3 +120,67 @@ body {
     print-color-adjust: exact !important;
   }
 }
+
+
+/* ==========================================================================
+   BESPOKE PRODUCT DESIGN SYSTEM (Linear & Stripe Grade UI)
+   ========================================================================== */
+
+:root {
+  --bg-canvas: #07090e;
+  --bg-surface: rgba(13, 17, 26, 0.75);
+}
+
+/* Frosted Optical Glass */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+.dark .glass-panel {
+  background: rgba(13, 17, 26, 0.75);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.07), 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* Bento Card Micro-Dynamics */
+.bento-card {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.bento-card:hover {
+  transform: translateY(-2px);
+}
+
+html.dark .bento-card:hover {
+  border-color: rgba(99, 102, 241, 0.45);
+  box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+html:not(.dark) .bento-card:hover {
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.1);
+}
+
+/* Subtle Gradient Borders */
+.gradient-border-indigo {
+  border: 1px solid rgba(99, 102, 241, 0.25);
+}
+.gradient-border-indigo:hover {
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+/* Atmospheric Ambient Aurora Mesh */
+body.dark {
+  background-color: #07090e;
+  background-image: 
+    radial-gradient(ellipse 70% 40% at 50% -10%, rgba(99, 102, 241, 0.12), transparent 70%),
+    radial-gradient(ellipse 50% 30% at 90% 15%, rgba(6, 182, 212, 0.08), transparent 60%);
+  background-attachment: fixed;
+}
