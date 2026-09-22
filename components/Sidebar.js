@@ -1,4 +1,4 @@
-// MəktəbPlus - Mobil Yan Menyu (Drawer)
+// TDV Community Labs - E-School Mobil Yan Menyu (Drawer)
 
 import React from 'react';
 
