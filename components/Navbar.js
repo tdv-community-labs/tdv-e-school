@@ -184,8 +184,20 @@ export const Navbar = ({
               title: 'Şəxsi Kabinet',
               className: 'flex items-center space-x-2 p-1 pr-2.5 rounded-xl bg-slate-100 dark:bg-slate-900/80 hover:bg-indigo-50 dark:hover:bg-slate-800 transition border border-slate-200/60 dark:border-white/[0.08] cursor-pointer'
             },
-            React.createElement('span', { className: 'text-sm leading-none' }, userStats?.avatar || '🧑‍🎓'),
-            React.createElement('span', { className: 'hidden md:inline text-xs font-bold text-slate-700 dark:text-slate-200' }, userStats?.name || 'Məktəbli')
+            React.createElement('span', { className: 'text-sm leading-none' }, userSession?.avatar || userStats?.avatar || '🧑‍🎓'),
+            React.createElement('span', { className: 'hidden md:inline text-xs font-bold text-slate-700 dark:text-slate-200' }, userSession?.fullName || userSession?.username || userStats?.name || 'Məktəbli')
+          ),
+
+          // Çıxış Düyməsi (Sessiyanı bağla və girişi kilidlə)
+          onLogout && React.createElement(
+            'button',
+            {
+              onClick: onLogout,
+              title: 'Çıxış (Girişi kilidlə)',
+              className: 'p-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 border border-rose-500/20 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer'
+            },
+            React.createElement('i', { className: 'fas fa-arrow-right-from-bracket text-xs' }),
+            React.createElement('span', { className: 'hidden xl:inline' }, 'Çıxış')
           ),
 
           // Mobil Menyu Düyməsi
