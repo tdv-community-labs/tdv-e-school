@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TDV E-School — Milli Təhsil və İmtahan Portalı</title>
+  <title>TDV BTL E-School — Milli Təhsil və İmtahan Portalı</title>
+  <link rel="icon" type="image/jpeg" href="assets/tdv-logo.jpg">
+  <link rel="apple-touch-icon" href="assets/tdv-logo.jpg">
 
   <!-- Cybersecurity: Content Security Policy (CSP) & Hardening Headers -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.gstatic.com https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; connect-src 'self' https://esm.sh https://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://www.googleapis.com; frame-src 'none'; object-src 'none'; base-uri 'self';">
@@ -93,38 +95,40 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 antialiased selection:bg-indigo-500 selection:text-white">
   <!-- TDV Community Labs Ecosystem Global Bar -->
-  <aside id="tdv-ecosystem-topbar" aria-label="TDV Community Labs Ecosystem Bar" class="bg-slate-950 border-b border-slate-800/90 py-1.5 px-3 sm:px-4 text-[11px] sticky top-0 z-50 transition-colors">
+  <!-- TDV Community Labs Ecosystem Global Bar -->
+  <aside id="tdv-ecosystem-topbar" aria-label="TDV Community Labs Ecosystem Bar" class="bg-[#070a12] border-b border-amber-500/20 py-1.5 px-3 sm:px-4 text-[11px] sticky top-0 z-50 transition-colors shadow-sm" style="font-family: 'Inter', system-ui, sans-serif;">
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
-      <!-- Left: Org Identity -->
+      <!-- Left: Institutional Crest & Identity -->
       <div class="flex items-center gap-2 overflow-hidden whitespace-nowrap">
-        <a href="https://tdv-community-hubs.vercel.app/" class="inline-flex items-center gap-1.5 font-extrabold text-white hover:text-blue-400 transition">
-          <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-          <span class="tracking-tight">TDV Community Labs</span>
+        <a href="https://tdv-community-hubs.vercel.app/" class="inline-flex items-center gap-2 font-extrabold text-white hover:text-amber-300 transition" style="text-decoration: none;">
+          <img src="assets/tdv-logo.jpg" alt="TDV BTL Crest" class="w-5 h-5 rounded-full object-cover border border-amber-400/70 shadow-sm shrink-0" />
+          <span class="tracking-tight text-white font-black text-[11px] hidden min-[380px]:inline">TÜRKİYE DİYANET VAKFI • BAKI TÜRK LİSEYİ</span>
+          <span class="tracking-tight text-white font-black text-[11px] min-[380px]:hidden">TDV BTL</span>
         </a>
         <span class="text-slate-700 hidden sm:inline">•</span>
-        <span class="text-slate-400 text-[10px] hidden md:inline">Məktəb Rəqəmsal Ekosistemi</span>
+        <span class="text-amber-400/90 text-[10px] font-semibold hidden md:inline">Milli Təhsil Portalı</span>
       </div>
 
-            <!-- Right: Unified Ecosystem Switcher Pill -->
-      <nav class="flex items-center gap-1 bg-slate-900/90 border border-slate-800 p-1 rounded-2xl text-xs font-medium shadow-sm">
-        <a href="https://tdv-community-hubs.vercel.app/" class="px-2.5 sm:px-3 py-1.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/80 transition flex items-center gap-1.5" title="TDV Hub Mərkəzi Portalı">
+      <!-- Right: Unified Ecosystem Switcher Pill -->
+      <nav class="flex items-center gap-1 bg-slate-900/95 border border-slate-800 p-1 rounded-2xl text-xs font-medium shadow-sm">
+        <a href="https://tdv-community-hubs.vercel.app/" class="px-2.5 sm:px-3 py-1.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/80 transition flex items-center gap-1.5" style="text-decoration: none;" title="TDV Hub Mərkəzi Portalı">
           <i class="fas fa-house text-blue-400 text-xs"></i>
           <span class="hidden sm:inline">Mərkəz</span>
         </a>
-        <a href="https://tdv-e-school.vercel.app/" class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-emerald-600 text-white font-semibold shadow-sm flex items-center gap-1.5" title="TDV E-School (Aktiv)">
-          <i class="fas fa-graduation-cap text-xs"></i>
+        <a href="https://tdv-e-school.vercel.app/" class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-bold shadow-md flex items-center gap-1.5 border border-emerald-400/40" style="text-decoration: none;" title="TDV E-School (Aktiv)">
+          <i class="fas fa-graduation-cap text-amber-300 text-xs"></i>
           <span class="hidden sm:inline">E-School</span>
         </a>
-        <a href="https://school-minifootball-tournament-2.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-2.5 sm:px-3 py-1.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/80 transition flex items-center gap-1.5" title="TDV Sports Minifutbol Turniri">
+        <a href="https://school-minifootball-tournament.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-2.5 sm:px-3 py-1.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/80 transition flex items-center gap-1.5" style="text-decoration: none;" title="TDV Sports Minifutbol Turniri">
           <i class="fas fa-trophy text-blue-400 text-xs"></i>
           <span class="hidden sm:inline">Sports</span>
         </a>
-        <a href="https://tdv-community-hubs.vercel.app/games" target="_blank" rel="noopener noreferrer" class="px-2.5 sm:px-3 py-1.5 rounded-xl text-slate-300 hover:text-white hover:bg-purple-950/40 hover:border-purple-500/30 transition flex items-center gap-1.5 group" title="TDV Games & Mafia">
+        <a href="https://tdv-community-hubs.vercel.app/games" target="_blank" rel="noopener noreferrer" class="px-2.5 sm:px-3 py-1.5 rounded-xl text-slate-300 hover:text-white hover:bg-purple-950/40 hover:border-purple-500/30 transition flex items-center gap-1.5 group" style="text-decoration: none;" title="TDV Games & Mafia">
           <i class="fas fa-gamepad text-purple-400 group-hover:scale-110 transition text-xs"></i>
           <span class="hidden sm:inline">Games</span>
           <span class="text-[9px] px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 font-bold border border-purple-500/30">Mafia</span>
         </a>
-        <a href="https://github.com/tdv-community-labs" target="_blank" rel="noopener noreferrer" class="hidden sm:flex px-2 py-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/60 transition" title="GitHub Təşkilatı">
+        <a href="https://github.com/tdv-community-labs" target="_blank" rel="noopener noreferrer" class="hidden sm:flex px-2 py-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/60 transition" title="GitHub Təşkilatı" style="text-decoration: none;">
           <i class="fab fa-github text-xs"></i>
         </a>
       </nav>
