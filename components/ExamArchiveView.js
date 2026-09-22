@@ -1,4 +1,4 @@
-// MəktəbPlus - BSQ / KSQ İmtahan Arxiv Bölməsi (İnteraktiv Həll & Rəsmi Çap/PDF Rejimi)
+// MəktəbPlus - BSQ / KSQ İmtahan Arxiv Bölməsi (İnteraktiv Həll & məktəb Çap/PDF Rejimi)
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { SUBJECTS, GRADES } from '../data/subjects.js';
@@ -150,7 +150,7 @@ export const ExamArchiveView = ({
       // Başlıq və Süzgəclər Paneli
       React.createElement(
         'div',
-        { className: 'bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4' },
+        { className: 'bento-card p-6 rounded-3xl bg-slate-900/80 backdrop-blur-xl border border-white/10 shadow-xl space-y-4' },
         React.createElement(
           'div',
           { className: 'flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-100 dark:border-slate-800' },
@@ -182,7 +182,7 @@ export const ExamArchiveView = ({
               {
                 value: filterSubject,
                 onChange: e => setFilterSubject(e.target.value),
-                className: 'w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 focus:outline-none focus:border-indigo-500'
+                className: 'w-full p-2.5 rounded-xl bg-slate-800/80 border border-white/10 text-xs font-semibold text-slate-200 focus:outline-none focus:border-indigo-500 transition-colors'
               },
               React.createElement('option', { value: 'all' }, 'Bütün Fənlər'),
               SUBJECTS.map(s => React.createElement('option', { key: s.id, value: s.id }, s.name))
@@ -199,7 +199,7 @@ export const ExamArchiveView = ({
               {
                 value: filterGrade,
                 onChange: e => setFilterGrade(e.target.value),
-                className: 'w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 focus:outline-none focus:border-indigo-500'
+                className: 'w-full p-2.5 rounded-xl bg-slate-800/80 border border-white/10 text-xs font-semibold text-slate-200 focus:outline-none focus:border-indigo-500 transition-colors'
               },
               React.createElement('option', { value: 'all' }, 'Bütün Siniflər (6-11)'),
               GRADES.map(g => React.createElement('option', { key: g, value: g }, `${g}-ci sinif`))
@@ -216,7 +216,7 @@ export const ExamArchiveView = ({
               {
                 value: filterType,
                 onChange: e => setFilterType(e.target.value),
-                className: 'w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 focus:outline-none focus:border-indigo-500'
+                className: 'w-full p-2.5 rounded-xl bg-slate-800/80 border border-white/10 text-xs font-semibold text-slate-200 focus:outline-none focus:border-indigo-500 transition-colors'
               },
               React.createElement('option', { value: 'all' }, 'BSQ və KSQ Birlikdə'),
               React.createElement('option', { value: 'BSQ' }, 'BSQ (Böyük Summativ)'),
@@ -234,7 +234,7 @@ export const ExamArchiveView = ({
               {
                 value: filterSemester,
                 onChange: e => setFilterSemester(e.target.value),
-                className: 'w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 focus:outline-none focus:border-indigo-500'
+                className: 'w-full p-2.5 rounded-xl bg-slate-800/80 border border-white/10 text-xs font-semibold text-slate-200 focus:outline-none focus:border-indigo-500 transition-colors'
               },
               React.createElement('option', { value: 'all' }, 'Hər İki Yarımil'),
               React.createElement('option', { value: '1' }, 'I Yarımil'),
@@ -259,7 +259,7 @@ export const ExamArchiveView = ({
             'div',
             {
               key: exam.id,
-              className: 'bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between'
+              className: 'bento-card rounded-3xl p-6 bg-slate-900/80 backdrop-blur-xl border border-white/10 shadow-lg hover:border-indigo-500/40 hover:shadow-indigo-500/10 transition-all duration-300 flex flex-col justify-between'
             },
             React.createElement(
               'div',
@@ -299,7 +299,7 @@ export const ExamArchiveView = ({
               )
             ),
 
-            // Düymələr: İnteraktiv Həll Et və Rəsmi Çap Görünüşü
+            // Düymələr: İnteraktiv Həll Et və məktəb Çap Görünüşü
             React.createElement(
               'div',
               { className: 'mt-6 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center gap-3' },
@@ -335,7 +335,7 @@ export const ExamArchiveView = ({
   }
 
   // =========================================================================
-  // RƏSMİ ÇAP / PDF GÖRÜNÜŞÜ (@media print)
+  // məktəb ÇAP / PDF GÖRÜNÜŞÜ (@media print)
   // =========================================================================
   if (printMode) {
     return React.createElement(
@@ -386,7 +386,7 @@ export const ExamArchiveView = ({
         {
           className: 'print-page bg-white text-black p-8 sm:p-12 rounded-3xl shadow-xl border border-slate-200'
         },
-        // Rəsmi Başlıq
+        // məktəb Başlıq
         React.createElement(
           'div',
           { className: 'text-center border-b-2 border-black pb-4 mb-6 space-y-1' },
