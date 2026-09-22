@@ -1,6 +1,6 @@
 import { authService } from './services/authService.js';
 import { UnifiedAuthBarrier } from './components/UnifiedAuthBarrier.js';
-// MəktəbPlus - Əsas Tətbiq Komponenti (Root Application)
+// TDV Community Labs - E-School Əsas Tətbiq Komponenti (Root Application)
 
 
 
@@ -582,7 +582,7 @@ export default function App() {
 
         { className: 'max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2' },
 
-        React.createElement('div', { className: 'font-semibold' }, '© 2026 MəktəbPlus - Bütün hüquqlar qorunur. Milli EdTech Platforması.'),
+        React.createElement('div', { className: 'font-semibold' }, '© 2026 TDV Community Labs • Bütün hüquqlar qorunur.'),
 
         React.createElement(
 
