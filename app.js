@@ -31,6 +31,13 @@ import { StorageService } from './services/storageService.js';
 export default function App() {
   const [session, setSession] = useState(() => authService.getSession());
 
+  useEffect(() => {
+    const unsub = authService.subscribe((newSession) => {
+      setSession(newSession);
+    });
+    return unsub;
+  }, []);
+
 
   const [activeTab, setActiveTab] = useState('dashboard');
 
