@@ -17,7 +17,7 @@ export const Navbar = ({
   return React.createElement(
     'header',
     {
-      className: 'sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 transition-colors duration-300 no-print'
+      className: 'sticky top-[33px] sm:top-[35px] z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 transition-colors duration-300 no-print'
     },
     React.createElement(
       'div',
@@ -26,26 +26,19 @@ export const Navbar = ({
         'div',
         { className: 'flex items-center justify-between h-16 gap-4' },
         
-        // Loqo və Brend
+        // Loqo və Brend: Dedicated Modern EdTech Website Logo (no school photo logo, no milli/resmi)
         React.createElement(
           'div',
           {
-            className: 'flex items-center space-x-3 cursor-pointer select-none',
+            className: 'flex items-center space-x-3 cursor-pointer select-none group',
             onClick: () => setActiveTab('dashboard')
           },
           React.createElement(
             'div',
-            { className: 'relative shrink-0' },
-            React.createElement('img', {
-              src: 'assets/tdv-logo.jpg',
-              alt: 'TDV BTL Crest',
-              className: 'w-10 h-10 rounded-full object-cover border-2 border-amber-400/80 shadow-md shadow-amber-500/10'
-            }),
-            React.createElement(
-              'div',
-              { className: 'absolute -bottom-1 -right-1 bg-indigo-600 text-white w-4 h-4 rounded-full flex items-center justify-center border border-slate-900 shadow text-[8px]' },
-              React.createElement('i', { className: 'fas fa-graduation-cap text-[8px]' })
-            )
+            {
+              className: 'w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 via-blue-600 to-cyan-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/25 shrink-0 group-hover:scale-105 transition-transform'
+            },
+            React.createElement('i', { className: 'fas fa-graduation-cap text-lg' })
           ),
           React.createElement(
             'div',
@@ -53,10 +46,10 @@ export const Navbar = ({
             React.createElement(
               'div',
               { className: 'flex items-center space-x-2' },
-              React.createElement('span', { className: 'font-black text-lg sm:text-xl tracking-tight bg-gradient-to-r from-indigo-600 to-cyan-600 dark:from-indigo-400 dark:to-cyan-400 bg-clip-text text-transparent' }, 'TDV BTL E-School'),
-              React.createElement('span', { className: 'text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-400/40' }, 'RƏSMİ')
+              React.createElement('span', { className: 'font-black text-xl tracking-tight bg-gradient-to-r from-indigo-600 to-cyan-600 dark:from-indigo-400 dark:to-cyan-400 bg-clip-text text-transparent' }, 'TDV E-School'),
+              React.createElement('span', { className: 'text-[10px] font-bold px-1.5 py-0.5 rounded-md bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800' }, 'v2.5')
             ),
-            React.createElement('p', { className: 'text-[10px] font-semibold text-slate-500 dark:text-slate-400 -mt-0.5' }, 'BAKI TÜRK LİSEYİ • MİLLİ TƏDRİS PORTALI')
+            React.createElement('p', { className: 'text-[10px] text-slate-500 dark:text-slate-400 -mt-0.5 font-medium' }, 'Bakı Türk Liseyi • Təhsil Portalı')
           )
         ),
 
