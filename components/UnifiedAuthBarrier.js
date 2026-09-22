@@ -151,11 +151,11 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
             'div',
             { className: 'inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-wider mb-1.5' },
             React.createElement('span', { className: 'w-2 h-2 rounded-full bg-emerald-400 animate-pulse' }),
-            'Vahid Giriş & Qeydiyyat • Qorunan Resurs'
+            'Vahid Ekosistem Profili • 1 Hesab = Bütün Ekosistem'
           ),
           React.createElement('h1', { className: 'text-2xl font-black text-white tracking-tight' }, 'TDV E-School'),
           React.createElement('p', { className: 'text-xs text-slate-400 max-w-sm mx-auto leading-relaxed' },
-            'Tədris portalına, dərslərə və sınaqlara daxil olmaq üçün hesabınızla daxil olun və ya yeni şagird hesabı yaradın.'
+            'Tək 1 profil E-School, Futbol Turniri, Games və Mafia portallarının hamısına bəs edir! Vahid profilinizlə daxil olun və ya yeni vahid profil yaradın.'
           )
         )
       ),
@@ -176,7 +176,7 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
             }`
           },
           React.createElement('i', { className: 'fas fa-arrow-right-to-bracket text-xs' }),
-          React.createElement('span', null, 'Daxil Ol')
+          React.createElement('span', null, 'Vahid Giriş')
         ),
         React.createElement(
           'button',
@@ -190,7 +190,7 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
             }`
           },
           React.createElement('i', { className: 'fas fa-user-plus text-xs' }),
-          React.createElement('span', null, 'Qeydiyyatdan Keç')
+          React.createElement('span', null, 'Vahid Profil Yarat')
         )
       ),
 
@@ -409,7 +409,7 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
           isLoading
             ? React.createElement('i', { className: 'fas fa-circle-notch fa-spin text-xs' })
             : React.createElement('i', { className: 'fas fa-user-check text-xs' }),
-          React.createElement('span', null, isLoading ? 'Hesab Yaradılır...' : 'Hesab Yarat və Portala Daxil Ol')
+          React.createElement('span', null, isLoading ? 'Hesab Yaradılır...' : 'Vahid Profil Yarat və Ekosistemə Daxil Ol')
         )
       ),
 
