@@ -10,6 +10,8 @@ export const Navbar = ({
   searchQuery,
   setSearchQuery,
   userStats,
+  userSession,
+  onLogout,
   onOpenMobileMenu,
   onOpenTools,
   onOpenProfile

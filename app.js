@@ -28,6 +28,61 @@ import { StorageService } from './services/storageService.js';
 
 
 
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error('TDV E-School Runtime Error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return React.createElement(
+        'div',
+        { className: 'min-h-[60vh] flex flex-col items-center justify-center p-6 text-center' },
+        React.createElement(
+          'div',
+          { className: 'max-w-md w-full p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-2xl space-y-4' },
+          React.createElement('div', { className: 'w-14 h-14 mx-auto rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-2xl' }, '⚠️'),
+          React.createElement('h2', { className: 'text-lg font-black text-zinc-900 dark:text-white' }, 'İş sahəsində xəta baş verdi'),
+          React.createElement('p', { className: 'text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed' }, 'Resurslar yüklənərkən müvəqqəti problem yarandı. Səhifəni yenidən yükləyərək davam edə bilərsiniz.'),
+          React.createElement(
+            'div',
+            { className: 'flex gap-2 justify-center pt-2' },
+            React.createElement(
+              'button',
+              {
+                onClick: () => { this.setState({ hasError: false, error: null }); window.location.reload(); },
+                className: 'px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-md transition cursor-pointer'
+              },
+              'Səhifəni Yenilə'
+            ),
+            React.createElement(
+              'button',
+              {
+                onClick: () => {
+                  try { localStorage.clear(); } catch(e) {}
+                  window.location.reload();
+                },
+                className: 'px-4 py-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-bold text-xs hover:bg-zinc-200 dark:hover:bg-zinc-700 transition cursor-pointer'
+              },
+              'Keşi Sıfırla'
+            )
+          )
+        )
+      );
+    }
+    return this.props.children;
+  }
+}
+
 export default function App() {
   const [session, setSession] = useState(() => authService.getSession());
 
@@ -157,6 +212,16 @@ export default function App() {
 
 
 
+  const handleLogout = () => {
+
+    authService.logout();
+
+    setSession(null);
+
+  };
+
+
+
   const handleStartPvp = (mode) => {
 
     setActiveTab('pvp');
@@ -258,6 +323,10 @@ export default function App() {
 
       userStats,
 
+      userSession: session,
+
+      onLogout: handleLogout,
+
       onOpenMobileMenu: () => setMobileMenuOpen(true),
 
       onOpenTools: () => setIsToolsOpen(true),
@@ -281,6 +350,10 @@ export default function App() {
       setActiveTab,
 
       userStats,
+
+      userSession: session,
+
+      onLogout: handleLogout,
 
       onOpenTools: () => setIsToolsOpen(true),
 
@@ -428,9 +501,15 @@ export default function App() {
 
     React.createElement(
 
-      'main',
+      ErrorBoundary,
 
-      { className: 'flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 w-full' },
+      null,
+
+      React.createElement(
+
+        'main',
+
+        { className: 'flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 w-full' },
 
       
 
@@ -507,6 +586,8 @@ export default function App() {
         onDataRefresh: refreshData
 
       })
+
+      )
 
     ),
 

@@ -8,6 +8,8 @@ export const Sidebar = ({
   activeTab,
   setActiveTab,
   userStats,
+  userSession,
+  onLogout,
   onOpenTools,
   onOpenProfile
 }) => {
@@ -149,7 +151,7 @@ export const Sidebar = ({
             React.createElement(
               'a',
               {
-                href: 'https://tdv-community-labs.github.io/tdv-hub/games.html',
+                href: 'https://tdv-community-hubs.vercel.app/games',
                 target: '_blank',
                 rel: 'noopener noreferrer',
                 className: 'col-span-2 p-2.5 rounded-xl bg-purple-500/10 dark:bg-purple-950/40 border border-purple-500/20 text-purple-600 dark:text-purple-300 hover:bg-purple-500/20 flex items-center justify-between text-xs font-semibold'
@@ -166,10 +168,10 @@ export const Sidebar = ({
         )
       ),
 
-      // Footer User stats (Profilə keçid)
+      // Footer User stats (Profilə keçid & Çıxış)
       React.createElement(
         'div',
-        { className: 'pt-6 border-t border-zinc-200 dark:border-zinc-800' },
+        { className: 'pt-4 border-t border-zinc-200 dark:border-zinc-800 space-y-2' },
         React.createElement(
           'div',
           {
@@ -177,16 +179,28 @@ export const Sidebar = ({
               onClose();
               if (onOpenProfile) onOpenProfile();
             },
-            className: 'p-3.5 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 flex items-center space-x-3 cursor-pointer hover:bg-indigo-50 dark:hover:bg-zinc-700/80 transition group'
+            className: 'p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 flex items-center space-x-3 cursor-pointer hover:bg-indigo-50 dark:hover:bg-zinc-700/80 transition group'
           },
-          React.createElement('div', { className: 'w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-950 flex items-center justify-center text-xl shadow-inner' }, userStats?.avatar || '🧑‍🎓'),
+          React.createElement('div', { className: 'w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-950 flex items-center justify-center text-xl shadow-inner' }, (userSession && userSession.avatar) || (userStats && userStats.avatar) || '🧑‍🎓'),
           React.createElement(
             'div',
             { className: 'flex-1 min-w-0' },
-            React.createElement('p', { className: 'text-xs font-bold text-zinc-800 dark:text-zinc-200 truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition' }, userStats?.name || 'Məktəbli'),
-            React.createElement('p', { className: 'text-[10px] text-amber-600 dark:text-amber-400 font-semibold' }, `${userStats?.pvpScore || 1420} XP • ${userStats?.grade || 10}-cu sinif`)
+            React.createElement('p', { className: 'text-xs font-bold text-zinc-800 dark:text-zinc-200 truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition' }, (userSession && (userSession.fullName || userSession.username)) || (userStats && userStats.name) || 'Məktəbli'),
+            React.createElement('p', { className: 'text-[10px] text-amber-600 dark:text-amber-400 font-semibold' }, `${userStats?.pvpScore || 1420} XP • ${(userSession && userSession.grade) || userStats?.grade || 10}-cu sinif`)
           ),
           React.createElement('i', { className: 'fas fa-chevron-right text-xs text-zinc-400 group-hover:text-indigo-500 transition' })
+        ),
+        onLogout && React.createElement(
+          'button',
+          {
+            onClick: () => {
+              onClose();
+              onLogout();
+            },
+            className: 'w-full p-2.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 border border-rose-500/20 text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer'
+          },
+          React.createElement('i', { className: 'fas fa-arrow-right-from-bracket text-xs' }),
+          React.createElement('span', null, 'Çıxış et')
         )
       )
     )
