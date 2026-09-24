@@ -37,14 +37,14 @@ export const Sidebar = ({
     { className: 'fixed inset-0 z-50 lg:hidden no-print' },
     // Overlay backdrop
     React.createElement('div', {
-      className: 'fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity',
+      className: 'fixed inset-0 bg-zinc-900/60 backdrop-blur-sm transition-opacity',
       onClick: onClose
     }),
     // Drawer panel
     React.createElement(
       'div',
       {
-        className: 'fixed inset-y-0 left-0 max-w-xs w-full bg-white dark:bg-slate-900 shadow-2xl p-6 flex flex-col justify-between z-10 transition-transform'
+        className: 'fixed inset-y-0 left-0 max-w-xs w-full bg-white dark:bg-zinc-900 shadow-2xl p-6 flex flex-col justify-between z-10 transition-transform'
       },
       React.createElement(
         'div',
@@ -52,7 +52,7 @@ export const Sidebar = ({
         // Header
         React.createElement(
           'div',
-          { className: 'flex items-center justify-between pb-6 border-b border-slate-200 dark:border-slate-800' },
+          { className: 'flex items-center justify-between pb-6 border-b border-zinc-200 dark:border-zinc-800' },
           React.createElement(
             'div',
             { className: 'flex items-center space-x-3' },
@@ -64,15 +64,15 @@ export const Sidebar = ({
             React.createElement(
               'div',
               null,
-              React.createElement('span', { className: 'font-black text-base text-slate-800 dark:text-slate-100' }, 'TDV E-School'),
-              React.createElement('p', { className: 'text-[10px] text-slate-400 font-medium' }, 'Bakı Türk Liseyi • Təhsil Portalı')
+              React.createElement('span', { className: 'font-black text-base text-zinc-800 dark:text-zinc-100' }, 'TDV E-School'),
+              React.createElement('p', { className: 'text-[10px] text-zinc-400 font-medium' }, 'Bakı Türk Liseyi • Təhsil Portalı')
             )
           ),
           React.createElement(
             'button',
             {
               onClick: onClose,
-              className: 'p-2 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
+              className: 'p-2 rounded-lg text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800'
             },
             React.createElement('i', { className: 'fas fa-times text-lg' })
           )
@@ -91,18 +91,18 @@ export const Sidebar = ({
                 className: `w-full px-4 py-3 rounded-2xl flex items-center justify-between text-left transition-all ${
                   isActive
                     ? 'bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800'
-                    : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'
+                    : 'text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800'
                 }`
               },
               React.createElement(
                 'div',
                 { className: 'flex items-center space-x-3' },
-                React.createElement('i', { className: `fas ${item.icon} text-base ${isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-400'}` }),
+                React.createElement('i', { className: `fas ${item.icon} text-base ${isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-400'}` }),
                 React.createElement(
                   'div',
                   null,
                   React.createElement('div', { className: 'text-xs font-bold' }, item.label),
-                  React.createElement('div', { className: 'text-[10px] text-slate-400' }, item.desc)
+                  React.createElement('div', { className: 'text-[10px] text-zinc-400' }, item.desc)
                 )
               ),
               item.badge && React.createElement(
@@ -117,10 +117,10 @@ export const Sidebar = ({
         // Ekosistem Portallar (Mobil Keid)
         React.createElement(
           'div',
-          { className: 'mt-6 pt-4 border-t border-slate-200/80 dark:border-slate-800' },
+          { className: 'mt-6 pt-4 border-t border-zinc-200/80 dark:border-zinc-800' },
           React.createElement(
             'div',
-            { className: 'text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2.5 px-1' },
+            { className: 'text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-2.5 px-1' },
             'TDV Ekosistem Portallar'
           ),
           React.createElement(
@@ -130,7 +130,7 @@ export const Sidebar = ({
               'a',
               {
                 href: 'https://tdv-community-labs.github.io/tdv-hub/',
-                className: 'p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/70 text-slate-700 dark:text-slate-200 hover:text-blue-500 flex items-center space-x-2 text-xs font-semibold'
+                className: 'p-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-800/70 text-zinc-700 dark:text-zinc-200 hover:text-blue-500 flex items-center space-x-2 text-xs font-semibold'
               },
               React.createElement('i', { className: 'fas fa-house text-blue-500 text-xs' }),
               React.createElement('span', null, 'M?rk?z')
@@ -141,7 +141,7 @@ export const Sidebar = ({
                 href: 'https://school-minifootball-tournament.vercel.app/',
                 target: '_blank',
                 rel: 'noopener noreferrer',
-                className: 'p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/70 text-slate-700 dark:text-slate-200 hover:text-blue-500 flex items-center space-x-2 text-xs font-semibold'
+                className: 'p-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-800/70 text-zinc-700 dark:text-zinc-200 hover:text-blue-500 flex items-center space-x-2 text-xs font-semibold'
               },
               React.createElement('i', { className: 'fas fa-trophy text-blue-500 text-xs' }),
               React.createElement('span', null, 'Sports')
@@ -169,7 +169,7 @@ export const Sidebar = ({
       // Footer User stats (Profilə keçid)
       React.createElement(
         'div',
-        { className: 'pt-6 border-t border-slate-200 dark:border-slate-800' },
+        { className: 'pt-6 border-t border-zinc-200 dark:border-zinc-800' },
         React.createElement(
           'div',
           {
@@ -177,16 +177,16 @@ export const Sidebar = ({
               onClose();
               if (onOpenProfile) onOpenProfile();
             },
-            className: 'p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 flex items-center space-x-3 cursor-pointer hover:bg-indigo-50 dark:hover:bg-slate-700/80 transition group'
+            className: 'p-3.5 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 flex items-center space-x-3 cursor-pointer hover:bg-indigo-50 dark:hover:bg-zinc-700/80 transition group'
           },
           React.createElement('div', { className: 'w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-950 flex items-center justify-center text-xl shadow-inner' }, userStats?.avatar || '🧑‍🎓'),
           React.createElement(
             'div',
             { className: 'flex-1 min-w-0' },
-            React.createElement('p', { className: 'text-xs font-bold text-slate-800 dark:text-slate-200 truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition' }, userStats?.name || 'Məktəbli'),
+            React.createElement('p', { className: 'text-xs font-bold text-zinc-800 dark:text-zinc-200 truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition' }, userStats?.name || 'Məktəbli'),
             React.createElement('p', { className: 'text-[10px] text-amber-600 dark:text-amber-400 font-semibold' }, `${userStats?.pvpScore || 1420} XP • ${userStats?.grade || 10}-cu sinif`)
           ),
-          React.createElement('i', { className: 'fas fa-chevron-right text-xs text-slate-400 group-hover:text-indigo-500 transition' })
+          React.createElement('i', { className: 'fas fa-chevron-right text-xs text-zinc-400 group-hover:text-indigo-500 transition' })
         )
       )
     )

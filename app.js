@@ -236,7 +236,7 @@ export default function App() {
 
     'div',
 
-    { className: 'min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-300 flex flex-col' },
+    { className: 'min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-800 dark:text-zinc-100 transition-colors duration-200 flex flex-col' },
 
     
 
@@ -302,17 +302,17 @@ export default function App() {
 
         'div',
 
-        { className: 'p-5 bg-white dark:bg-slate-900 rounded-3xl border border-indigo-200 dark:border-indigo-900 shadow-2xl space-y-4 animate-fadeIn' },
+        { className: 'p-5 bg-white dark:bg-zinc-900 rounded-3xl border border-indigo-200 dark:border-indigo-900 shadow-2xl space-y-4 animate-fadeIn' },
 
         React.createElement(
 
           'div',
 
-          { className: 'flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800' },
+          { className: 'flex items-center justify-between pb-2 border-b border-zinc-100 dark:border-zinc-800' },
 
           React.createElement('h3', { className: 'text-xs font-black uppercase text-indigo-600 dark:text-indigo-400' }, `Axtarış Nəticələri: "${searchQuery}"`),
 
-          React.createElement('button', { onClick: () => setSearchQuery(''), className: 'text-xs text-slate-400 hover:text-slate-600' }, 'Bağla ✕')
+          React.createElement('button', { onClick: () => setSearchQuery(''), className: 'text-xs text-zinc-400 hover:text-zinc-600' }, 'Bağla ✕')
 
         ),
 
@@ -332,9 +332,9 @@ export default function App() {
 
             { className: 'space-y-2' },
 
-            React.createElement('div', { className: 'text-[11px] font-bold text-slate-400 uppercase' }, `Tapılan Dərslər (${searchResults.lessons.length})`),
+            React.createElement('div', { className: 'text-[11px] font-bold text-zinc-400 uppercase' }, `Tapılan Dərslər (${searchResults.lessons.length})`),
 
-            searchResults.lessons.length === 0 ? React.createElement('p', { className: 'text-xs text-slate-400' }, 'Dərs tapılmadı.') :
+            searchResults.lessons.length === 0 ? React.createElement('p', { className: 'text-xs text-zinc-400' }, 'Dərs tapılmadı.') :
 
             searchResults.lessons.map(les => {
 
@@ -358,7 +358,7 @@ export default function App() {
 
                   },
 
-                  className: 'p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-slate-700/80 cursor-pointer text-xs font-bold'
+                  className: 'p-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 hover:bg-indigo-50 dark:hover:bg-zinc-700/80 cursor-pointer text-xs font-bold'
 
                 },
 
@@ -380,9 +380,9 @@ export default function App() {
 
             { className: 'space-y-2' },
 
-            React.createElement('div', { className: 'text-[11px] font-bold text-slate-400 uppercase' }, `Tapılan İmtahanlar (${searchResults.exams.length})`),
+            React.createElement('div', { className: 'text-[11px] font-bold text-zinc-400 uppercase' }, `Tapılan İmtahanlar (${searchResults.exams.length})`),
 
-            searchResults.exams.length === 0 ? React.createElement('p', { className: 'text-xs text-slate-400' }, 'İmtahan tapılmadı.') :
+            searchResults.exams.length === 0 ? React.createElement('p', { className: 'text-xs text-zinc-400' }, 'İmtahan tapılmadı.') :
 
             searchResults.exams.map(ex => {
 
@@ -404,7 +404,7 @@ export default function App() {
 
                   },
 
-                  className: 'p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-slate-700/80 cursor-pointer text-xs font-bold'
+                  className: 'p-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 hover:bg-indigo-50 dark:hover:bg-zinc-700/80 cursor-pointer text-xs font-bold'
 
                 },
 
@@ -524,7 +524,7 @@ export default function App() {
 
         title: 'İnteraktiv Alətlər və Calculus Hesablayıcısı',
 
-        className: 'fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-gradient-to-l from-indigo-600 via-indigo-700 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white py-3.5 px-2.5 rounded-l-2xl shadow-2xl transition-all duration-300 transform hover:-translate-x-1 flex flex-col items-center space-y-1.5 no-print group border-y border-l border-indigo-400/30'
+        className: 'fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-gradient-to-l from-indigo-600 via-indigo-700 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white py-3.5 px-2.5 rounded-l-2xl shadow-2xl transition-all duration-200 transform hover:-translate-x-1 flex flex-col items-center space-y-1.5 no-print group border-y border-l border-indigo-400/30'
 
       },
 
@@ -574,7 +574,7 @@ export default function App() {
 
       'footer',
 
-      { className: 'no-print border-t border-slate-200/80 dark:border-slate-800/80 bg-white/50 dark:bg-slate-900/50 py-6 text-center text-xs text-slate-400 mt-auto' },
+      { className: 'no-print border-t border-zinc-200/80 dark:border-zinc-800/80 bg-white/50 dark:bg-zinc-900/50 py-6 text-center text-xs text-zinc-400 mt-auto' },
 
       React.createElement(
 

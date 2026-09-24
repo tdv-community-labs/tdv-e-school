@@ -111,7 +111,7 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
   return React.createElement(
     'div',
     {
-      className: 'fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#07090e] text-slate-100 overflow-y-auto'
+      className: 'fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#09090b] text-zinc-100 overflow-y-auto'
     },
     
     // Arxa plan ambient aura
@@ -126,7 +126,7 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
     React.createElement(
       'div',
       {
-        className: 'relative z-10 w-full max-w-md p-6 sm:p-8 rounded-3xl bg-slate-900/90 backdrop-blur-2xl border border-white/10 shadow-2xl space-y-5 my-auto'
+        className: 'relative z-10 w-full max-w-md p-6 sm:p-8 rounded-3xl bg-zinc-900/90 backdrop-blur-2xl border border-white/10 shadow-2xl space-y-5 my-auto'
       },
 
       // Təşkilat Emblemi və Başlıq
@@ -154,7 +154,7 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
             'Vahid Ekosistem Profili • 1 Hesab = Bütün Ekosistem'
           ),
           React.createElement('h1', { className: 'text-2xl font-black text-white tracking-tight' }, 'TDV E-School'),
-          React.createElement('p', { className: 'text-xs text-slate-400 max-w-sm mx-auto leading-relaxed' },
+          React.createElement('p', { className: 'text-xs text-zinc-400 max-w-sm mx-auto leading-relaxed' },
             'Tək 1 profil E-School, Futbol Turniri, Games və Mafia portallarının hamısına bəs edir! Vahid profilinizlə daxil olun və ya yeni vahid profil yaradın.'
           )
         )
@@ -163,7 +163,7 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
       // Daxil Ol / Qeydiyyatdan Keç Segmented Tablar
       React.createElement(
         'div',
-        { className: 'flex p-1 rounded-2xl bg-slate-800/80 border border-white/10' },
+        { className: 'flex p-1 rounded-2xl bg-zinc-800/80 border border-white/10' },
         React.createElement(
           'button',
           {
@@ -172,7 +172,7 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
             className: `flex-1 py-2 rounded-xl text-xs font-black transition flex items-center justify-center space-x-1.5 cursor-pointer ${
               tab === 'login'
                 ? 'bg-gradient-to-r from-indigo-600 to-indigo-700 text-white shadow-md'
-                : 'text-slate-400 hover:text-white'
+                : 'text-zinc-400 hover:text-white'
             }`
           },
           React.createElement('i', { className: 'fas fa-arrow-right-to-bracket text-xs' }),
@@ -186,7 +186,7 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
             className: `flex-1 py-2 rounded-xl text-xs font-black transition flex items-center justify-center space-x-1.5 cursor-pointer ${
               tab === 'register'
                 ? 'bg-gradient-to-r from-cyan-600 to-teal-600 text-white shadow-md'
-                : 'text-slate-400 hover:text-white'
+                : 'text-zinc-400 hover:text-white'
             }`
           },
           React.createElement('i', { className: 'fas fa-user-plus text-xs' }),
@@ -216,16 +216,16 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
         React.createElement(
           'div',
           { className: 'space-y-1' },
-          React.createElement('label', { className: 'block text-xs font-bold text-slate-300' }, 'İstifadəçi Adı və ya Şagird Kodu:'),
+          React.createElement('label', { className: 'block text-xs font-bold text-zinc-300' }, 'İstifadəçi Adı və ya Şagird Kodu:'),
           React.createElement('div', { className: 'relative' },
-            React.createElement('i', { className: 'fas fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs' }),
+            React.createElement('i', { className: 'fas fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500 text-xs' }),
             React.createElement('input', {
               type: 'text',
               value: loginUsername,
               onChange: (e) => setLoginUsername(e.target.value),
               placeholder: 'Məs: orxan_10a və ya adınız',
               required: true,
-              className: 'w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-800/80 border border-white/10 text-xs font-semibold text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition'
+              className: 'w-full pl-9 pr-3 py-2.5 rounded-xl bg-zinc-800/80 border border-white/10 text-xs font-semibold text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 transition'
             })
           )
         ),
@@ -233,13 +233,13 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
         React.createElement(
           'div',
           { className: 'space-y-1' },
-          React.createElement('label', { className: 'block text-xs font-bold text-slate-300' }, 'Sinif Səviyyəsi:'),
+          React.createElement('label', { className: 'block text-xs font-bold text-zinc-300' }, 'Sinif Səviyyəsi:'),
           React.createElement('div', { className: 'relative' },
-            React.createElement('i', { className: 'fas fa-graduation-cap absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs' }),
+            React.createElement('i', { className: 'fas fa-graduation-cap absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500 text-xs' }),
             React.createElement('select', {
               value: loginGrade,
               onChange: (e) => setLoginGrade(Number(e.target.value)),
-              className: 'w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-800/80 border border-white/10 text-xs font-semibold text-white focus:outline-none focus:border-indigo-500 transition appearance-none cursor-pointer'
+              className: 'w-full pl-9 pr-3 py-2.5 rounded-xl bg-zinc-800/80 border border-white/10 text-xs font-semibold text-white focus:outline-none focus:border-indigo-500 transition appearance-none cursor-pointer'
             },
               [6, 7, 8, 9, 10, 11].map(g => React.createElement('option', { key: g, value: g }, `${g}-ci Sinif`)),
               React.createElement('option', { value: 0 }, 'Fənn Müəllimi')
@@ -250,15 +250,15 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
         React.createElement(
           'div',
           { className: 'space-y-1' },
-          React.createElement('label', { className: 'block text-xs font-bold text-slate-300' }, 'Giriş Şifrəsi və ya PİN:'),
+          React.createElement('label', { className: 'block text-xs font-bold text-zinc-300' }, 'Giriş Şifrəsi və ya PİN:'),
           React.createElement('div', { className: 'relative' },
-            React.createElement('i', { className: 'fas fa-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs' }),
+            React.createElement('i', { className: 'fas fa-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500 text-xs' }),
             React.createElement('input', {
               type: 'password',
               value: loginPin,
               onChange: (e) => setLoginPin(e.target.value),
               placeholder: '••••••••',
-              className: 'w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-800/80 border border-white/10 text-xs font-semibold text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition'
+              className: 'w-full pl-9 pr-3 py-2.5 rounded-xl bg-zinc-800/80 border border-white/10 text-xs font-semibold text-white placeholder-zinc-500 focus:outline-none focus:border-indigo-500 transition'
             })
           )
         ),
@@ -286,14 +286,14 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
         React.createElement(
           'div',
           { className: 'space-y-1' },
-          React.createElement('label', { className: 'block text-xs font-bold text-slate-300' }, 'Ad və Soyad:'),
+          React.createElement('label', { className: 'block text-xs font-bold text-zinc-300' }, 'Ad və Soyad:'),
           React.createElement('input', {
             type: 'text',
             value: regFullName,
             onChange: (e) => setRegFullName(e.target.value),
             placeholder: 'Məs: Elmir Qasımov',
             required: true,
-            className: 'w-full px-3 py-2 rounded-xl bg-slate-800/80 border border-white/10 text-xs font-semibold text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500'
+            className: 'w-full px-3 py-2 rounded-xl bg-zinc-800/80 border border-white/10 text-xs font-semibold text-white placeholder-zinc-500 focus:outline-none focus:border-cyan-500'
           })
         ),
 
@@ -301,14 +301,14 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
         React.createElement(
           'div',
           { className: 'space-y-1' },
-          React.createElement('label', { className: 'block text-xs font-bold text-slate-300' }, 'İstifadəçi Adı (Giriş üçün kod):'),
+          React.createElement('label', { className: 'block text-xs font-bold text-zinc-300' }, 'İstifadəçi Adı (Giriş üçün kod):'),
           React.createElement('input', {
             type: 'text',
             value: regUsername,
             onChange: (e) => setRegUsername(e.target.value),
             placeholder: 'Məs: elmir_10a',
             required: true,
-            className: 'w-full px-3 py-2 rounded-xl bg-slate-800/80 border border-white/10 text-xs font-semibold text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500'
+            className: 'w-full px-3 py-2 rounded-xl bg-zinc-800/80 border border-white/10 text-xs font-semibold text-white placeholder-zinc-500 focus:outline-none focus:border-cyan-500'
           })
         ),
 
@@ -319,11 +319,11 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
           React.createElement(
             'div',
             { className: 'space-y-1' },
-            React.createElement('label', { className: 'block text-xs font-bold text-slate-300' }, 'Sinif:'),
+            React.createElement('label', { className: 'block text-xs font-bold text-zinc-300' }, 'Sinif:'),
             React.createElement('select', {
               value: regGrade,
               onChange: (e) => setRegGrade(Number(e.target.value)),
-              className: 'w-full px-3 py-2 rounded-xl bg-slate-800/80 border border-white/10 text-xs font-semibold text-white focus:outline-none focus:border-cyan-500 cursor-pointer'
+              className: 'w-full px-3 py-2 rounded-xl bg-zinc-800/80 border border-white/10 text-xs font-semibold text-white focus:outline-none focus:border-cyan-500 cursor-pointer'
             },
               [6, 7, 8, 9, 10, 11].map(g => React.createElement('option', { key: g, value: g }, `${g}-ci Sinif`)),
               React.createElement('option', { value: 0 }, 'Müəllim')
@@ -332,11 +332,11 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
           React.createElement(
             'div',
             { className: 'space-y-1' },
-            React.createElement('label', { className: 'block text-xs font-bold text-slate-300' }, 'Bölmə:'),
+            React.createElement('label', { className: 'block text-xs font-bold text-zinc-300' }, 'Bölmə:'),
             React.createElement('select', {
               value: regClassLetter,
               onChange: (e) => setRegClassLetter(e.target.value),
-              className: 'w-full px-3 py-2 rounded-xl bg-slate-800/80 border border-white/10 text-xs font-semibold text-white focus:outline-none focus:border-cyan-500 cursor-pointer'
+              className: 'w-full px-3 py-2 rounded-xl bg-zinc-800/80 border border-white/10 text-xs font-semibold text-white focus:outline-none focus:border-cyan-500 cursor-pointer'
             },
               ['A', 'B', 'C', 'D', 'E'].map(l => React.createElement('option', { key: l, value: l }, `${l} Qrupu`))
             )
@@ -347,7 +347,7 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
         React.createElement(
           'div',
           { className: 'space-y-1' },
-          React.createElement('label', { className: 'block text-xs font-bold text-slate-300' }, 'Profil Avatarı:'),
+          React.createElement('label', { className: 'block text-xs font-bold text-zinc-300' }, 'Profil Avatarı:'),
           React.createElement(
             'div',
             { className: 'flex items-center gap-2 overflow-x-auto py-1' },
@@ -359,8 +359,8 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
                 onClick: () => setRegAvatar(av),
                 className: `w-8 h-8 rounded-xl flex items-center justify-center text-base transition ${
                   regAvatar === av
-                    ? 'bg-cyan-500 text-slate-950 scale-110 shadow-md ring-2 ring-cyan-400'
-                    : 'bg-slate-800 hover:bg-slate-700'
+                    ? 'bg-cyan-500 text-zinc-950 scale-110 shadow-md ring-2 ring-cyan-400'
+                    : 'bg-zinc-800 hover:bg-zinc-700'
                 }`
               },
               av
@@ -375,25 +375,25 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
           React.createElement(
             'div',
             { className: 'space-y-1' },
-            React.createElement('label', { className: 'block text-xs font-bold text-slate-300' }, 'Şifrə / PİN:'),
+            React.createElement('label', { className: 'block text-xs font-bold text-zinc-300' }, 'Şifrə / PİN:'),
             React.createElement('input', {
               type: 'password',
               value: regPin,
               onChange: (e) => setRegPin(e.target.value),
               placeholder: '••••••••',
-              className: 'w-full px-3 py-2 rounded-xl bg-slate-800/80 border border-white/10 text-xs font-semibold text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500'
+              className: 'w-full px-3 py-2 rounded-xl bg-zinc-800/80 border border-white/10 text-xs font-semibold text-white placeholder-zinc-500 focus:outline-none focus:border-cyan-500'
             })
           ),
           React.createElement(
             'div',
             { className: 'space-y-1' },
-            React.createElement('label', { className: 'block text-xs font-bold text-slate-300' }, 'Təkrarı:'),
+            React.createElement('label', { className: 'block text-xs font-bold text-zinc-300' }, 'Təkrarı:'),
             React.createElement('input', {
               type: 'password',
               value: regConfirmPin,
               onChange: (e) => setRegConfirmPin(e.target.value),
               placeholder: '••••••••',
-              className: 'w-full px-3 py-2 rounded-xl bg-slate-800/80 border border-white/10 text-xs font-semibold text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500'
+              className: 'w-full px-3 py-2 rounded-xl bg-zinc-800/80 border border-white/10 text-xs font-semibold text-white placeholder-zinc-500 focus:outline-none focus:border-cyan-500'
             })
           )
         ),
@@ -417,7 +417,7 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
       React.createElement(
         'div',
         { className: 'pt-2.5 border-t border-white/10 space-y-1.5' },
-        React.createElement('div', { className: 'text-[10px] font-bold text-slate-400 text-center uppercase tracking-wider' }, 'Sürətli Sınaq Girişi:'),
+        React.createElement('div', { className: 'text-[10px] font-bold text-zinc-400 text-center uppercase tracking-wider' }, 'Sürətli Sınaq Girişi:'),
         React.createElement(
           'div',
           { className: 'grid grid-cols-3 gap-2' },
@@ -426,30 +426,30 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
             {
               type: 'button',
               onClick: () => handleQuickLogin('student-10'),
-              className: 'p-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-white/5 text-center transition group cursor-pointer'
+              className: 'p-1.5 rounded-xl bg-zinc-800/80 hover:bg-zinc-700/80 border border-white/5 text-center transition group cursor-pointer'
             },
             React.createElement('span', { className: 'text-sm block' }, '🧑‍🎓'),
-            React.createElement('span', { className: 'text-[10px] font-bold text-slate-300 block' }, '10-cu Sinif')
+            React.createElement('span', { className: 'text-[10px] font-bold text-zinc-300 block' }, '10-cu Sinif')
           ),
           React.createElement(
             'button',
             {
               type: 'button',
               onClick: () => handleQuickLogin('student-11'),
-              className: 'p-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-white/5 text-center transition group cursor-pointer'
+              className: 'p-1.5 rounded-xl bg-zinc-800/80 hover:bg-zinc-700/80 border border-white/5 text-center transition group cursor-pointer'
             },
             React.createElement('span', { className: 'text-sm block' }, '🎒'),
-            React.createElement('span', { className: 'text-[10px] font-bold text-slate-300 block' }, '11-ci Sinif')
+            React.createElement('span', { className: 'text-[10px] font-bold text-zinc-300 block' }, '11-ci Sinif')
           ),
           React.createElement(
             'button',
             {
               type: 'button',
               onClick: () => handleQuickLogin('teacher'),
-              className: 'p-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-white/5 text-center transition group cursor-pointer'
+              className: 'p-1.5 rounded-xl bg-zinc-800/80 hover:bg-zinc-700/80 border border-white/5 text-center transition group cursor-pointer'
             },
             React.createElement('span', { className: 'text-sm block' }, '👨‍🏫'),
-            React.createElement('span', { className: 'text-[10px] font-bold text-slate-300 block' }, 'Müəllim')
+            React.createElement('span', { className: 'text-[10px] font-bold text-zinc-300 block' }, 'Müəllim')
           )
         )
       ),
@@ -462,7 +462,7 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
           'a',
           {
             href: 'https://tdv-community-hubs.vercel.app/',
-            className: 'text-[11px] font-semibold text-slate-400 hover:text-indigo-400 transition inline-flex items-center gap-1.5'
+            className: 'text-[11px] font-semibold text-zinc-400 hover:text-indigo-400 transition inline-flex items-center gap-1.5'
           },
           React.createElement('i', { className: 'fas fa-arrow-left text-[10px]' }),
           React.createElement('span', null, 'TDV Community Labs Mərkəzi Qovşağına Qayıt')

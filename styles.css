@@ -1,14 +1,115 @@
-/* MəktəbPlus - Xüsusi Qaydalar və Çap / PDF Üslubları */
+/* TDV E-School - Dual-Theme Design System & Print Standards */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* ─── TDV DESIGN SYSTEM TOKENS & DUAL THEME ─────────────────────────────── */
 
 :root {
-  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+
+  /* Default Light Mode tokens */
+  --bg-main: #fafafa; /* zinc-50 */
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f4f4f5; /* zinc-100 */
+  --border-main: #e4e4e7; /* zinc-200 */
+  --border-subtle: #f4f4f5; /* zinc-100 */
+  --text-primary: #09090b; /* zinc-950 */
+  --text-secondary: #52525b; /* zinc-600 - WCAG AA compliant (4.5:1+) */
+  --text-muted: #71717a; /* zinc-500 */
+  
+  --shadow-diffuse: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+  --shadow-hover: 0 10px 25px -4px rgba(0, 0, 0, 0.08), 0 4px 10px -2px rgba(0, 0, 0, 0.04);
+}
+
+.dark {
+  /* Dark Mode tokens */
+  --bg-main: #09090b; /* zinc-950 */
+  --bg-card: #18181b; /* zinc-900 */
+  --bg-card-subtle: #27272a; /* zinc-800 */
+  --border-main: #27272a; /* zinc-800 */
+  --border-subtle: #3f3f46; /* zinc-700 */
+  --text-primary: #fafafa; /* zinc-50 */
+  --text-secondary: #a1a1aa; /* zinc-400 - WCAG AA compliant (4.5:1+) */
+  --text-muted: #71717a; /* zinc-500 */
+  
+  --shadow-diffuse: 0 8px 30px -4px rgba(0, 0, 0, 0.6), 0 2px 8px -2px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 16px 36px -6px rgba(0, 0, 0, 0.8), 0 4px 14px -2px rgba(99, 102, 241, 0.2);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   font-family: var(--font-sans);
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  transition: background-color 200ms ease, color 200ms ease;
+  overflow-x: hidden;
+}
+
+body.dark {
+  background-color: #09090b;
+  background-image: 
+    radial-gradient(ellipse 70% 40% at 50% -10%, rgba(99, 102, 241, 0.12), transparent 70%),
+    radial-gradient(ellipse 50% 30% at 90% 15%, rgba(6, 182, 212, 0.08), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* Card Micro-interactions (8pt & Zinc elevation) */
+.ui-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-main);
+  box-shadow: var(--shadow-diffuse);
+  border-radius: 16px;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1), border-color 200ms ease;
+}
+
+.ui-card-hover {
+  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ui-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Frosted Optical Glass */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid #e4e4e7; /* zinc-200 */
+  box-shadow: var(--shadow-diffuse);
+}
+
+.dark .glass-panel {
+  background: rgba(24, 24, 27, 0.85); /* zinc-900 */
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid #27272a; /* zinc-800 */
+  box-shadow: var(--shadow-diffuse);
+}
+
+/* Bento Card Micro-Dynamics */
+.bento-card {
+  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.bento-card:hover {
+  transform: translateY(-2px);
+}
+
+html.dark .bento-card:hover {
+  border-color: rgba(99, 102, 241, 0.45);
+  box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.2);
+}
+
+html:not(.dark) .bento-card:hover {
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.1);
 }
 
 /* KaTeX Düstur İnteqrasiyası və Uyğunluğu */
@@ -39,19 +140,19 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.4);
+  background: rgba(148, 163, 184, 0.3);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 116, 139, 0.7);
+  background: rgba(99, 102, 241, 0.6);
 }
 
 /* Animasiyalar */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(4px);
   }
   to {
     opacity: 1;
@@ -60,7 +161,7 @@ body {
 }
 
 .animate-fadeIn {
-  animation: fadeIn 0.25s ease-out forwards;
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* ==========================================================================
@@ -119,68 +220,4 @@ body {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
-}
-
-
-/* ==========================================================================
-   BESPOKE PRODUCT DESIGN SYSTEM (Linear & Stripe Grade UI)
-   ========================================================================== */
-
-:root {
-  --bg-canvas: #07090e;
-  --bg-surface: rgba(13, 17, 26, 0.75);
-}
-
-/* Frosted Optical Glass */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 232, 240, 0.85);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
-}
-
-.dark .glass-panel {
-  background: rgba(13, 17, 26, 0.75);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.07), 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-}
-
-/* Bento Card Micro-Dynamics */
-.bento-card {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-}
-
-.bento-card:hover {
-  transform: translateY(-2px);
-}
-
-html.dark .bento-card:hover {
-  border-color: rgba(99, 102, 241, 0.45);
-  box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
-}
-
-html:not(.dark) .bento-card:hover {
-  border-color: rgba(99, 102, 241, 0.35);
-  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.1);
-}
-
-/* Subtle Gradient Borders */
-.gradient-border-indigo {
-  border: 1px solid rgba(99, 102, 241, 0.25);
-}
-.gradient-border-indigo:hover {
-  border-color: rgba(99, 102, 241, 0.5);
-}
-
-/* Atmospheric Ambient Aurora Mesh */
-body.dark {
-  background-color: #07090e;
-  background-image: 
-    radial-gradient(ellipse 70% 40% at 50% -10%, rgba(99, 102, 241, 0.12), transparent 70%),
-    radial-gradient(ellipse 50% 30% at 90% 15%, rgba(6, 182, 212, 0.08), transparent 60%);
-  background-attachment: fixed;
 }

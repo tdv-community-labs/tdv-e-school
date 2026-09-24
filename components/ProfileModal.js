@@ -68,11 +68,11 @@ export const ProfileModal = ({
 
   return React.createElement(
     'div',
-    { className: 'fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-md animate-fadeIn no-print' },
+    { className: 'fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-900/70 backdrop-blur-md animate-fadeIn no-print' },
     
     React.createElement(
       'div',
-      { className: 'bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col max-h-[90vh]' },
+      { className: 'bg-white dark:bg-zinc-900 rounded-3xl max-w-2xl w-full shadow-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden flex flex-col max-h-[90vh]' },
       
       // Başlıq və Profil Kartı
       React.createElement(
@@ -114,7 +114,7 @@ export const ProfileModal = ({
             React.createElement(
               'div',
               { className: 'flex items-center space-x-3 mt-2 text-[11px] font-bold' },
-              React.createElement('span', { className: 'px-2 py-0.5 rounded-full bg-amber-400 text-slate-900 flex items-center space-x-1' },
+              React.createElement('span', { className: 'px-2 py-0.5 rounded-full bg-amber-400 text-zinc-900 flex items-center space-x-1' },
                 React.createElement('span', null, '⚡'),
                 React.createElement('span', null, `${pvpScore} XP`)
               ),
@@ -130,26 +130,26 @@ export const ProfileModal = ({
       // Redaktə Forması (əgər aktivdirsə)
       isEditing && React.createElement(
         'form',
-        { onSubmit: handleSaveProfile, className: 'p-4 bg-indigo-50 dark:bg-slate-800/80 border-b border-indigo-100 dark:border-slate-700 flex flex-wrap items-center gap-3' },
+        { onSubmit: handleSaveProfile, className: 'p-4 bg-indigo-50 dark:bg-zinc-800/80 border-b border-indigo-100 dark:border-zinc-700 flex flex-wrap items-center gap-3' },
         React.createElement(
           'div',
           { className: 'flex-1 min-w-[150px]' },
-          React.createElement('label', { className: 'block text-[10px] font-bold text-slate-500 mb-1' }, 'Adınız:'),
+          React.createElement('label', { className: 'block text-[10px] font-bold text-zinc-500 mb-1' }, 'Adınız:'),
           React.createElement('input', {
             type: 'text',
             value: name,
             onChange: (e) => setName(e.target.value),
-            className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-bold'
+            className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 font-bold'
           })
         ),
         React.createElement(
           'div',
           { className: 'w-24' },
-          React.createElement('label', { className: 'block text-[10px] font-bold text-slate-500 mb-1' }, 'Sinif:'),
+          React.createElement('label', { className: 'block text-[10px] font-bold text-zinc-500 mb-1' }, 'Sinif:'),
           React.createElement('select', {
             value: grade,
             onChange: (e) => setGrade(e.target.value),
-            className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-bold'
+            className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 font-bold'
           },
             GRADES.map(g => React.createElement('option', { key: g, value: g }, `${g}-ci sinif`))
           )
@@ -157,11 +157,11 @@ export const ProfileModal = ({
         React.createElement(
           'div',
           { className: 'w-32' },
-          React.createElement('label', { className: 'block text-[10px] font-bold text-slate-500 mb-1' }, 'Avatar:'),
+          React.createElement('label', { className: 'block text-[10px] font-bold text-zinc-500 mb-1' }, 'Avatar:'),
           React.createElement('select', {
             value: avatar,
             onChange: (e) => setAvatar(e.target.value),
-            className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-bold text-base'
+            className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 font-bold text-base'
           },
             avatarsList.map(a => React.createElement('option', { key: a, value: a }, a))
           )
@@ -179,7 +179,7 @@ export const ProfileModal = ({
       // Naviqasiya Tabları
       React.createElement(
         'div',
-        { className: 'p-3 bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800 flex space-x-2' },
+        { className: 'p-3 bg-zinc-50 dark:bg-zinc-800/50 border-b border-zinc-200 dark:border-zinc-800 flex space-x-2' },
         [
           { id: 'overview', label: 'Ümumi Statistikalar', icon: 'fa-chart-pie' },
           { id: 'mastery', label: 'Fənn Mənimsəməsi', icon: 'fa-graduation-cap' },
@@ -194,7 +194,7 @@ export const ProfileModal = ({
               className: `px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 transition ${
                 isActive
                   ? 'bg-indigo-600 text-white shadow-sm'
-                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
+                  : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
               }`
             },
             React.createElement('i', { className: `fas ${tab.icon} text-xs` }),
@@ -221,25 +221,25 @@ export const ProfileModal = ({
               'div',
               { className: 'p-4 rounded-2xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-900 text-center' },
               React.createElement('div', { className: 'text-2xl font-black text-indigo-600 dark:text-indigo-400' }, lessonsCount || 58),
-              React.createElement('div', { className: 'text-[10px] font-bold text-slate-500 uppercase mt-1' }, 'Mövcud Dərslər')
+              React.createElement('div', { className: 'text-[10px] font-bold text-zinc-500 uppercase mt-1' }, 'Mövcud Dərslər')
             ),
             React.createElement(
               'div',
               { className: 'p-4 rounded-2xl bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-100 dark:border-cyan-900 text-center' },
               React.createElement('div', { className: 'text-2xl font-black text-cyan-600 dark:text-cyan-400' }, examsCount || 7),
-              React.createElement('div', { className: 'text-[10px] font-bold text-slate-500 uppercase mt-1' }, 'Rəsmi BSQ/KSQ')
+              React.createElement('div', { className: 'text-[10px] font-bold text-zinc-500 uppercase mt-1' }, 'Rəsmi BSQ/KSQ')
             ),
             React.createElement(
               'div',
               { className: 'p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-900 text-center' },
               React.createElement('div', { className: 'text-2xl font-black text-emerald-600 dark:text-emerald-400' }, `${winRate}%`),
-              React.createElement('div', { className: 'text-[10px] font-bold text-slate-500 uppercase mt-1' }, 'PvP Qələbə Faizi')
+              React.createElement('div', { className: 'text-[10px] font-bold text-zinc-500 uppercase mt-1' }, 'PvP Qələbə Faizi')
             ),
             React.createElement(
               'div',
               { className: 'p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-100 dark:border-amber-900 text-center' },
               React.createElement('div', { className: 'text-2xl font-black text-amber-600 dark:text-amber-400' }, '4.8 / 5'),
-              React.createElement('div', { className: 'text-[10px] font-bold text-slate-500 uppercase mt-1' }, 'Orta Qiymət')
+              React.createElement('div', { className: 'text-[10px] font-bold text-zinc-500 uppercase mt-1' }, 'Orta Qiymət')
             )
           ),
 
@@ -255,7 +255,7 @@ export const ProfileModal = ({
             ),
             React.createElement(
               'p',
-              { className: 'text-xs text-slate-600 dark:text-slate-300 leading-relaxed' },
+              { className: 'text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed' },
               'Riyaziyyat və İnformatika üzrə mənimsəmə dərəcəniz yüksəkdir (90%+). Biliklərinizi daha da möhkəmləndirmək üçün Kimyadan ',
               React.createElement('strong', { className: 'text-indigo-600 dark:text-indigo-400' }, '"Maddə Miqdarı və Avoqadro Qanunu"'),
               ' və Fizikadan ',
@@ -269,7 +269,7 @@ export const ProfileModal = ({
         activeTab === 'mastery' && React.createElement(
           'div',
           { className: 'space-y-4' },
-          React.createElement('p', { className: 'text-xs text-slate-500' }, 'Test və dərslərdəki aktivliyinizə əsasən hesablanmış mənimsəmə faizləri:'),
+          React.createElement('p', { className: 'text-xs text-zinc-500' }, 'Test və dərslərdəki aktivliyinizə əsasən hesablanmış mənimsəmə faizləri:'),
           React.createElement(
             'div',
             { className: 'space-y-3' },
@@ -282,15 +282,15 @@ export const ProfileModal = ({
                   { className: 'flex justify-between text-xs font-bold' },
                   React.createElement(
                     'div',
-                    { className: 'flex items-center space-x-2 text-slate-700 dark:text-slate-300' },
+                    { className: 'flex items-center space-x-2 text-zinc-700 dark:text-zinc-300' },
                     React.createElement('i', { className: `fas ${m.icon} text-indigo-500 text-xs` }),
                     React.createElement('span', null, m.name)
                   ),
-                  React.createElement('span', { className: 'text-slate-600 dark:text-slate-400' }, `${m.percent}%`)
+                  React.createElement('span', { className: 'text-zinc-600 dark:text-zinc-400' }, `${m.percent}%`)
                 ),
                 React.createElement(
                   'div',
-                  { className: 'w-full h-2.5 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden' },
+                  { className: 'w-full h-2.5 rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden' },
                   React.createElement('div', {
                     className: `h-full rounded-full ${m.color} transition-all duration-500`,
                     style: { width: `${m.percent}%` }
@@ -312,17 +312,17 @@ export const ProfileModal = ({
                 key: b.id,
                 className: `p-3.5 rounded-2xl border text-center transition-all ${
                   b.unlocked
-                    ? 'bg-white dark:bg-slate-800 border-amber-300 dark:border-amber-600/60 shadow-sm'
-                    : 'bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800 opacity-40 grayscale'
+                    ? 'bg-white dark:bg-zinc-800 border-amber-300 dark:border-amber-600/60 shadow-sm'
+                    : 'bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 opacity-40 grayscale'
                 }`
               },
               React.createElement('div', { className: 'text-3xl mb-1.5' }, b.icon),
-              React.createElement('h5', { className: 'text-xs font-black text-slate-800 dark:text-slate-200' }, b.title),
-              React.createElement('p', { className: 'text-[10px] text-slate-500 dark:text-slate-400 mt-1 leading-tight' }, b.desc),
+              React.createElement('h5', { className: 'text-xs font-black text-zinc-800 dark:text-zinc-200' }, b.title),
+              React.createElement('p', { className: 'text-[10px] text-zinc-500 dark:text-zinc-400 mt-1 leading-tight' }, b.desc),
               React.createElement(
                 'span',
                 { className: `inline-block text-[9px] font-extrabold px-1.5 py-0.5 rounded-md mt-2 ${
-                  b.unlocked ? 'bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300' : 'bg-slate-200 dark:bg-slate-800 text-slate-500'
+                  b.unlocked ? 'bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300' : 'bg-zinc-200 dark:bg-zinc-800 text-zinc-500'
                 }` },
                 b.unlocked ? 'Qazanıldı' : 'Kilidli'
               )

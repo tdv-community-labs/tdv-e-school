@@ -73,13 +73,13 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
   return React.createElement(
     'div',
     {
-      className: `fixed inset-0 z-50 overflow-hidden transition-all duration-300 no-print ${
+      className: `fixed inset-0 z-50 overflow-hidden transition-all duration-200 no-print ${
         isOpen ? 'pointer-events-auto visible' : 'pointer-events-none invisible'
       }`
     },
     // Tünd fon overlay
     React.createElement('div', {
-      className: `fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity duration-300 ${
+      className: `fixed inset-0 bg-zinc-900/60 backdrop-blur-sm transition-opacity duration-200 ${
         isOpen ? 'opacity-100' : 'opacity-0'
       }`,
       onClick: onClose
@@ -89,7 +89,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
     React.createElement(
       'div',
       {
-        className: `fixed inset-y-0 right-0 max-w-2xl w-full bg-white dark:bg-slate-900 shadow-2xl border-l border-slate-200/80 dark:border-slate-800 flex flex-col transform transition-transform duration-300 ease-out z-10 ${
+        className: `fixed inset-y-0 right-0 max-w-2xl w-full bg-white dark:bg-zinc-900 shadow-2xl border-l border-zinc-200/80 dark:border-zinc-800 flex flex-col transform transition-transform duration-200 ease-out z-10 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`
       },
@@ -97,7 +97,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
       // Panel Başlığı (Header)
       React.createElement(
         'div',
-        { className: 'p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/80 dark:bg-slate-800/60' },
+        { className: 'p-5 border-b border-zinc-100 dark:border-zinc-800 flex items-center justify-between bg-zinc-50/80 dark:bg-zinc-800/60' },
         React.createElement(
           'div',
           { className: 'flex items-center space-x-3' },
@@ -109,15 +109,15 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
           React.createElement(
             'div',
             null,
-            React.createElement('h3', { className: 'font-black text-base text-slate-800 dark:text-slate-100' }, 'İnteraktiv Alətlər və Laboratoriya'),
-            React.createElement('p', { className: 'text-[11px] text-slate-400' }, 'Dərs və imtahan zamanı istifadə edilə bilən interaktiv STEM paneli')
+            React.createElement('h3', { className: 'font-black text-base text-zinc-800 dark:text-zinc-100' }, 'İnteraktiv Alətlər və Laboratoriya'),
+            React.createElement('p', { className: 'text-[11px] text-zinc-400' }, 'Dərs və imtahan zamanı istifadə edilə bilən interaktiv STEM paneli')
           )
         ),
         React.createElement(
           'button',
           {
             onClick: onClose,
-            className: 'w-9 h-9 rounded-xl bg-slate-200/70 dark:bg-slate-700/70 hover:bg-rose-500 hover:text-white text-slate-600 dark:text-slate-300 transition flex items-center justify-center text-sm font-bold'
+            className: 'w-9 h-9 rounded-xl bg-zinc-200/70 dark:bg-zinc-700/70 hover:bg-rose-500 hover:text-white text-zinc-600 dark:text-zinc-300 transition flex items-center justify-center text-sm font-bold'
           },
           '✕'
         )
@@ -126,7 +126,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
       // Alət Seçim Düymələri (Tabs)
       React.createElement(
         'div',
-        { className: 'p-2.5 bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 grid grid-cols-3 sm:grid-cols-6 gap-1.5' },
+        { className: 'p-2.5 bg-white dark:bg-zinc-900 border-b border-zinc-100 dark:border-zinc-800 grid grid-cols-3 sm:grid-cols-6 gap-1.5' },
         toolsList.map(t => {
           const isActive = activeTool === t.id;
           return React.createElement(
@@ -137,7 +137,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
               className: `px-2 py-2 rounded-xl text-center transition flex flex-col items-center justify-center text-[11px] font-bold ${
                 isActive
                   ? 'bg-indigo-600 text-white shadow-sm'
-                  : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
+                  : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
               }`
             },
             React.createElement('i', { className: `fas ${t.icon} text-xs mb-1 ${isActive ? 'text-white' : 'text-indigo-500'}` }),
@@ -159,7 +159,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
             'div',
             { className: 'p-4 rounded-2xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/60' },
             React.createElement('h4', { className: 'text-xs font-bold text-indigo-700 dark:text-indigo-300' }, 'PhET Calculus Grapher (Funksiya və Törəmə)'),
-            React.createElement('p', { className: 'text-[11px] text-slate-600 dark:text-slate-400 mt-0.5' },
+            React.createElement('p', { className: 'text-[11px] text-zinc-600 dark:text-zinc-400 mt-0.5' },
               "Ekranda əyri çəkərək onun törəmə mailliyini ($f'(x)$) və inteqral sahəsini real vaxtda vizual öyrənin."
             )
           ),
@@ -176,54 +176,54 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
           { className: 'space-y-5 animate-fadeIn' },
           React.createElement(
             'div',
-            { className: 'p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-4' },
-            React.createElement('h4', { className: 'text-xs font-black text-slate-800 dark:text-slate-200 uppercase' }, 'f(x) = ax² + bx + c Parametrləri'),
+            { className: 'p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700 space-y-4' },
+            React.createElement('h4', { className: 'text-xs font-black text-zinc-800 dark:text-zinc-200 uppercase' }, 'f(x) = ax² + bx + c Parametrləri'),
             React.createElement(
               'div',
               { className: 'grid grid-cols-3 gap-3' },
               React.createElement(
                 'div',
                 null,
-                React.createElement('label', { className: 'block text-[10px] font-bold text-slate-400 mb-1' }, 'a əmsalı:'),
+                React.createElement('label', { className: 'block text-[10px] font-bold text-zinc-400 mb-1' }, 'a əmsalı:'),
                 React.createElement('input', {
                   type: 'number',
                   value: polyA,
                   onChange: e => setPolyA(Number(e.target.value) || 0),
-                  className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 font-bold'
+                  className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
                 })
               ),
               React.createElement(
                 'div',
                 null,
-                React.createElement('label', { className: 'block text-[10px] font-bold text-slate-400 mb-1' }, 'b əmsalı:'),
+                React.createElement('label', { className: 'block text-[10px] font-bold text-zinc-400 mb-1' }, 'b əmsalı:'),
                 React.createElement('input', {
                   type: 'number',
                   value: polyB,
                   onChange: e => setPolyB(Number(e.target.value) || 0),
-                  className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 font-bold'
+                  className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
                 })
               ),
               React.createElement(
                 'div',
                 null,
-                React.createElement('label', { className: 'block text-[10px] font-bold text-slate-400 mb-1' }, 'c sərbəst həd:'),
+                React.createElement('label', { className: 'block text-[10px] font-bold text-zinc-400 mb-1' }, 'c sərbəst həd:'),
                 React.createElement('input', {
                   type: 'number',
                   value: polyC,
                   onChange: e => setPolyC(Number(e.target.value) || 0),
-                  className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 font-bold'
+                  className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
                 })
               )
             ),
             React.createElement(
               'div',
               null,
-              React.createElement('label', { className: 'block text-[10px] font-bold text-slate-400 mb-1' }, 'Toxunma nöqtəsi (x₀):'),
+              React.createElement('label', { className: 'block text-[10px] font-bold text-zinc-400 mb-1' }, 'Toxunma nöqtəsi (x₀):'),
               React.createElement('input', {
                 type: 'number',
                 value: evalX,
                 onChange: e => setEvalX(Number(e.target.value) || 0),
-                className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 font-bold'
+                className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
               })
             )
           ),
@@ -240,14 +240,14 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
               { className: 'grid grid-cols-2 gap-3 pt-2' },
               React.createElement(
                 'div',
-                { className: 'p-3 rounded-xl bg-white dark:bg-slate-900 text-center' },
-                React.createElement('div', { className: 'text-[10px] text-slate-400 font-bold' }, 'f(x₀) Qiyməti'),
+                { className: 'p-3 rounded-xl bg-white dark:bg-zinc-900 text-center' },
+                React.createElement('div', { className: 'text-[10px] text-zinc-400 font-bold' }, 'f(x₀) Qiyməti'),
                 React.createElement('div', { className: 'text-xl font-black text-indigo-600 dark:text-indigo-400' }, funcValue)
               ),
               React.createElement(
                 'div',
-                { className: 'p-3 rounded-xl bg-white dark:bg-slate-900 text-center' },
-                React.createElement('div', { className: 'text-[10px] text-slate-400 font-bold' }, 'Bucaq Əmsalı (k)'),
+                { className: 'p-3 rounded-xl bg-white dark:bg-zinc-900 text-center' },
+                React.createElement('div', { className: 'text-[10px] text-zinc-400 font-bold' }, 'Bucaq Əmsalı (k)'),
                 React.createElement('div', { className: 'text-xl font-black text-cyan-600 dark:text-cyan-400' }, derivativeSlope)
               )
             ),
@@ -267,7 +267,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
             'div',
             { className: 'p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900' },
             React.createElement('h4', { className: 'text-xs font-bold text-emerald-700 dark:text-emerald-300' }, 'PhET: Forces and Motion (Nyuton Qanunları)'),
-            React.createElement('p', { className: 'text-[11px] text-slate-600 dark:text-slate-400 mt-0.5' },
+            React.createElement('p', { className: 'text-[11px] text-zinc-600 dark:text-zinc-400 mt-0.5' },
               'Kütlə və qüvvə parametrlərini idarə edərək təcillənmə prosesini müşahidə edin.'
             )
           ),
@@ -284,31 +284,31 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
           { className: 'space-y-5 animate-fadeIn' },
           React.createElement(
             'div',
-            { className: 'p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-3' },
-            React.createElement('h4', { className: 'text-xs font-black text-slate-800 dark:text-slate-200 uppercase' }, 'Düzbucaqlı Üçbucaq Katetləri'),
+            { className: 'p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700 space-y-3' },
+            React.createElement('h4', { className: 'text-xs font-black text-zinc-800 dark:text-zinc-200 uppercase' }, 'Düzbucaqlı Üçbucaq Katetləri'),
             React.createElement(
               'div',
               { className: 'grid grid-cols-2 gap-3' },
               React.createElement(
                 'div',
                 null,
-                React.createElement('label', { className: 'block text-[10px] font-bold text-slate-400 mb-1' }, 'Katet a:'),
+                React.createElement('label', { className: 'block text-[10px] font-bold text-zinc-400 mb-1' }, 'Katet a:'),
                 React.createElement('input', {
                   type: 'number',
                   value: geomA,
                   onChange: e => setGeomA(Math.max(1, Number(e.target.value) || 1)),
-                  className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 font-bold'
+                  className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
                 })
               ),
               React.createElement(
                 'div',
                 null,
-                React.createElement('label', { className: 'block text-[10px] font-bold text-slate-400 mb-1' }, 'Katet b:'),
+                React.createElement('label', { className: 'block text-[10px] font-bold text-zinc-400 mb-1' }, 'Katet b:'),
                 React.createElement('input', {
                   type: 'number',
                   value: geomB,
                   onChange: e => setGeomB(Math.max(1, Number(e.target.value) || 1)),
-                  className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 font-bold'
+                  className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
                 })
               )
             )
@@ -320,25 +320,25 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
             React.createElement(
               'div',
               { className: 'p-3.5 rounded-2xl bg-indigo-50/60 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-900' },
-              React.createElement('div', { className: 'text-[10px] text-slate-400 font-bold' }, 'Hipotenuz (c)'),
+              React.createElement('div', { className: 'text-[10px] text-zinc-400 font-bold' }, 'Hipotenuz (c)'),
               React.createElement('div', { className: 'text-xl font-black text-indigo-600 dark:text-indigo-400 mt-1' }, geomC.toFixed(2))
             ),
             React.createElement(
               'div',
               { className: 'p-3.5 rounded-2xl bg-emerald-50/60 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-900' },
-              React.createElement('div', { className: 'text-[10px] text-slate-400 font-bold' }, 'Sahə (S)'),
+              React.createElement('div', { className: 'text-[10px] text-zinc-400 font-bold' }, 'Sahə (S)'),
               React.createElement('div', { className: 'text-xl font-black text-emerald-600 dark:text-emerald-400 mt-1' }, geomArea.toFixed(2))
             ),
             React.createElement(
               'div',
               { className: 'p-3.5 rounded-2xl bg-amber-50/60 dark:bg-amber-950/40 border border-amber-100 dark:border-amber-900' },
-              React.createElement('div', { className: 'text-[10px] text-slate-400 font-bold' }, 'Xarici Radius (R)'),
+              React.createElement('div', { className: 'text-[10px] text-zinc-400 font-bold' }, 'Xarici Radius (R)'),
               React.createElement('div', { className: 'text-xl font-black text-amber-600 dark:text-amber-400 mt-1' }, geomR.toFixed(2))
             ),
             React.createElement(
               'div',
               { className: 'p-3.5 rounded-2xl bg-rose-50/60 dark:bg-rose-950/40 border border-rose-100 dark:border-rose-900' },
-              React.createElement('div', { className: 'text-[10px] text-slate-400 font-bold' }, 'Daxili Radius (r)'),
+              React.createElement('div', { className: 'text-[10px] text-zinc-400 font-bold' }, 'Daxili Radius (r)'),
               React.createElement('div', { className: 'text-xl font-black text-rose-600 dark:text-rose-400 mt-1' }, geomSmallR.toFixed(2))
             )
           )
@@ -355,7 +355,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
               'div',
               null,
               React.createElement('h4', { className: 'text-xs font-bold text-emerald-800 dark:text-emerald-200' }, 'Mendeleyev Dövri Cədvəli & Elementlər'),
-              React.createElement('p', { className: 'text-[10px] text-slate-500 mt-0.5' }, 'Atom nömrəsi, simvolu, kütləsi və valentliyi')
+              React.createElement('p', { className: 'text-[10px] text-zinc-500 mt-0.5' }, 'Atom nömrəsi, simvolu, kütləsi və valentliyi')
             ),
             React.createElement('i', { className: 'fas fa-atom text-2xl text-emerald-500 opacity-60' })
           ),
@@ -366,7 +366,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
             value: chemSearch,
             onChange: e => setChemSearch(e.target.value),
             placeholder: 'Element adı, simvol və ya nömrə (məs: Na, O, Dəmir)...',
-            className: 'w-full p-2.5 text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700'
+            className: 'w-full p-2.5 text-xs rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700'
           }),
 
           // Elementlər şəbəkəsi
@@ -378,19 +378,19 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
                 'div',
                 {
                   key: el.num,
-                  className: 'p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm flex items-center space-x-3'
+                  className: 'p-3 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 shadow-sm flex items-center space-x-3'
                 },
                 React.createElement(
                   'div',
                   { className: 'w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 font-black flex flex-col items-center justify-center leading-tight' },
-                  React.createElement('span', { className: 'text-[9px] text-slate-400' }, el.num),
+                  React.createElement('span', { className: 'text-[9px] text-zinc-400' }, el.num),
                   React.createElement('span', { className: 'text-sm font-black' }, el.sym)
                 ),
                 React.createElement(
                   'div',
                   { className: 'min-w-0 flex-1' },
-                  React.createElement('div', { className: 'text-xs font-bold text-slate-800 dark:text-slate-200 truncate' }, el.name),
-                  React.createElement('div', { className: 'text-[10px] text-slate-400' }, `Ar: ${el.mass} • Qrup ${el.group}`)
+                  React.createElement('div', { className: 'text-xs font-bold text-zinc-800 dark:text-zinc-200 truncate' }, el.name),
+                  React.createElement('div', { className: 'text-[10px] text-zinc-400' }, `Ar: ${el.mass} • Qrup ${el.group}`)
                 )
               );
             })
@@ -405,7 +405,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
             'div',
             { className: 'p-4 rounded-2xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-900' },
             React.createElement('h4', { className: 'text-xs font-bold text-sky-800 dark:text-sky-200' }, 'Fiziki Kəmiyyət və Vahid Çeviricisi'),
-            React.createElement('p', { className: 'text-[10px] text-slate-500 mt-0.5' }, 'Məktəb fizikası və riyaziyyatı üçün dərhal çevrilmələr')
+            React.createElement('p', { className: 'text-[10px] text-zinc-500 mt-0.5' }, 'Məktəb fizikası və riyaziyyatı üçün dərhal çevrilmələr')
           ),
 
           // Çevirmə növü seçimi
@@ -425,7 +425,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
                   key: type.id,
                   onClick: () => setConvertType(type.id),
                   className: `py-1.5 rounded-lg text-xs font-bold ${
-                    isSel ? 'bg-sky-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-600'
+                    isSel ? 'bg-sky-600 text-white' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600'
                   }`
                 },
                 type.label
@@ -437,19 +437,19 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
           React.createElement(
             'div',
             null,
-            React.createElement('label', { className: 'block text-[10px] font-bold text-slate-400 mb-1' }, 'Daxil edilən kəmiyyət:'),
+            React.createElement('label', { className: 'block text-[10px] font-bold text-zinc-400 mb-1' }, 'Daxil edilən kəmiyyət:'),
             React.createElement('input', {
               type: 'number',
               value: convertVal,
               onChange: e => setConvertVal(Number(e.target.value) || 0),
-              className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 font-bold'
+              className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
             })
           ),
 
           // Çevrilmə Nəticələri
           React.createElement(
             'div',
-            { className: 'p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-2' },
+            { className: 'p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700 space-y-2' },
             convertType === 'speed' && React.createElement(
               'div',
               { className: 'space-y-1 text-xs font-bold' },

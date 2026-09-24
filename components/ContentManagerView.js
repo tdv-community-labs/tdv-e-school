@@ -203,15 +203,15 @@ E) 12x
     // Başlıq Kartı
     React.createElement(
       'div',
-      { className: 'bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3' },
+      { className: 'bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-3' },
       React.createElement(
         'div',
         { className: 'flex flex-col sm:flex-row sm:items-center justify-between gap-3' },
         React.createElement(
           'div',
           null,
-          React.createElement('h2', { className: 'text-xl font-black text-slate-800 dark:text-slate-100 tracking-tight' }, 'Məzmun İdarəetmə və Skaner Portalı'),
-          React.createElement('p', { className: 'text-xs text-slate-500 dark:text-slate-400 mt-0.5' },
+          React.createElement('h2', { className: 'text-xl font-black text-zinc-800 dark:text-zinc-100 tracking-tight' }, 'Məzmun İdarəetmə və Skaner Portalı'),
+          React.createElement('p', { className: 'text-xs text-zinc-500 dark:text-zinc-400 mt-0.5' },
             'Fiziki vərəqlər skan edilənədək sistemi yeni testlər və dərslərlə zənginləşdirmək üçün modulyar daxiletmə mərkəzi.'
           )
         ),
@@ -231,7 +231,7 @@ E) 12x
             'button',
             {
               onClick: handleResetDefaults,
-              className: 'px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs hover:bg-slate-200 transition'
+              className: 'px-3.5 py-2 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 font-bold text-xs hover:bg-zinc-200 transition'
             },
             'Sıfırla'
           )
@@ -241,7 +241,7 @@ E) 12x
       // Alt Bölmə Tabbikləri
       React.createElement(
         'div',
-        { className: 'flex space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800' },
+        { className: 'flex space-x-2 pt-2 border-t border-zinc-100 dark:border-zinc-800' },
         [
           { id: 'form', label: 'Forma İlə Yeni Sual', icon: 'fa-plus-circle' },
           { id: 'scanner', label: 'OCR Skan Köməkçisi', icon: 'fa-scanner' },
@@ -256,7 +256,7 @@ E) 12x
               className: `px-4 py-2 rounded-xl text-xs font-bold flex items-center space-x-2 transition ${
                 isActive
                   ? 'bg-indigo-600 text-white shadow-sm'
-                  : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
+                  : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:bg-zinc-200'
               }`
             },
             React.createElement('i', { className: `fas ${t.icon}` }),
@@ -278,9 +278,9 @@ E) 12x
         'form',
         {
           onSubmit: handleSaveQuestion,
-          className: 'lg:col-span-7 bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4'
+          className: 'lg:col-span-7 bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-4'
         },
-        React.createElement('h3', { className: 'font-black text-sm text-slate-800 dark:text-slate-200 pb-2 border-b border-slate-100 dark:border-slate-800' }, 'Yeni Test Sualı Qeydiyyatı'),
+        React.createElement('h3', { className: 'font-black text-sm text-zinc-800 dark:text-zinc-200 pb-2 border-b border-zinc-100 dark:border-zinc-800' }, 'Yeni Test Sualı Qeydiyyatı'),
 
         // Fənn və Sinif
         React.createElement(
@@ -289,13 +289,13 @@ E) 12x
           React.createElement(
             'div',
             null,
-            React.createElement('label', { className: 'block text-[11px] font-bold text-slate-500 mb-1' }, 'Fənn:'),
+            React.createElement('label', { className: 'block text-[11px] font-bold text-zinc-500 mb-1' }, 'Fənn:'),
             React.createElement(
               'select',
               {
                 value: newQuestion.subjectId,
                 onChange: e => setNewQuestion({ ...newQuestion, subjectId: e.target.value }),
-                className: 'w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-800 dark:text-slate-200'
+                className: 'w-full p-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs font-semibold text-zinc-800 dark:text-zinc-200'
               },
               SUBJECTS.map(s => React.createElement('option', { key: s.id, value: s.id }, s.name))
             )
@@ -303,13 +303,13 @@ E) 12x
           React.createElement(
             'div',
             null,
-            React.createElement('label', { className: 'block text-[11px] font-bold text-slate-500 mb-1' }, 'Sinif:'),
+            React.createElement('label', { className: 'block text-[11px] font-bold text-zinc-500 mb-1' }, 'Sinif:'),
             React.createElement(
               'select',
               {
                 value: newQuestion.grade,
                 onChange: e => setNewQuestion({ ...newQuestion, grade: Number(e.target.value) }),
-                className: 'w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-800 dark:text-slate-200'
+                className: 'w-full p-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs font-semibold text-zinc-800 dark:text-zinc-200'
               },
               GRADES.map(g => React.createElement('option', { key: g, value: g }, `${g}-ci sinif`))
             )
@@ -317,13 +317,13 @@ E) 12x
           React.createElement(
             'div',
             null,
-            React.createElement('label', { className: 'block text-[11px] font-bold text-slate-500 mb-1' }, 'İmtahana Əlavə Et:'),
+            React.createElement('label', { className: 'block text-[11px] font-bold text-zinc-500 mb-1' }, 'İmtahana Əlavə Et:'),
             React.createElement(
               'select',
               {
                 value: targetExamId,
                 onChange: e => setTargetExamId(e.target.value),
-                className: 'w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-800 dark:text-slate-200'
+                className: 'w-full p-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs font-semibold text-zinc-800 dark:text-zinc-200'
               },
               exams.map(ex => React.createElement('option', { key: ex.id, value: ex.id }, `${ex.grade}-ci sinif ${ex.examType} (${ex.variant})`))
             )
@@ -334,13 +334,13 @@ E) 12x
         React.createElement(
           'div',
           null,
-          React.createElement('label', { className: 'block text-[11px] font-bold text-slate-500 mb-1' }, 'Sual Mətni (Riyazi formullar üçün $...$ və ya $$...$$ istifadə edin):'),
+          React.createElement('label', { className: 'block text-[11px] font-bold text-zinc-500 mb-1' }, 'Sual Mətni (Riyazi formullar üçün $...$ və ya $$...$$ istifadə edin):'),
           React.createElement('textarea', {
             rows: 3,
             value: newQuestion.text,
             onChange: e => setNewQuestion({ ...newQuestion, text: e.target.value }),
             placeholder: 'Məsələn: $f(x) = x^3 - 3x$ funksiyasının $x = 2$ nöqtəsində törəməsini tapın.',
-            className: 'w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-200 font-mono focus:outline-none focus:border-indigo-500'
+            className: 'w-full p-3 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs text-zinc-800 dark:text-zinc-200 font-mono focus:outline-none focus:border-indigo-500'
           })
         ),
 
@@ -348,7 +348,7 @@ E) 12x
         React.createElement(
           'div',
           { className: 'space-y-2' },
-          React.createElement('label', { className: 'block text-[11px] font-bold text-slate-500' }, 'Variantlar və Doğru Cavab:'),
+          React.createElement('label', { className: 'block text-[11px] font-bold text-zinc-500' }, 'Variantlar və Doğru Cavab:'),
           ['A', 'B', 'C', 'D', 'E'].map(optKey => {
             return React.createElement(
               'div',
@@ -370,7 +370,7 @@ E) 12x
                 value: newQuestion[`option${optKey}`],
                 onChange: e => setNewQuestion({ ...newQuestion, [`option${optKey}`]: e.target.value }),
                 placeholder: `Variant ${optKey} mətni (LaTeX $..$)`,
-                className: 'flex-1 p-2 text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200'
+                className: 'flex-1 p-2 text-xs rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200'
               })
             );
           })
@@ -379,21 +379,21 @@ E) 12x
         // AI Chain-of-Thought Həll İzahı
         React.createElement(
           'div',
-          { className: 'pt-2 border-t border-slate-100 dark:border-slate-800 space-y-2' },
+          { className: 'pt-2 border-t border-zinc-100 dark:border-zinc-800 space-y-2' },
           React.createElement('div', { className: 'font-bold text-xs text-indigo-600 dark:text-indigo-400' }, 'AI Chain-of-Thought (Addım-addım Həll İzahı):'),
           React.createElement('input', {
             type: 'text',
             value: newQuestion.explanationFormula,
             onChange: e => setNewQuestion({ ...newQuestion, explanationFormula: e.target.value }),
             placeholder: 'Tətbiq edilən əsas düstur (məs: $(x^n)\' = n x^{n-1}$)',
-            className: 'w-full p-2 text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200'
+            className: 'w-full p-2 text-xs rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200'
           }),
           React.createElement('textarea', {
             rows: 2,
             value: newQuestion.explanationStep1,
             onChange: e => setNewQuestion({ ...newQuestion, explanationStep1: e.target.value }),
             placeholder: 'Addım-addım hesablama gedişi...',
-            className: 'w-full p-2 text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200'
+            className: 'w-full p-2 text-xs rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200'
           })
         ),
 
@@ -414,7 +414,7 @@ E) 12x
         { className: 'lg:col-span-5 space-y-4' },
         React.createElement(
           'div',
-          { className: 'bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4 sticky top-24' },
+          { className: 'bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-4 sticky top-24' },
           React.createElement('h4', { className: 'font-black text-xs uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-1.5' },
             React.createElement('i', { className: 'fas fa-eye' }),
             React.createElement('span', null, 'Canlı KaTeX Önbaxış')
@@ -422,8 +422,8 @@ E) 12x
           
           React.createElement(
             'div',
-            { className: 'p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 min-h-[120px]' },
-            newQuestion.text ? React.createElement(KatexRenderer, { text: newQuestion.text }) : React.createElement('span', { className: 'text-xs text-slate-400 italic' }, 'Sol tərəfdə sual mətni yazdıqca burada canlı riyazi render görünəcək.')
+            { className: 'p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700 min-h-[120px]' },
+            newQuestion.text ? React.createElement(KatexRenderer, { text: newQuestion.text }) : React.createElement('span', { className: 'text-xs text-zinc-400 italic' }, 'Sol tərəfdə sual mətni yazdıqca burada canlı riyazi render görünəcək.')
           ),
 
           React.createElement(
@@ -437,10 +437,10 @@ E) 12x
                 {
                   key: optKey,
                   className: `p-2.5 rounded-xl border flex items-center space-x-2 ${
-                    isCorrect ? 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-500 font-bold' : 'bg-slate-50 dark:bg-slate-800/40 border-slate-200 dark:border-slate-700'
+                    isCorrect ? 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-500 font-bold' : 'bg-zinc-50 dark:bg-zinc-800/40 border-zinc-200 dark:border-zinc-700'
                   }`
                 },
-                React.createElement('span', { className: 'w-5 h-5 rounded-md bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-[10px] font-black' }, optKey),
+                React.createElement('span', { className: 'w-5 h-5 rounded-md bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center text-[10px] font-black' }, optKey),
                 React.createElement(KatexRenderer, { text: val || `(${optKey} variantı boşdur)` })
               );
             })
@@ -454,12 +454,12 @@ E) 12x
     // =========================================================================
     activeSubTab === 'scanner' && React.createElement(
       'div',
-      { className: 'bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4' },
+      { className: 'bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-4' },
       React.createElement(
         'div',
         null,
-        React.createElement('h3', { className: 'font-black text-base text-slate-800 dark:text-slate-100' }, 'Fiziki Test Vərəqlərinin OCR Mətnindən Çevirici'),
-        React.createElement('p', { className: 'text-xs text-slate-500 dark:text-slate-400 mt-0.5' },
+        React.createElement('h3', { className: 'font-black text-base text-zinc-800 dark:text-zinc-100' }, 'Fiziki Test Vərəqlərinin OCR Mətnindən Çevirici'),
+        React.createElement('p', { className: 'text-xs text-zinc-500 dark:text-zinc-400 mt-0.5' },
           'Məktəb test kitabçalarından və ya skaner aparatından çıxan xam mətni bura yapışdırın. Sistem sual və variantları avtomatik ayıraraq şablona köçürəcək.'
         )
       ),
@@ -467,7 +467,7 @@ E) 12x
         rows: 8,
         value: ocrRawText,
         onChange: e => setOcrRawText(e.target.value),
-        className: 'w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono text-slate-800 dark:text-slate-200 focus:outline-none focus:border-indigo-500'
+        className: 'w-full p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs font-mono text-zinc-800 dark:text-zinc-200 focus:outline-none focus:border-indigo-500'
       }),
       React.createElement(
         'button',
@@ -485,12 +485,12 @@ E) 12x
     // =========================================================================
     activeSubTab === 'json' && React.createElement(
       'div',
-      { className: 'bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4' },
+      { className: 'bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-4' },
       React.createElement(
         'div',
         null,
-        React.createElement('h3', { className: 'font-black text-base text-slate-800 dark:text-slate-100' }, 'JSON Formatında Toplu Məlumat Yükləməsi'),
-        React.createElement('p', { className: 'text-xs text-slate-500 dark:text-slate-400 mt-0.5' },
+        React.createElement('h3', { className: 'font-black text-base text-zinc-800 dark:text-zinc-100' }, 'JSON Formatında Toplu Məlumat Yükləməsi'),
+        React.createElement('p', { className: 'text-xs text-zinc-500 dark:text-zinc-400 mt-0.5' },
           'Gələcəkdə Supabase və ya server bazasından ixrac edilmiş JSON massivini bura yapışdıraraq bir kliklə yüzlərlə sualı yerli bazaya əlavə edə bilərsiniz.'
         )
       ),
@@ -499,7 +499,7 @@ E) 12x
         value: rawJsonInput,
         onChange: e => setRawJsonInput(e.target.value),
         placeholder: '{"lessons": [...], "exams": [...], "pvpQuestions": [...]}',
-        className: 'w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono text-slate-800 dark:text-slate-200 focus:outline-none focus:border-indigo-500'
+        className: 'w-full p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs font-mono text-zinc-800 dark:text-zinc-200 focus:outline-none focus:border-indigo-500'
       }),
       React.createElement(
         'div',
@@ -516,7 +516,7 @@ E) 12x
           'button',
           {
             onClick: () => setRawJsonInput(StorageService.exportDatabaseJson()),
-            className: 'px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-xs hover:bg-slate-200'
+            className: 'px-4 py-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 font-bold text-xs hover:bg-zinc-200'
           },
           'Cari Bazanı Ekrana Çıxar'
         )

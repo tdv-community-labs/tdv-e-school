@@ -83,6 +83,8 @@
     });
   </script>
 
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <!-- ESM Import Maps for zero-build Native React 18 -->
   <script type="importmap">
     {
@@ -93,25 +95,25 @@
     }
   </script>
 </head>
-<body class="bg-slate-50 dark:bg-[#07090e] text-slate-900 dark:text-slate-100 antialiased selection:bg-indigo-500 selection:text-white">
+<body class="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-200 font-sans">
   <!-- TDV Community Labs Ecosystem Global Bar -->
   <!-- TDV Community Labs Ecosystem Global Bar -->
-  <aside id="tdv-ecosystem-topbar" aria-label="TDV Community Labs Ecosystem Bar" class="bg-[#070a12] border-b border-amber-500/20 py-1.5 px-3 sm:px-4 text-[11px] sticky top-0 z-50 transition-colors shadow-sm" style="font-family: 'Inter', system-ui, sans-serif;">
+  <aside id="tdv-ecosystem-topbar" aria-label="TDV Community Labs Ecosystem Bar" class="bg-white/95 dark:bg-zinc-950/95 border-b border-zinc-200 dark:border-zinc-800 py-1.5 px-3 sm:px-4 text-[11px] sticky top-0 z-50 transition-colors duration-200 shadow-sm" style="font-family: 'Inter', system-ui, sans-serif;">
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
       <!-- Left: Institutional Crest & Identity -->
       <div class="flex items-center gap-2 overflow-hidden whitespace-nowrap">
-        <a href="https://tdv-community-hubs.vercel.app/" class="inline-flex items-center gap-2 font-extrabold text-white hover:text-amber-300 transition" style="text-decoration: none;">
+        <a href="https://tdv-community-hubs.vercel.app/" class="inline-flex items-center gap-2 font-extrabold text-zinc-950 dark:text-white hover:text-indigo-600 dark:hover:text-amber-300 transition" style="text-decoration: none;">
           <img src="assets/tdv-logo.png" alt="TDV BTL Crest" class="w-5 h-5 rounded-full object-cover border border-amber-400/70 shadow-sm shrink-0" />
-          <span class="tracking-tight text-white font-black text-[11px] hidden min-[380px]:inline">TDV Community Labs</span>
-          <span class="tracking-tight text-white font-black text-[11px] min-[380px]:hidden">TDV BTL</span>
+          <span class="tracking-tight text-zinc-950 dark:text-white font-black text-[11px] hidden min-[380px]:inline">TDV Community Labs</span>
+          <span class="tracking-tight text-zinc-950 dark:text-white font-black text-[11px] min-[380px]:hidden">TDV BTL</span>
         </a>
-        <span class="text-slate-700 hidden sm:inline">•</span>
+        <span class="text-zinc-400 dark:text-zinc-600 hidden sm:inline">•</span>
         <span class="text-amber-400/90 text-[10px] font-semibold hidden md:inline">Təhsil Portalı</span>
       </div>
 
       <!-- Right: Unified Ecosystem Switcher Pill -->
-      <nav class="flex items-center gap-1 bg-slate-900/95 border border-slate-800 p-1 rounded-2xl text-xs font-medium shadow-sm">
-        <a href="https://tdv-community-hubs.vercel.app/" class="px-2.5 sm:px-3 py-1.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/80 transition flex items-center gap-1.5" style="text-decoration: none;" title="TDV Hub Mərkəzi Portalı">
+      <nav class="flex items-center gap-1 bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-1 rounded-2xl text-xs font-medium shadow-sm">
+        <a href="https://tdv-community-hubs.vercel.app/" class="px-2.5 sm:px-3 py-1.5 rounded-xl text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition flex items-center gap-1.5" style="text-decoration: none;" title="TDV Hub Mərkəzi Portalı">
           <i class="fas fa-house text-blue-400 text-xs"></i>
           <span class="hidden sm:inline">Mərkəz</span>
         </a>
@@ -119,7 +121,7 @@
           <i class="fas fa-graduation-cap text-amber-300 text-xs"></i>
           <span class="hidden sm:inline">E-School</span>
         </a>
-        <a href="https://school-minifootball-tournament.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-2.5 sm:px-3 py-1.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/80 transition flex items-center gap-1.5" style="text-decoration: none;" title="TDV Sports Minifutbol Turniri">
+        <a href="https://school-minifootball-tournament.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-2.5 sm:px-3 py-1.5 rounded-xl text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition flex items-center gap-1.5" style="text-decoration: none;" title="TDV Sports Minifutbol Turniri">
           <i class="fas fa-trophy text-blue-400 text-xs"></i>
           <span class="hidden sm:inline">Sports</span>
         </a>
@@ -128,7 +130,7 @@
           <span class="hidden sm:inline">Games</span>
           <span class="text-[9px] px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 font-bold border border-purple-500/30">Mafia</span>
         </a>
-        <a href="https://github.com/tdv-community-labs" target="_blank" rel="noopener noreferrer" class="hidden sm:flex px-2 py-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/60 transition" title="GitHub Təşkilatı" style="text-decoration: none;">
+        <a href="https://github.com/tdv-community-labs" target="_blank" rel="noopener noreferrer" class="hidden sm:flex px-2 py-1.5 rounded-xl text-zinc-500 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition" title="GitHub Təşkilatı" style="text-decoration: none;">
           <i class="fab fa-github text-xs"></i>
         </a>
       </nav>
@@ -137,14 +139,14 @@
 
   <div id="root">
     <!-- Initial Spinner while modules load -->
-    <div class="min-h-screen flex flex-col items-center justify-center bg-slate-950 text-white space-y-4">
+    <div class="min-h-screen flex flex-col items-center justify-center bg-zinc-950 text-white space-y-4">
       <div class="relative flex items-center justify-center">
         <div class="animate-spin rounded-full h-14 w-14 border-4 border-indigo-500/30 border-t-indigo-500"></div>
         <i class="fas fa-graduation-cap absolute text-xl text-indigo-400"></i>
       </div>
       <div class="text-center">
-        <div class="font-black tracking-wider text-sm uppercase bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">MəktəbPlus</div>
-        <p class="text-[10px] text-slate-500 mt-0.5">Təhsil resursları və modullar hazırlanır...</p>
+        <div class="font-black tracking-wider text-sm uppercase bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">TDV E-School</div>
+        <p class="text-[10px] text-zinc-400 mt-0.5">Təhsil resursları və modullar hazırlanır...</p>
       </div>
     </div>
   </div>

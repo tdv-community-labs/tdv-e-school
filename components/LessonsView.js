@@ -146,7 +146,7 @@ export const LessonsView = ({
     // Yuxarı Fənn və Sinif Filtrləri
     React.createElement(
       'div',
-      { className: 'flex flex-col sm:flex-row sm:items-center justify-between gap-4 bento-card p-4 rounded-2xl bg-slate-900/80 backdrop-blur-xl border border-white/10 shadow-lg' },
+      { className: 'flex flex-col sm:flex-row sm:items-center justify-between gap-4 bento-card p-4 rounded-2xl bg-zinc-900/80 backdrop-blur-xl border border-white/10 shadow-lg' },
       
       // Fənn Seçimi Scroll Bar
       React.createElement(
@@ -172,7 +172,7 @@ export const LessonsView = ({
               className: `px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center space-x-1.5 ${
                 isSelected
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-500/20'
-                  : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                  : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700'
               }`
             },
             React.createElement('span', null, sub.name)
@@ -184,7 +184,7 @@ export const LessonsView = ({
       React.createElement(
         'div',
         { className: 'flex items-center space-x-1 self-end sm:self-auto shrink-0' },
-        React.createElement('span', { className: 'text-xs font-bold text-slate-400 mr-1' }, 'Sinif:'),
+        React.createElement('span', { className: 'text-xs font-bold text-zinc-400 mr-1' }, 'Sinif:'),
         React.createElement(
           'button',
           {
@@ -195,8 +195,8 @@ export const LessonsView = ({
             },
             className: `px-2 py-1 rounded-lg text-xs font-bold transition ${
               selectedGrade === null
-                ? 'bg-cyan-500 text-slate-950 font-black shadow-sm'
-                : 'text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800'
+                ? 'bg-cyan-500 text-zinc-950 font-black shadow-sm'
+                : 'text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800'
             }`
           },
           'Hamısı'
@@ -214,8 +214,8 @@ export const LessonsView = ({
               },
               className: `w-7 h-7 rounded-lg text-xs font-bold transition ${
                 isSelected
-                  ? 'bg-cyan-500 text-slate-950 font-black shadow-sm'
-                  : 'text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800'
+                  ? 'bg-cyan-500 text-zinc-950 font-black shadow-sm'
+                  : 'text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800'
               }`
             },
             grade
@@ -235,23 +235,23 @@ export const LessonsView = ({
         { className: 'lg:col-span-4 space-y-4' },
         React.createElement(
           'div',
-          { className: 'bento-card rounded-3xl p-5 bg-slate-900/80 backdrop-blur-xl border border-white/10 shadow-xl sticky top-24' },
+          { className: 'bento-card rounded-3xl p-5 bg-zinc-900/80 backdrop-blur-xl border border-white/10 shadow-xl sticky top-24' },
           
           React.createElement(
             'div',
-            { className: 'flex items-center justify-between pb-3 mb-3 border-b border-slate-100 dark:border-slate-800' },
+            { className: 'flex items-center justify-between pb-3 mb-3 border-b border-zinc-100 dark:border-zinc-800' },
             React.createElement(
               'div',
               { className: 'flex items-center space-x-2' },
               React.createElement('i', { className: 'fas fa-folder-tree text-indigo-500' }),
-              React.createElement('h3', { className: 'font-black text-sm text-slate-800 dark:text-slate-200' }, 'Mövzu Ağacı (Kataloq)')
+              React.createElement('h3', { className: 'font-black text-sm text-zinc-800 dark:text-zinc-200' }, 'Mövzu Ağacı (Kataloq)')
             ),
-            React.createElement('span', { className: 'text-[11px] font-semibold text-slate-400' }, `${filteredLessons.length} Mövzu`)
+            React.createElement('span', { className: 'text-[11px] font-semibold text-zinc-400' }, `${filteredLessons.length} Mövzu`)
           ),
 
           Object.keys(unitsTree).length === 0 ? React.createElement(
             'div',
-            { className: 'py-8 text-center text-xs text-slate-400' },
+            { className: 'py-8 text-center text-xs text-zinc-400' },
             React.createElement('i', { className: 'fas fa-box-open text-2xl mb-2 block' }),
             'Bu fənn və sinif üçün hələ dərs əlavə edilməyib. İdarəetmə panelindən yeni dərs əlavə edə bilərsiniz.'
           ) : React.createElement(
@@ -261,13 +261,13 @@ export const LessonsView = ({
               const isExpanded = expandedUnits[unitName] ?? true;
               return React.createElement(
                 'div',
-                { key: unitName, className: 'rounded-2xl border border-slate-100 dark:border-slate-800 overflow-hidden' },
+                { key: unitName, className: 'rounded-2xl border border-zinc-100 dark:border-zinc-800 overflow-hidden' },
                 // Unit header (Collapsible)
                 React.createElement(
                   'button',
                   {
                     onClick: () => toggleUnit(unitName),
-                    className: 'w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-800/60 flex items-center justify-between text-left text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition'
+                    className: 'w-full px-3.5 py-2.5 bg-zinc-50 dark:bg-zinc-800/60 flex items-center justify-between text-left text-xs font-bold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition'
                   },
                   React.createElement(
                     'div',
@@ -275,12 +275,12 @@ export const LessonsView = ({
                     React.createElement('i', { className: `fas fa-chevron-${isExpanded ? 'down' : 'right'} text-[10px] text-indigo-500` }),
                     React.createElement('span', null, unitName)
                   ),
-                  React.createElement('span', { className: 'text-[10px] px-1.5 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400' }, unitLessons.length)
+                  React.createElement('span', { className: 'text-[10px] px-1.5 py-0.5 rounded-full bg-zinc-200 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-400' }, unitLessons.length)
                 ),
                 // Lessons in unit
                 isExpanded && React.createElement(
                   'div',
-                  { className: 'p-1.5 space-y-1 bg-white dark:bg-slate-900' },
+                  { className: 'p-1.5 space-y-1 bg-white dark:bg-zinc-900' },
                   unitLessons.map(les => {
                     const isCurrent = currentLesson?.id === les.id;
                     return React.createElement(
@@ -291,18 +291,18 @@ export const LessonsView = ({
                         className: `w-full px-3 py-2 rounded-xl text-left text-xs font-semibold flex items-center justify-between space-x-2 transition ${
                           isCurrent
                             ? 'bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 font-bold'
-                            : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
+                            : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800'
                         }`
                       },
                       React.createElement(
                         'div',
                         { className: 'flex items-center space-x-2 min-w-0 flex-1' },
-                        React.createElement('i', { className: `fas fa-file-lines text-[11px] shrink-0 ${isCurrent ? 'text-indigo-600' : 'text-slate-400'}` }),
+                        React.createElement('i', { className: `fas fa-file-lines text-[11px] shrink-0 ${isCurrent ? 'text-indigo-600' : 'text-zinc-400'}` }),
                         React.createElement('span', { className: 'line-clamp-1 truncate' }, les.title)
                       ),
                       React.createElement(
                         'span',
-                        { className: `text-[9px] px-1.5 py-0.5 rounded-md font-bold shrink-0 ${isCurrent ? 'bg-indigo-200/60 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}` },
+                        { className: `text-[9px] px-1.5 py-0.5 rounded-md font-bold shrink-0 ${isCurrent ? 'bg-indigo-200/60 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500'}` },
                         `${les.grade}-ci sinif`
                       )
                     );
@@ -321,12 +321,12 @@ export const LessonsView = ({
         
         currentLesson ? React.createElement(
           'article',
-          { className: 'bento-card rounded-3xl p-6 sm:p-8 bg-slate-900/80 backdrop-blur-xl border border-white/10 shadow-xl space-y-6' },
+          { className: 'bento-card rounded-3xl p-6 sm:p-8 bg-zinc-900/80 backdrop-blur-xl border border-white/10 shadow-xl space-y-6' },
           
           // Dərs Başlığı və Metadata (Səsli Oxuma ilə)
           React.createElement(
             'div',
-            { className: 'pb-5 border-b border-slate-100 dark:border-slate-800' },
+            { className: 'pb-5 border-b border-zinc-100 dark:border-zinc-800' },
             React.createElement(
               'div',
               { className: 'flex flex-wrap items-center justify-between gap-3 mb-3' },
@@ -334,8 +334,8 @@ export const LessonsView = ({
                 'div',
                 { className: 'flex flex-wrap items-center gap-2' },
                 React.createElement('span', { className: `text-[11px] font-bold px-2.5 py-0.5 rounded-lg ${currentSubjectMeta.badgeBg} ${currentSubjectMeta.badgeText}` }, currentSubjectMeta.name),
-                React.createElement('span', { className: 'text-[11px] font-bold px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400' }, `${currentLesson.grade}-ci sinif`),
-                React.createElement('span', { className: 'text-[11px] font-medium text-slate-400 flex items-center gap-1' },
+                React.createElement('span', { className: 'text-[11px] font-bold px-2 py-0.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400' }, `${currentLesson.grade}-ci sinif`),
+                React.createElement('span', { className: 'text-[11px] font-medium text-zinc-400 flex items-center gap-1' },
                   React.createElement('i', { className: 'fas fa-clock text-[10px]' }),
                   React.createElement('span', null, `${currentLesson.readTimeMinutes} dəqiqəlik oxu`)
                 )
@@ -356,21 +356,21 @@ export const LessonsView = ({
                 React.createElement('span', null, isPlayingAudio ? 'Dayandır' : 'Dərsi Səsləndir')
               )
             ),
-            React.createElement('h1', { className: 'text-2xl sm:text-3xl font-black text-slate-900 dark:text-slate-100 tracking-tight' }, currentLesson.title),
-            React.createElement('p', { className: 'text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed' }, currentLesson.summary)
+            React.createElement('h1', { className: 'text-2xl sm:text-3xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight' }, currentLesson.title),
+            React.createElement('p', { className: 'text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-2 leading-relaxed' }, currentLesson.summary)
           ),
 
           // Nəzəriyyə Mətni (KaTeX Render)
           React.createElement(
             'div',
-            { className: 'prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed space-y-4' },
+            { className: 'prose dark:prose-invert max-w-none text-zinc-700 dark:text-zinc-300 text-sm sm:text-base leading-relaxed space-y-4' },
             React.createElement(KatexRenderer, { text: currentLesson.theoryMarkdown })
           ),
 
           // Əsas Düsturlar Paneli (Key Formulas)
           currentLesson.keyFormulas && currentLesson.keyFormulas.length > 0 && React.createElement(
             'div',
-            { className: 'rounded-2xl p-5 bg-gradient-to-br from-indigo-950/50 to-slate-900/60 border border-indigo-500/30 shadow-inner space-y-3' },
+            { className: 'rounded-2xl p-5 bg-gradient-to-br from-indigo-950/50 to-zinc-900/60 border border-indigo-500/30 shadow-inner space-y-3' },
             React.createElement(
               'div',
               { className: 'flex items-center space-x-2 text-indigo-700 dark:text-indigo-300 font-black text-sm' },
@@ -383,10 +383,10 @@ export const LessonsView = ({
               currentLesson.keyFormulas.map(f => {
                 return React.createElement(
                   'div',
-                  { key: f.id, className: 'p-3 rounded-xl bg-white dark:bg-slate-900 border border-indigo-100 dark:border-indigo-900 shadow-sm' },
-                  React.createElement('div', { className: 'text-xs font-bold text-slate-700 dark:text-slate-300 mb-1' }, f.name),
+                  { key: f.id, className: 'p-3 rounded-xl bg-white dark:bg-zinc-900 border border-indigo-100 dark:border-indigo-900 shadow-sm' },
+                  React.createElement('div', { className: 'text-xs font-bold text-zinc-700 dark:text-zinc-300 mb-1' }, f.name),
                   React.createElement(KatexRenderer, { text: `$$${f.latex}$$`, block: true }),
-                  React.createElement('div', { className: 'text-[11px] text-slate-500 dark:text-slate-400 mt-1' }, f.description)
+                  React.createElement('div', { className: 'text-[11px] text-zinc-500 dark:text-zinc-400 mt-1' }, f.description)
                 );
               })
             )
@@ -407,7 +407,7 @@ export const LessonsView = ({
           currentLesson.glossary && currentLesson.glossary.length > 0 && React.createElement(
             'div',
             { className: 'space-y-2' },
-            React.createElement('h3', { className: 'font-black text-sm text-slate-800 dark:text-slate-200 flex items-center gap-2' },
+            React.createElement('h3', { className: 'font-black text-sm text-zinc-800 dark:text-zinc-200 flex items-center gap-2' },
               React.createElement('i', { className: 'fas fa-spell-check text-cyan-500' }),
               React.createElement('span', null, 'Terminlərin Xülasəsi')
             ),
@@ -417,9 +417,9 @@ export const LessonsView = ({
               currentLesson.glossary.map((g, idx) => {
                 return React.createElement(
                   'div',
-                  { key: idx, className: 'p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-800' },
+                  { key: idx, className: 'p-3 rounded-xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200/60 dark:border-zinc-800' },
                   React.createElement('div', { className: 'text-xs font-black text-indigo-600 dark:text-indigo-400' }, g.term),
-                  React.createElement('div', { className: 'text-xs text-slate-600 dark:text-slate-300 mt-0.5' }, g.definition)
+                  React.createElement('div', { className: 'text-xs text-zinc-600 dark:text-zinc-300 mt-0.5' }, g.definition)
                 );
               })
             )
@@ -428,8 +428,8 @@ export const LessonsView = ({
           // Həlli Gizlədilmiş Nümunəvi Məsələlər (Accordion)
           currentLesson.solvedExamples && currentLesson.solvedExamples.length > 0 && React.createElement(
             'div',
-            { className: 'space-y-3 pt-4 border-t border-slate-100 dark:border-slate-800' },
-            React.createElement('h3', { className: 'font-black text-base text-slate-800 dark:text-slate-200 flex items-center gap-2' },
+            { className: 'space-y-3 pt-4 border-t border-zinc-100 dark:border-zinc-800' },
+            React.createElement('h3', { className: 'font-black text-base text-zinc-800 dark:text-zinc-200 flex items-center gap-2' },
               React.createElement('i', { className: 'fas fa-lightbulb text-amber-500' }),
               React.createElement('span', null, 'Nümunəvi Məsələ və Addım-Addım Həlli')
             ),
@@ -440,7 +440,7 @@ export const LessonsView = ({
                 { key: ex.id, className: 'rounded-2xl border border-amber-200/70 dark:border-amber-900/50 bg-amber-50/20 dark:bg-amber-950/20 overflow-hidden' },
                 React.createElement(
                   'div',
-                  { className: 'p-4 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200' },
+                  { className: 'p-4 text-xs sm:text-sm font-semibold text-zinc-800 dark:text-zinc-200' },
                   React.createElement('span', { className: 'text-amber-600 dark:text-amber-400 font-bold mr-1' }, 'Məsələ:'),
                   React.createElement(KatexRenderer, { text: ex.question })
                 ),
@@ -459,7 +459,7 @@ export const LessonsView = ({
                 ),
                 isRevealed && React.createElement(
                   'div',
-                  { className: 'p-4 bg-white dark:bg-slate-900 border-t border-amber-200/70 dark:border-amber-900/50 text-xs sm:text-sm space-y-2' },
+                  { className: 'p-4 bg-white dark:bg-zinc-900 border-t border-amber-200/70 dark:border-amber-900/50 text-xs sm:text-sm space-y-2' },
                   React.createElement(KatexRenderer, { text: ex.solution })
                 )
               );
@@ -469,12 +469,12 @@ export const LessonsView = ({
           // Dərsin Sonunda "Özünü Yoxla" Mini-Testi
           currentLesson.miniQuiz && currentLesson.miniQuiz.length > 0 && React.createElement(
             'div',
-            { className: 'rounded-2xl p-6 bg-slate-800/50 backdrop-blur-md border border-white/10 space-y-4 pt-6' },
+            { className: 'rounded-2xl p-6 bg-zinc-800/50 backdrop-blur-md border border-white/10 space-y-4 pt-6' },
             React.createElement(
               'div',
               { className: 'flex items-center space-x-2' },
               React.createElement('i', { className: 'fas fa-circle-check text-emerald-500 text-lg' }),
-              React.createElement('h3', { className: 'font-black text-base text-slate-800 dark:text-slate-200' }, 'Dərsi Mənimsəmə Mini-Testi (Özünü Yoxla)')
+              React.createElement('h3', { className: 'font-black text-base text-zinc-800 dark:text-zinc-200' }, 'Dərsi Mənimsəmə Mini-Testi (Özünü Yoxla)')
             ),
             currentLesson.miniQuiz.map((q, qIndex) => {
               const selectedKey = quizAnswers[q.questionId];
@@ -483,10 +483,10 @@ export const LessonsView = ({
 
               return React.createElement(
                 'div',
-                { key: q.questionId, className: 'p-4 rounded-xl bg-slate-900/80 border border-white/10 space-y-3' },
+                { key: q.questionId, className: 'p-4 rounded-xl bg-zinc-900/80 border border-white/10 space-y-3' },
                 React.createElement(
                   'div',
-                  { className: 'text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200' },
+                  { className: 'text-xs sm:text-sm font-bold text-zinc-800 dark:text-zinc-200' },
                   React.createElement('span', { className: 'text-indigo-600 mr-2' }, `${qIndex + 1}.`),
                   React.createElement(KatexRenderer, { text: q.question })
                 ),
@@ -496,7 +496,7 @@ export const LessonsView = ({
                   { className: 'grid grid-cols-1 sm:grid-cols-2 gap-2' },
                   q.options.map(opt => {
                     const isOptionSelected = selectedKey === opt.key;
-                    let btnClass = 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700';
+                    let btnClass = 'bg-zinc-50 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border-zinc-200 dark:border-zinc-700';
 
                     if (isChecked) {
                       if (opt.key === q.correctKey) {
@@ -515,7 +515,7 @@ export const LessonsView = ({
                         onClick: () => handleSelectQuizOption(q.questionId, opt.key),
                         className: `p-2.5 rounded-xl border text-left text-xs flex items-center space-x-2 transition ${btnClass}`
                       },
-                      React.createElement('span', { className: 'w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold text-[10px]' }, opt.key),
+                      React.createElement('span', { className: 'w-5 h-5 rounded-full bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center font-bold text-[10px]' }, opt.key),
                       React.createElement(KatexRenderer, { text: opt.text })
                     );
                   })
@@ -532,7 +532,7 @@ export const LessonsView = ({
                       className: `px-4 py-1.5 rounded-lg text-xs font-bold transition ${
                         selectedKey
                           ? 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm'
-                          : 'bg-slate-200 dark:bg-slate-800 text-slate-400 cursor-not-allowed'
+                          : 'bg-zinc-200 dark:bg-zinc-800 text-zinc-400 cursor-not-allowed'
                       }`
                     },
                     'Cavabı Yoxla'
@@ -552,7 +552,7 @@ export const LessonsView = ({
           )
         ) : React.createElement(
           'div',
-          { className: 'bg-white dark:bg-slate-900 rounded-3xl p-12 text-center text-slate-400 border border-slate-200 dark:border-slate-800' },
+          { className: 'bg-white dark:bg-zinc-900 rounded-3xl p-12 text-center text-zinc-400 border border-zinc-200 dark:border-zinc-800' },
           'Dərs seçilməyib'
         )
       )

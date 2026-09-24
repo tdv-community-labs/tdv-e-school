@@ -38,7 +38,7 @@ export const DashboardView = ({
     React.createElement(
       'div',
       {
-        className: 'relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-[#0c1222] to-slate-950 border border-indigo-500/20 p-6 sm:p-10 text-white shadow-2xl shadow-indigo-950/40'
+        className: 'relative overflow-hidden rounded-3xl bg-gradient-to-br from-zinc-900 via-[#18181b] to-zinc-950 border border-indigo-500/20 p-6 sm:p-10 text-white shadow-2xl shadow-indigo-950/40'
       },
       // Atmospheric Aurora Glows
       React.createElement('div', { className: 'absolute -right-20 -top-20 w-96 h-96 rounded-full bg-indigo-500/15 blur-3xl pointer-events-none' }),
@@ -67,7 +67,7 @@ export const DashboardView = ({
           ),
           React.createElement(
             'p',
-            { className: 'text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed font-normal' },
+            { className: 'text-sm sm:text-base text-zinc-300 max-w-2xl leading-relaxed font-normal' },
             'Bütün fənlər üzrə tədris konspektləri, KSQ və BSQ sınaq imtahanları arxivi və interaktiv tədris alətləri.'
           ),
 
@@ -89,7 +89,7 @@ export const DashboardView = ({
               'button',
               {
                 onClick: () => setActiveTab('exams'),
-                className: 'px-5 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/70 text-slate-200 font-bold text-xs sm:text-sm transition flex items-center space-x-2 cursor-pointer'
+                className: 'px-5 py-2.5 rounded-xl bg-zinc-800/80 hover:bg-zinc-700/80 border border-zinc-700/70 text-zinc-200 font-bold text-xs sm:text-sm transition flex items-center space-x-2 cursor-pointer'
               },
               React.createElement('i', { className: 'fas fa-file-signature text-xs text-indigo-400' }),
               React.createElement('span', null, 'BSQ / KSQ Arxiv')
@@ -98,7 +98,7 @@ export const DashboardView = ({
               'button',
               {
                 onClick: () => onStartPvp('quick'),
-                className: 'px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black text-xs sm:text-sm shadow-md transition flex items-center space-x-2 cursor-pointer'
+                className: 'px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-zinc-950 font-black text-xs sm:text-sm shadow-md transition flex items-center space-x-2 cursor-pointer'
               },
               React.createElement('i', { className: 'fas fa-bolt text-xs' }),
               React.createElement('span', null, '1v1 Sürətli Döyüş')
@@ -117,7 +117,7 @@ export const DashboardView = ({
           // Live Metric Ticker
           React.createElement(
             'div',
-            { className: 'pt-4 border-t border-slate-800/80 flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-slate-400' },
+            { className: 'pt-4 border-t border-zinc-800/80 flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-zinc-400' },
             React.createElement('div', { className: 'flex items-center gap-1.5' },
               React.createElement('span', { className: 'w-1.5 h-1.5 rounded-full bg-indigo-400' }),
               React.createElement('span', { className: 'font-extrabold text-white' }, `${SUBJECTS.length}`),
@@ -147,10 +147,10 @@ export const DashboardView = ({
           { className: 'lg:col-span-4 hidden lg:block' },
           React.createElement(
             'div',
-            { className: 'rounded-2xl bg-slate-950/80 border border-white/10 p-5 shadow-2xl backdrop-blur-xl space-y-3' },
+            { className: 'rounded-2xl bg-zinc-950/80 border border-white/10 p-5 shadow-2xl backdrop-blur-xl space-y-3' },
             React.createElement(
               'div',
-              { className: 'flex items-center justify-between border-b border-slate-800 pb-2.5' },
+              { className: 'flex items-center justify-between border-b border-zinc-800 pb-2.5' },
               React.createElement(
                 'span',
                 { className: 'text-[11px] font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5' },
@@ -159,7 +159,7 @@ export const DashboardView = ({
               ),
               React.createElement(
                 'span',
-                { className: 'text-[10px] font-mono text-slate-400' },
+                { className: 'text-[10px] font-mono text-zinc-400' },
                 'TDV Community Labs'
               )
             ),
@@ -168,8 +168,8 @@ export const DashboardView = ({
               { className: 'space-y-2' },
               React.createElement(
                 'div',
-                { className: 'p-2.5 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-center justify-between' },
-                React.createElement('div', { className: 'flex items-center gap-2 text-xs text-slate-300' },
+                { className: 'p-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800/80 flex items-center justify-between' },
+                React.createElement('div', { className: 'flex items-center gap-2 text-xs text-zinc-300' },
                   React.createElement('i', { className: 'fas fa-graduation-cap text-indigo-400' }),
                   React.createElement('span', null, 'Tədris Fənləri')
                 ),
@@ -177,8 +177,8 @@ export const DashboardView = ({
               ),
               React.createElement(
                 'div',
-                { className: 'p-2.5 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-center justify-between' },
-                React.createElement('div', { className: 'flex items-center gap-2 text-xs text-slate-300' },
+                { className: 'p-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800/80 flex items-center justify-between' },
+                React.createElement('div', { className: 'flex items-center gap-2 text-xs text-zinc-300' },
                   React.createElement('i', { className: 'fas fa-book-open text-cyan-400' }),
                   React.createElement('span', null, 'Dərs Konspektləri')
                 ),
@@ -186,8 +186,8 @@ export const DashboardView = ({
               ),
               React.createElement(
                 'div',
-                { className: 'p-2.5 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-center justify-between' },
-                React.createElement('div', { className: 'flex items-center gap-2 text-xs text-slate-300' },
+                { className: 'p-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800/80 flex items-center justify-between' },
+                React.createElement('div', { className: 'flex items-center gap-2 text-xs text-zinc-300' },
                   React.createElement('i', { className: 'fas fa-file-signature text-emerald-400' }),
                   React.createElement('span', null, 'İmtahan Arxivi')
                 ),
@@ -196,8 +196,8 @@ export const DashboardView = ({
             ),
             React.createElement(
               'div',
-              { className: 'pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs' },
-              React.createElement('span', { className: 'text-slate-400' }, 'Bal kalkulyatoru:'),
+              { className: 'pt-2 border-t border-zinc-800/80 flex items-center justify-between text-xs' },
+              React.createElement('span', { className: 'text-zinc-400' }, 'Bal kalkulyatoru:'),
               React.createElement(
                 'button',
                 {
@@ -222,8 +222,8 @@ export const DashboardView = ({
         React.createElement(
           'div',
           null,
-          React.createElement('h2', { className: 'text-lg sm:text-xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight' }, 'Tədris Fənləri Kataloqu'),
-          React.createElement('p', { className: 'text-xs text-slate-500 dark:text-slate-400' }, 'Fənn seçərək nəzəriyyə konspektlərinə və sınaq testlərinə keçid edin')
+          React.createElement('h2', { className: 'text-lg sm:text-xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight' }, 'Tədris Fənləri Kataloqu'),
+          React.createElement('p', { className: 'text-xs text-zinc-500 dark:text-zinc-400' }, 'Fənn seçərək nəzəriyyə konspektlərinə və sınaq testlərinə keçid edin')
         ),
         React.createElement(
           'span',
@@ -244,7 +244,7 @@ export const DashboardView = ({
                 setSelectedSubjectId(subject.id);
                 setActiveTab('lessons');
               },
-              className: 'bento-card group cursor-pointer rounded-2xl p-5 bg-white/90 dark:bg-[#0c101a]/85 border border-slate-200/80 dark:border-white/[0.08] shadow-sm hover:shadow-xl transition-all duration-200'
+              className: 'bento-card group cursor-pointer rounded-2xl p-5 bg-white/90 dark:bg-[#0c101a]/85 border border-zinc-200/80 dark:border-white/[0.08] shadow-sm hover:shadow-xl transition-all duration-200'
             },
             React.createElement(
               'div',
@@ -262,11 +262,11 @@ export const DashboardView = ({
                 subject.shortName
               )
             ),
-            React.createElement('h3', { className: 'font-bold text-slate-900 dark:text-slate-100 text-base group-hover:text-indigo-500 transition-colors' }, subject.name),
-            React.createElement('p', { className: 'text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed' }, subject.description),
+            React.createElement('h3', { className: 'font-bold text-zinc-900 dark:text-zinc-100 text-base group-hover:text-indigo-500 transition-colors' }, subject.name),
+            React.createElement('p', { className: 'text-xs text-zinc-500 dark:text-zinc-400 mt-1 line-clamp-2 leading-relaxed' }, subject.description),
             React.createElement(
               'div',
-              { className: 'mt-4 pt-3 border-t border-slate-100 dark:border-white/[0.06] flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400' },
+              { className: 'mt-4 pt-3 border-t border-zinc-100 dark:border-white/[0.06] flex items-center justify-between text-[11px] text-zinc-500 dark:text-zinc-400' },
               React.createElement(
                 'span',
                 { className: 'flex items-center space-x-1.5 font-medium' },
@@ -298,7 +298,7 @@ export const DashboardView = ({
       // Son İmtahanlar
       React.createElement(
         'div',
-        { className: 'bento-card bg-white/90 dark:bg-[#0c101a]/85 rounded-3xl p-6 border border-slate-200/80 dark:border-white/[0.08] shadow-sm' },
+        { className: 'bento-card bg-white/90 dark:bg-[#0c101a]/85 rounded-3xl p-6 border border-zinc-200/80 dark:border-white/[0.08] shadow-sm' },
         React.createElement(
           'div',
           { className: 'flex items-center justify-between mb-4' },
@@ -306,7 +306,7 @@ export const DashboardView = ({
             'div',
             { className: 'flex items-center space-x-2' },
             React.createElement('i', { className: 'fas fa-file-signature text-indigo-500 text-base' }),
-            React.createElement('h3', { className: 'font-bold text-slate-900 dark:text-slate-100 text-base' }, 'Son Əlavə Edilmiş İmtahanlar')
+            React.createElement('h3', { className: 'font-bold text-zinc-900 dark:text-zinc-100 text-base' }, 'Son Əlavə Edilmiş İmtahanlar')
           ),
           React.createElement(
             'button',
@@ -326,7 +326,7 @@ export const DashboardView = ({
               {
                 key: exam.id,
                 onClick: () => onOpenExam(exam),
-                className: 'p-3 rounded-2xl bg-slate-50/80 dark:bg-slate-900/60 hover:bg-indigo-50/40 dark:hover:bg-slate-800/80 border border-slate-200/60 dark:border-white/[0.06] cursor-pointer transition flex items-center justify-between'
+                className: 'p-3 rounded-2xl bg-zinc-50/80 dark:bg-zinc-900/60 hover:bg-indigo-50/40 dark:hover:bg-zinc-800/80 border border-zinc-200/60 dark:border-white/[0.06] cursor-pointer transition flex items-center justify-between'
               },
               React.createElement(
                 'div',
@@ -339,8 +339,8 @@ export const DashboardView = ({
                 React.createElement(
                   'div',
                   null,
-                  React.createElement('h4', { className: 'text-xs font-bold text-slate-800 dark:text-slate-200 line-clamp-1' }, exam.title),
-                  React.createElement('p', { className: 'text-[10px] text-slate-400' }, `${exam.grade}-ci sinif • Variant ${exam.variant} • ${exam.totalQuestions} Sual • ${exam.durationMinutes} dəq`)
+                  React.createElement('h4', { className: 'text-xs font-bold text-zinc-800 dark:text-zinc-200 line-clamp-1' }, exam.title),
+                  React.createElement('p', { className: 'text-[10px] text-zinc-400' }, `${exam.grade}-ci sinif • Variant ${exam.variant} • ${exam.totalQuestions} Sual • ${exam.durationMinutes} dəq`)
                 )
               ),
               React.createElement(
@@ -356,7 +356,7 @@ export const DashboardView = ({
       // Son Dərslər
       React.createElement(
         'div',
-        { className: 'bento-card bg-white/90 dark:bg-[#0c101a]/85 rounded-3xl p-6 border border-slate-200/80 dark:border-white/[0.08] shadow-sm' },
+        { className: 'bento-card bg-white/90 dark:bg-[#0c101a]/85 rounded-3xl p-6 border border-zinc-200/80 dark:border-white/[0.08] shadow-sm' },
         React.createElement(
           'div',
           { className: 'flex items-center justify-between mb-4' },
@@ -364,7 +364,7 @@ export const DashboardView = ({
             'div',
             { className: 'flex items-center space-x-2' },
             React.createElement('i', { className: 'fas fa-graduation-cap text-cyan-500 text-base' }),
-            React.createElement('h3', { className: 'font-bold text-slate-900 dark:text-slate-100 text-base' }, 'Tövsiyə Olunan Dərslər')
+            React.createElement('h3', { className: 'font-bold text-zinc-900 dark:text-zinc-100 text-base' }, 'Tövsiyə Olunan Dərslər')
           ),
           React.createElement(
             'button',
@@ -387,7 +387,7 @@ export const DashboardView = ({
                   setSelectedSubjectId(les.subjectId);
                   setActiveTab('lessons');
                 },
-                className: 'p-3 rounded-2xl bg-slate-50/80 dark:bg-slate-900/60 hover:bg-cyan-50/40 dark:hover:bg-slate-800/80 border border-slate-200/60 dark:border-white/[0.06] cursor-pointer transition flex items-center justify-between'
+                className: 'p-3 rounded-2xl bg-zinc-50/80 dark:bg-zinc-900/60 hover:bg-cyan-50/40 dark:hover:bg-zinc-800/80 border border-zinc-200/60 dark:border-white/[0.06] cursor-pointer transition flex items-center justify-between'
               },
               React.createElement(
                 'div',
@@ -400,13 +400,13 @@ export const DashboardView = ({
                 React.createElement(
                   'div',
                   null,
-                  React.createElement('h4', { className: 'text-xs font-bold text-slate-800 dark:text-slate-200 line-clamp-1' }, les.title),
-                  React.createElement('p', { className: 'text-[10px] text-slate-400' }, `${les.unit} • ${les.readTimeMinutes} dəq oxu • KaTeX & PhET`)
+                  React.createElement('h4', { className: 'text-xs font-bold text-zinc-800 dark:text-zinc-200 line-clamp-1' }, les.title),
+                  React.createElement('p', { className: 'text-[10px] text-zinc-400' }, `${les.unit} • ${les.readTimeMinutes} dəq oxu • KaTeX & PhET`)
                 )
               ),
               React.createElement(
                 'span',
-                { className: 'px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[11px] font-bold' },
+                { className: 'px-2.5 py-1 rounded-lg bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-[11px] font-bold' },
                 'Oxu'
               )
             );
