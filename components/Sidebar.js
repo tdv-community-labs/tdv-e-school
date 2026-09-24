@@ -60,7 +60,7 @@ export const Sidebar = ({
             { className: 'flex items-center space-x-3' },
             React.createElement(
               'div',
-              { className: 'w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center text-white font-bold shrink-0 shadow-md shadow-indigo-500/20' },
+              { className: 'w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-700 to-indigo-600 flex items-center justify-center text-white font-bold shrink-0 shadow-md shadow-purple-500/20' },
               React.createElement('i', { className: 'fas fa-graduation-cap' })
             ),
             React.createElement(
@@ -92,14 +92,14 @@ export const Sidebar = ({
                 onClick: () => handleItemClick(item.id),
                 className: `w-full px-4 py-3 rounded-2xl flex items-center justify-between text-left transition-all ${
                   isActive
-                    ? 'bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800'
+                    ? 'bg-purple-50 dark:bg-purple-950/70 text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-800'
                     : 'text-zinc-600 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800'
                 }`
               },
               React.createElement(
                 'div',
                 { className: 'flex items-center space-x-3' },
-                React.createElement('i', { className: `fas ${item.icon} text-base ${isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-400'}` }),
+                React.createElement('i', { className: `fas ${item.icon} text-base ${isActive ? 'text-purple-600 dark:text-purple-400' : 'text-zinc-400'}` }),
                 React.createElement(
                   'div',
                   null,
@@ -179,16 +179,16 @@ export const Sidebar = ({
               onClose();
               if (onOpenProfile) onOpenProfile();
             },
-            className: 'p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 flex items-center space-x-3 cursor-pointer hover:bg-indigo-50 dark:hover:bg-zinc-700/80 transition group'
+            className: 'p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 flex items-center space-x-3 cursor-pointer hover:bg-purple-50 dark:hover:bg-zinc-700/80 transition group'
           },
           React.createElement('div', { className: 'w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-950 flex items-center justify-center text-xl shadow-inner' }, (userSession && userSession.avatar) || (userStats && userStats.avatar) || '🧑‍🎓'),
           React.createElement(
             'div',
             { className: 'flex-1 min-w-0' },
-            React.createElement('p', { className: 'text-xs font-bold text-zinc-800 dark:text-zinc-200 truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition' }, (userSession && (userSession.fullName || userSession.username)) || (userStats && userStats.name) || 'Məktəbli'),
+            React.createElement('p', { className: 'text-xs font-bold text-zinc-800 dark:text-zinc-200 truncate group-hover:text-purple-600 dark:group-hover:text-purple-400 transition' }, (userSession && (userSession.fullName || userSession.username)) || (userStats && userStats.name) || 'Məktəbli'),
             React.createElement('p', { className: 'text-[10px] text-amber-600 dark:text-amber-400 font-semibold' }, `${userStats?.pvpScore || 1420} XP • ${(userSession && userSession.grade) || userStats?.grade || 10}-cu sinif`)
           ),
-          React.createElement('i', { className: 'fas fa-chevron-right text-xs text-zinc-400 group-hover:text-indigo-500 transition' })
+          React.createElement('i', { className: 'fas fa-chevron-right text-xs text-zinc-400 group-hover:text-purple-500 transition' })
         ),
         onLogout && React.createElement(
           'button',

@@ -38,10 +38,10 @@ export const Navbar = ({
           React.createElement(
             'div',
             {
-              className: 'relative w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/25 border border-white/20 group-hover:scale-105 transition-transform duration-200'
+              className: 'relative w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-700 via-purple-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-purple-500/25 border border-white/20 group-hover:scale-105 transition-transform duration-200'
             },
             React.createElement('i', { className: 'fas fa-graduation-cap text-lg' }),
-            React.createElement('span', { className: 'absolute -top-1 -right-1 w-2.5 h-2.5 bg-cyan-400 rounded-full border-2 border-[#09090b] shadow-sm' })
+            React.createElement('span', { className: 'absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-400 rounded-full border-2 border-[#09090b] shadow-sm' })
           ),
           React.createElement(
             'div',
@@ -51,12 +51,12 @@ export const Navbar = ({
               { className: 'flex items-center space-x-2' },
               React.createElement(
                 'span',
-                { className: 'font-extrabold text-lg tracking-tight bg-gradient-to-r from-zinc-900 via-indigo-900 to-zinc-700 dark:from-white dark:via-zinc-100 dark:to-zinc-300 bg-clip-text text-transparent' },
+                { className: 'font-extrabold text-lg tracking-tight bg-gradient-to-r from-zinc-900 via-purple-900 to-zinc-700 dark:from-white dark:via-zinc-100 dark:to-zinc-300 bg-clip-text text-transparent' },
                 'TDV E-School'
               ),
               React.createElement(
                 'span',
-                { className: 'text-[9px] font-extrabold px-1.5 py-0.5 rounded-md bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-300 border border-indigo-500/20 tracking-wider uppercase' },
+                { className: 'text-[9px] font-extrabold px-1.5 py-0.5 rounded-md bg-purple-500/10 dark:bg-purple-500/20 text-purple-600 dark:text-purple-300 border border-purple-500/20 tracking-wider uppercase' },
                 'v2.5'
               )
             ),
@@ -71,7 +71,7 @@ export const Navbar = ({
           React.createElement(
             'div',
             {
-              className: 'relative flex items-center bg-zinc-100/90 dark:bg-zinc-900/80 border border-zinc-200/80 dark:border-white/[0.08] hover:border-indigo-500/40 rounded-xl px-3 py-1.5 transition-all focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-500/20'
+              className: 'relative flex items-center bg-zinc-100/90 dark:bg-zinc-900/80 border border-zinc-200/80 dark:border-white/[0.08] hover:border-purple-500/40 rounded-xl px-3 py-1.5 transition-all focus-within:border-purple-500 focus-within:ring-2 focus-within:ring-purple-500/20'
             },
             React.createElement('i', { className: 'fas fa-search text-zinc-400 text-xs mr-2.5 pointer-events-none' }),
             React.createElement('input', {
@@ -117,11 +117,11 @@ export const Navbar = ({
                 onClick: () => setActiveTab(item.id),
                 className: `px-3.5 py-1.5 rounded-xl text-xs font-semibold flex items-center space-x-2 transition-all duration-150 cursor-pointer ${
                   isActive
-                    ? 'bg-white dark:bg-zinc-800 text-indigo-600 dark:text-indigo-400 shadow-sm border border-zinc-200/60 dark:border-white/[0.08]'
+                    ? 'bg-white dark:bg-zinc-800 text-purple-600 dark:text-purple-400 shadow-sm border border-zinc-200/60 dark:border-white/[0.08]'
                     : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-white/50 dark:hover:bg-zinc-900/50'
                 }`
               },
-              React.createElement('i', { className: `fas ${item.icon} text-xs ${isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-400 dark:text-zinc-500'}` }),
+              React.createElement('i', { className: `fas ${item.icon} text-xs ${isActive ? 'text-purple-600 dark:text-purple-400' : 'text-zinc-400 dark:text-zinc-500'}` }),
               React.createElement('span', null, item.label),
               item.badge && React.createElement(
                 'span',
@@ -143,9 +143,9 @@ export const Navbar = ({
             {
               onClick: onOpenTools,
               title: 'İnteraktiv Alətlər və Calculus Hesablayıcısı',
-              className: 'px-3 py-1.5 rounded-xl bg-gradient-to-r from-indigo-500/10 to-cyan-500/10 hover:from-indigo-500/20 hover:to-cyan-500/20 border border-indigo-500/30 text-indigo-600 dark:text-indigo-400 font-bold text-xs flex items-center space-x-1.5 transition shadow-sm cursor-pointer'
+              className: 'px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-500/10 to-indigo-500/10 hover:from-purple-500/20 hover:to-indigo-500/20 border border-purple-500/30 text-purple-600 dark:text-purple-400 font-bold text-xs flex items-center space-x-1.5 transition shadow-sm cursor-pointer'
             },
-            React.createElement('i', { className: 'fas fa-toolbox text-xs text-indigo-500' }),
+            React.createElement('i', { className: 'fas fa-toolbox text-xs text-purple-500' }),
             React.createElement('span', { className: 'hidden sm:inline' }, 'Alətlər & Lab')
           ),
 
@@ -158,7 +158,7 @@ export const Navbar = ({
               'aria-label': darkMode ? 'İşıqlı rejimə keç' : 'Qaranlıq rejimə keç',
               className: 'p-2 rounded-xl bg-zinc-100 dark:bg-zinc-900/80 border border-zinc-200/60 dark:border-white/[0.08] text-zinc-600 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition cursor-pointer'
             },
-            React.createElement('i', { className: darkMode ? 'fas fa-sun text-amber-400 text-xs' : 'fas fa-moon text-indigo-500 text-xs' })
+            React.createElement('i', { className: darkMode ? 'fas fa-sun text-amber-400 text-xs' : 'fas fa-moon text-purple-500 text-xs' })
           ),
 
           // XP Pill
@@ -184,7 +184,7 @@ export const Navbar = ({
             {
               onClick: onOpenProfile,
               title: 'Şəxsi Kabinet',
-              className: 'flex items-center space-x-2 p-1 pr-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-900/80 hover:bg-indigo-50 dark:hover:bg-zinc-800 transition border border-zinc-200/60 dark:border-white/[0.08] cursor-pointer'
+              className: 'flex items-center space-x-2 p-1 pr-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-900/80 hover:bg-purple-50 dark:hover:bg-zinc-800 transition border border-zinc-200/60 dark:border-white/[0.08] cursor-pointer'
             },
             React.createElement('span', { className: 'text-sm leading-none' }, userSession?.avatar || userStats?.avatar || '🧑‍🎓'),
             React.createElement('span', { className: 'hidden md:inline text-xs font-bold text-zinc-700 dark:text-zinc-200' }, userSession?.fullName || userSession?.username || userStats?.name || 'Məktəbli')

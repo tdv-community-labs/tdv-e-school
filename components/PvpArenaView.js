@@ -306,7 +306,7 @@ export const PvpArenaView = ({
               className: `w-14 h-14 rounded-full flex flex-col items-center justify-center font-mono font-black shadow-lg border-4 transition-all ${
                 timeLeft <= 3
                   ? 'bg-rose-600 border-rose-300 text-white animate-bounce'
-                  : 'bg-white dark:bg-zinc-900 border-indigo-500 text-indigo-600 dark:text-indigo-400'
+                  : 'bg-white dark:bg-zinc-900 border-purple-500 text-purple-600 dark:text-purple-400'
               }`
             },
             React.createElement('span', { className: 'text-base leading-none' }, timeLeft),
@@ -331,7 +331,7 @@ export const PvpArenaView = ({
           ),
           React.createElement(
             'div',
-            { className: 'text-xl font-black text-indigo-600 dark:text-indigo-400' },
+            { className: 'text-xl font-black text-purple-600 dark:text-purple-400' },
             `${playerScore} XP`
           ),
           // Xal Tərəqqi Barı
@@ -339,7 +339,7 @@ export const PvpArenaView = ({
             'div',
             { className: 'w-full h-2.5 rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden' },
             React.createElement('div', {
-              className: 'h-full bg-indigo-600 transition-all duration-500 rounded-full',
+              className: 'h-full bg-purple-600 transition-all duration-500 rounded-full',
               style: { width: `${pPercentage}%` }
             })
           ),
@@ -416,7 +416,7 @@ export const PvpArenaView = ({
           { className: 'grid grid-cols-1 sm:grid-cols-2 gap-3' },
           currentQ.options.map(opt => {
             const isUserChoice = playerSelectedKey === opt.key;
-            let btnStyle = 'bg-zinc-50 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-200 border-zinc-200 dark:border-zinc-700 hover:border-indigo-400';
+            let btnStyle = 'bg-zinc-50 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-200 border-zinc-200 dark:border-zinc-700 hover:border-purple-400';
 
             if (roundEnded) {
               if (opt.key === currentQ.correctKey) {
@@ -425,7 +425,7 @@ export const PvpArenaView = ({
                 btnStyle = 'bg-rose-100 dark:bg-rose-950 border-rose-500 text-rose-800 dark:text-rose-200 font-bold';
               }
             } else if (isUserChoice) {
-              btnStyle = 'bg-indigo-600 text-white border-indigo-600 font-bold shadow-md';
+              btnStyle = 'bg-purple-600 text-white border-purple-600 font-bold shadow-md';
             }
 
             return React.createElement(
@@ -439,7 +439,7 @@ export const PvpArenaView = ({
               React.createElement(
                 'span',
                 { className: `w-7 h-7 rounded-xl flex items-center justify-center font-black text-xs shrink-0 ${
-                  isUserChoice && !roundEnded ? 'bg-white text-indigo-700' : 'bg-zinc-200 dark:bg-zinc-700'
+                  isUserChoice && !roundEnded ? 'bg-white text-purple-700' : 'bg-zinc-200 dark:bg-zinc-700'
                 }` },
                 opt.key
               ),
@@ -453,14 +453,14 @@ export const PvpArenaView = ({
         // Raundun Canlı Nəticəsi (Əgər raund bitibsə)
         roundEnded && React.createElement(
           'div',
-          { className: 'p-3 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 flex items-center justify-between text-xs font-bold animate-fadeIn' },
+          { className: 'p-3 rounded-2xl bg-purple-50 dark:bg-purple-950/60 border border-purple-200 dark:border-purple-800 flex items-center justify-between text-xs font-bold animate-fadeIn' },
           React.createElement(
             'div',
             { className: 'flex items-center space-x-2' },
             React.createElement('span', null, playerSelectedKey === currentQ.correctKey ? '🎉 Düzgün cavab verdiniz!' : '❌ Təəssüf, yanlış cavab!'),
             React.createElement('span', { className: 'text-zinc-400' }, `(Doğru variant: ${currentQ.correctKey})`)
           ),
-          React.createElement('span', { className: 'text-indigo-600 dark:text-indigo-400 font-black' }, 'Növbəti sual yüklənir...')
+          React.createElement('span', { className: 'text-purple-600 dark:text-purple-400 font-black' }, 'Növbəti sual yüklənir...')
         )
       )
     );
@@ -505,7 +505,7 @@ export const PvpArenaView = ({
             'div',
             { className: 'text-center border-r border-zinc-200 dark:border-zinc-700' },
             React.createElement('div', { className: 'text-xs text-zinc-400 font-bold uppercase' }, userStats?.name || 'Sən'),
-            React.createElement('div', { className: 'text-3xl font-black text-indigo-600 dark:text-indigo-400 mt-1' }, playerScore),
+            React.createElement('div', { className: 'text-3xl font-black text-purple-600 dark:text-purple-400 mt-1' }, playerScore),
             React.createElement('div', { className: 'text-[11px] text-emerald-500 font-bold' }, isVictory ? '+150 Bonus XP' : '+50 Təcrübə')
           ),
           React.createElement(
@@ -525,7 +525,7 @@ export const PvpArenaView = ({
             'button',
             {
               onClick: startQuickMatch,
-              className: 'px-6 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs sm:text-sm shadow-md transition'
+              className: 'px-6 py-3 rounded-2xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs sm:text-sm shadow-md transition'
             },
             'Yenidən Oyna (Təsadüfi Rəqib)'
           ),
@@ -597,7 +597,7 @@ export const PvpArenaView = ({
         React.createElement(
           'div',
           { className: 'space-y-1' },
-          React.createElement('div', { className: 'w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950/80 flex items-center justify-center text-2xl' }, '👥'),
+          React.createElement('div', { className: 'w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-950/80 flex items-center justify-center text-2xl' }, '👥'),
           React.createElement('h3', { className: 'font-black text-lg text-zinc-800 dark:text-zinc-100' }, 'Dostla Oyna (Otaq Kodu)'),
           React.createElement('p', { className: 'text-xs text-zinc-500 dark:text-zinc-400' }, 'Xüsusi 6 rəqəmli kod yaradın və ya dostunuzun göndərdiyi kodu daxil edin.')
         ),
@@ -615,18 +615,18 @@ export const PvpArenaView = ({
             'Yeni Otaq Kodu Yarat'
           ) : React.createElement(
             'div',
-            { className: 'p-3 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 flex items-center justify-between' },
+            { className: 'p-3 rounded-xl bg-purple-50 dark:bg-purple-950/60 border border-purple-200 dark:border-purple-800 flex items-center justify-between' },
             React.createElement(
               'div',
               null,
-              React.createElement('div', { className: 'text-[10px] text-indigo-500 font-bold uppercase' }, 'Sizin Otaq Kodunuz:'),
-              React.createElement('div', { className: 'text-lg font-mono font-black text-indigo-700 dark:text-indigo-300' }, createdRoomCode)
+              React.createElement('div', { className: 'text-[10px] text-purple-500 font-bold uppercase' }, 'Sizin Otaq Kodunuz:'),
+              React.createElement('div', { className: 'text-lg font-mono font-black text-purple-700 dark:text-purple-300' }, createdRoomCode)
             ),
             React.createElement(
               'button',
               {
                 onClick: copyRoomLink,
-                className: 'px-3 py-1.5 rounded-lg bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700'
+                className: 'px-3 py-1.5 rounded-lg bg-purple-600 text-white text-xs font-bold hover:bg-purple-700'
               },
               copyNotification ? 'Kopyalandı!' : 'Kodu Kopyala'
             )
@@ -648,7 +648,7 @@ export const PvpArenaView = ({
               {
                 onClick: joinFriendRoom,
                 disabled: !inputRoomCode.trim(),
-                className: 'px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 text-white font-bold text-xs'
+                className: 'px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 disabled:opacity-40 text-white font-bold text-xs'
               },
               'Qoşul'
             )
@@ -719,7 +719,7 @@ export const PvpArenaView = ({
                 ),
                 React.createElement('td', { className: 'py-3 px-3 text-zinc-500' }, `${user.schoolGrade}-ci sinif`),
                 React.createElement('td', { className: 'py-3 px-3 text-emerald-600 font-bold' }, `${user.winRate}% (${user.wins} Q)`),
-                React.createElement('td', { className: 'py-3 px-3 font-black text-indigo-600 dark:text-indigo-400' }, `${user.points} XP`),
+                React.createElement('td', { className: 'py-3 px-3 font-black text-purple-600 dark:text-purple-400' }, `${user.points} XP`),
                 React.createElement('td', { className: 'py-3 px-3 text-right' },
                   React.createElement('span', { className: 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300' }, user.badge || '⚡ Real İştirakçı')
                 )

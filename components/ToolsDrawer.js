@@ -103,7 +103,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
           { className: 'flex items-center space-x-3' },
           React.createElement(
             'div',
-            { className: 'w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center text-white shadow-md' },
+            { className: 'w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-700 to-indigo-600 flex items-center justify-center text-white shadow-md' },
             React.createElement('i', { className: 'fas fa-toolbox text-base' })
           ),
           React.createElement(
@@ -136,11 +136,11 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
               onClick: () => setActiveTool(t.id),
               className: `px-2 py-2 rounded-xl text-center transition flex flex-col items-center justify-center text-[11px] font-bold ${
                 isActive
-                  ? 'bg-indigo-600 text-white shadow-sm'
+                  ? 'bg-purple-600 text-white shadow-sm'
                   : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
               }`
             },
-            React.createElement('i', { className: `fas ${t.icon} text-xs mb-1 ${isActive ? 'text-white' : 'text-indigo-500'}` }),
+            React.createElement('i', { className: `fas ${t.icon} text-xs mb-1 ${isActive ? 'text-white' : 'text-purple-500'}` }),
             React.createElement('span', { className: 'truncate w-full text-[10px]' }, t.title)
           );
         })

@@ -66,13 +66,13 @@ export const ToolsView = () => {
     // Yuxarı Başlıq
     React.createElement(
       'div',
-      { className: 'bento-card bg-gradient-to-r from-indigo-950 via-zinc-900 to-cyan-950 p-6 sm:p-8 rounded-3xl text-white border border-white/10 shadow-2xl relative overflow-hidden' },
+      { className: 'bento-card bg-gradient-to-r from-purple-950 via-zinc-900 to-indigo-950 p-6 sm:p-8 rounded-3xl text-white border border-white/10 shadow-2xl relative overflow-hidden' },
       React.createElement(
         'div',
         { className: 'max-w-2xl' },
         React.createElement('span', { className: 'text-xs font-black uppercase px-3 py-1 rounded-full bg-white/20 backdrop-blur-md' }, 'Virtual Laboratoriya'),
         React.createElement('h1', { className: 'text-2xl sm:text-3xl font-black mt-2' }, 'İnteraktiv Alətlər və Kalkulyatorlar'),
-        React.createElement('p', { className: 'text-xs sm:text-sm text-indigo-100 mt-1' },
+        React.createElement('p', { className: 'text-xs sm:text-sm text-purple-100 mt-1' },
           'Riyazi analiz, funksiya törəmələri, PhET hərəkət laboratoriyaları və həndəsi fiqurların canlı vizualizasiyası.'
         )
       )
@@ -91,15 +91,15 @@ export const ToolsView = () => {
             onClick: () => setActiveTool(tool.id),
             className: `p-4 rounded-2xl border text-left transition-all duration-200 flex flex-col justify-between space-y-2 ${
               isActive
-                ? 'bg-white dark:bg-zinc-900 border-indigo-500 shadow-md ring-2 ring-indigo-500/20'
-                : 'bg-white dark:bg-zinc-900/60 border-zinc-200/80 dark:border-zinc-800 hover:border-indigo-300'
+                ? 'bg-white dark:bg-zinc-900 border-purple-500 shadow-md ring-2 ring-purple-500/20'
+                : 'bg-white dark:bg-zinc-900/60 border-zinc-200/80 dark:border-zinc-800 hover:border-purple-300'
             }`
           },
           React.createElement(
             'div',
             { className: 'flex items-center justify-between' },
-            React.createElement('i', { className: `fas ${tool.icon} text-lg ${isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-400'}` }),
-            React.createElement('span', { className: 'text-[9px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300' }, tool.badge)
+            React.createElement('i', { className: `fas ${tool.icon} text-lg ${isActive ? 'text-purple-600 dark:text-purple-400' : 'text-zinc-400'}` }),
+            React.createElement('span', { className: 'text-[9px] font-bold px-2 py-0.5 rounded-full bg-purple-50 dark:bg-purple-950 text-purple-700 dark:text-purple-300' }, tool.badge)
           ),
           React.createElement('span', { className: `text-xs font-bold ${isActive ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400'}` }, tool.title)
         );

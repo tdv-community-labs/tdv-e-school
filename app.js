@@ -60,7 +60,7 @@ class ErrorBoundary extends React.Component {
               'button',
               {
                 onClick: () => { this.setState({ hasError: false, error: null }); window.location.reload(); },
-                className: 'px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-md transition cursor-pointer'
+                className: 'px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs shadow-md transition cursor-pointer'
               },
               'Səhifəni Yenilə'
             ),
@@ -375,7 +375,7 @@ export default function App() {
 
         'div',
 
-        { className: 'p-5 bg-white dark:bg-zinc-900 rounded-3xl border border-indigo-200 dark:border-indigo-900 shadow-2xl space-y-4 animate-fadeIn' },
+        { className: 'p-5 bg-white dark:bg-zinc-900 rounded-3xl border border-purple-200 dark:border-purple-900 shadow-2xl space-y-4 animate-fadeIn' },
 
         React.createElement(
 
@@ -383,7 +383,7 @@ export default function App() {
 
           { className: 'flex items-center justify-between pb-2 border-b border-zinc-100 dark:border-zinc-800' },
 
-          React.createElement('h3', { className: 'text-xs font-black uppercase text-indigo-600 dark:text-indigo-400' }, `Axtarış Nəticələri: "${searchQuery}"`),
+          React.createElement('h3', { className: 'text-xs font-black uppercase text-purple-600 dark:text-purple-400' }, `Axtarış Nəticələri: "${searchQuery}"`),
 
           React.createElement('button', { onClick: () => setSearchQuery(''), className: 'text-xs text-zinc-400 hover:text-zinc-600' }, 'Bağla ✕')
 
@@ -431,7 +431,7 @@ export default function App() {
 
                   },
 
-                  className: 'p-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 hover:bg-indigo-50 dark:hover:bg-zinc-700/80 cursor-pointer text-xs font-bold'
+                  className: 'p-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 hover:bg-purple-50 dark:hover:bg-zinc-700/80 cursor-pointer text-xs font-bold'
 
                 },
 
@@ -477,7 +477,7 @@ export default function App() {
 
                   },
 
-                  className: 'p-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 hover:bg-indigo-50 dark:hover:bg-zinc-700/80 cursor-pointer text-xs font-bold'
+                  className: 'p-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 hover:bg-purple-50 dark:hover:bg-zinc-700/80 cursor-pointer text-xs font-bold'
 
                 },
 
@@ -605,7 +605,7 @@ export default function App() {
 
         title: 'İnteraktiv Alətlər və Calculus Hesablayıcısı',
 
-        className: 'fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-gradient-to-l from-indigo-600 via-indigo-700 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white py-3.5 px-2.5 rounded-l-2xl shadow-2xl transition-all duration-200 transform hover:-translate-x-1 flex flex-col items-center space-y-1.5 no-print group border-y border-l border-indigo-400/30'
+        className: 'fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-gradient-to-l from-purple-600 via-purple-700 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white py-3.5 px-2.5 rounded-l-2xl shadow-2xl transition-all duration-200 transform hover:-translate-x-1 flex flex-col items-center space-y-1.5 no-print group border-y border-l border-purple-400/30'
 
       },
 
