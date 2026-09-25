@@ -85,13 +85,24 @@ class ErrorBoundary extends React.Component {
 
 export default function App() {
   const [session, setSession] = useState(() => authService.getSession());
+  const [isCheckingAuth, setIsCheckingAuth] = useState(() => !authService.getSession());
 
   useEffect(() => {
     const unsub = authService.subscribe((newSession) => {
       setSession(newSession);
+      if (newSession) setIsCheckingAuth(false);
     });
     return unsub;
   }, []);
+
+  useEffect(() => {
+    if (isCheckingAuth) {
+      const timer = setTimeout(() => {
+        setIsCheckingAuth(false);
+      }, 400);
+      return () => clearTimeout(timer);
+    }
+  }, [isCheckingAuth]);
 
 
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -291,6 +302,19 @@ export default function App() {
 
 
   // MƏCBURİ VAHİD GİRİŞ QAPISI (MANDATORY AUTH GATE)
+  if (isCheckingAuth && !session) {
+    return React.createElement(
+      'div',
+      { className: 'min-h-screen bg-zinc-950 flex flex-col items-center justify-center gap-3 text-white' },
+      React.createElement(
+        'div',
+        { className: 'w-12 h-12 rounded-2xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center animate-pulse' },
+        React.createElement('img', { src: 'assets/tdv-logo.png', className: 'w-8 h-8 rounded-full', alt: 'TDV' })
+      ),
+      React.createElement('p', { className: 'text-xs text-zinc-400 font-medium' }, 'Vahid TDV Girişi yoxlanılır...')
+    );
+  }
+
   if (!session) {
     return React.createElement(UnifiedAuthBarrier, {
       onLogin: (newSession) => setSession(newSession)

@@ -197,9 +197,20 @@ export const UnifiedAuthBarrier = ({ onLogin }) => {
       // Bildirişlər
       error && React.createElement(
         'div',
-        { className: 'p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-semibold flex items-center space-x-2' },
-        React.createElement('i', { className: 'fas fa-triangle-exclamation text-rose-400' }),
-        React.createElement('span', null, error)
+        { className: 'p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-semibold flex flex-col gap-1.5' },
+        React.createElement('div', { className: 'flex items-center space-x-2' },
+          React.createElement('i', { className: 'fas fa-triangle-exclamation text-rose-400 shrink-0' }),
+          React.createElement('span', null, error)
+        ),
+        (error.includes('qeydiyyat tapılmadı') || error.includes('qeydiyyatdan keçməyib')) && React.createElement(
+          'button',
+          {
+            type: 'button',
+            onClick: () => { setTab('register'); setRegUsername(loginUsername); setRegFullName(loginUsername); setError(''); },
+            className: 'self-start text-[11px] font-black text-amber-300 hover:text-amber-200 underline mt-0.5 cursor-pointer'
+          },
+          '👉 İndi qeydiyyatdan keçin və vahid profil yaradın'
+        )
       ),
       successMsg && React.createElement(
         'div',

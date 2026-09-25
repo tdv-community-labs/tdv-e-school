@@ -1,8 +1,53 @@
 // TDV Community Labs - Vahid Ekosistem Profili və SSO Xidməti (Unified Ecosystem SSO)
-// Tək bir profil bütün ekosistemə (E-School, TDV Sports, Games, Mafia) bəs edir!
+// TDV E-School üçün Vahid Sessiya və İdentifikasiya İdarəedicisi
+// Yalnız qeydiyyatdan keçmiş istifadəçilər daxil ola bilər.
+// 1 Portalda daxil olduqda bütün digər portallarda (E-School, TDV Sports, Games, Mafia, Hub) avtomatik aktiv qalır.
 
 const SESSION_KEY = 'tdv_ecosystem_session_v1';
 const BROKER_URL = 'https://tdv-community-hubs.vercel.app/sso-broker.html';
+
+export const DEFAULT_SEEDED_USERS = [
+  {
+    userId: 'tdv-seed-orxan',
+    username: 'orxan',
+    fullName: 'Orxan Əliyev',
+    grade: 10,
+    schoolClass: '10A',
+    role: 'student',
+    pin: '1000',
+    avatar: '🧑‍🎓'
+  },
+  {
+    userId: 'tdv-seed-murad',
+    username: 'murad',
+    fullName: 'Murad Məmmədov',
+    grade: 11,
+    schoolClass: '11B',
+    role: 'student',
+    pin: '1100',
+    avatar: '⚡'
+  },
+  {
+    userId: 'tdv-seed-elvin',
+    username: 'elvin_coach',
+    fullName: 'Elvin Müəllim',
+    grade: 0,
+    schoolClass: 'Müəllim',
+    role: 'teacher',
+    pin: '2026',
+    avatar: '👨‍🏫'
+  },
+  {
+    userId: 'tdv-seed-admin',
+    username: 'admin',
+    fullName: 'TDV İnzibatçı',
+    grade: 0,
+    schoolClass: 'Rəhbərlik',
+    role: 'admin',
+    pin: 'admin2026',
+    avatar: '👑'
+  }
+];
 
 let brokerIframe = null;
 let brokerReady = false;
@@ -51,7 +96,7 @@ function sendToBroker(msg) {
     send();
   } else {
     brokerQueue.push(send);
-    setTimeout(send, 800); // Fallback timeout
+    setTimeout(send, 800);
   }
 }
 
@@ -69,9 +114,31 @@ export const authService = {
     });
   },
 
-  /**
-   * Cari aktiv vahid profili oxuyur.
-   */
+  getRegisteredUsers() {
+    if (typeof window === 'undefined') return DEFAULT_SEEDED_USERS;
+    try {
+      const raw = localStorage.getItem('tdv_registered_users_v1');
+      if (raw) {
+        const list = JSON.parse(raw);
+        if (Array.isArray(list) && list.length > 0) return list;
+      }
+    } catch(e) {}
+    try {
+      localStorage.setItem('tdv_registered_users_v1', JSON.stringify(DEFAULT_SEEDED_USERS));
+    } catch(e) {}
+    return DEFAULT_SEEDED_USERS;
+  },
+
+  findUser(query) {
+    if (!query) return null;
+    const clean = query.trim().toLowerCase();
+    const users = this.getRegisteredUsers();
+    return users.find(u =>
+      (u.username && u.username.toLowerCase() === clean) ||
+      (u.fullName && u.fullName.toLowerCase() === clean)
+    ) || null;
+  },
+
   getSession() {
     if (typeof window === 'undefined') return null;
 
@@ -93,7 +160,7 @@ export const authService = {
           const cleanUrl = window.location.pathname + (newSearch ? '?' + newSearch : '') + window.location.hash;
           window.history.replaceState({}, document.title, cleanUrl);
           
-          sendToBroker({ type: 'TDV_SSO_SET', session: sessionData });
+          sendToBroker({ type: 'TDV_SSO_SET', session: sessionData, users: this.getRegisteredUsers() });
           this.updateOutboundLinks(sessionData);
           return sessionData;
         }
@@ -121,21 +188,33 @@ export const authService = {
     return null;
   },
 
-  /**
-   * Mərkəzi Hub-dan vahid profili soruşur və gəldikdə portala avtomatik buraxır
-   */
   syncFromBroker() {
     if (typeof window === 'undefined') return;
-    const reqId = 'sync_' + Date.now();
+    const reqId = 'sync_eschool_' + Math.random().toString(36).slice(2);
 
     const handler = (e) => {
       if (!e.origin.includes('vercel.app') && !e.origin.includes('localhost')) return;
       if (e.data && e.data.type === 'TDV_SSO_DATA' && e.data.requestId === reqId) {
         window.removeEventListener('message', handler);
+        // İstifadəçi siyahısını birləşdir
+        if (e.data.users && Array.isArray(e.data.users) && e.data.users.length > 0) {
+          const currentUsers = this.getRegisteredUsers();
+          const userMap = new Map();
+          currentUsers.forEach(u => { if (u && u.username) userMap.set(u.username.toLowerCase(), u); });
+          e.data.users.forEach(u => { if (u && u.username) userMap.set(u.username.toLowerCase(), u); });
+          const merged = Array.from(userMap.values());
+          try {
+            localStorage.setItem('tdv_registered_users_v1', JSON.stringify(merged));
+          } catch(err) {}
+        }
+        // Aktiv sessiyanı qəbul et
         if (e.data.session) {
-          localStorage.setItem(SESSION_KEY, JSON.stringify(e.data.session));
-          this.updateOutboundLinks(e.data.session);
-          this.notify(e.data.session);
+          const current = localStorage.getItem(SESSION_KEY);
+          if (!current) {
+            localStorage.setItem(SESSION_KEY, JSON.stringify(e.data.session));
+            this.updateOutboundLinks(e.data.session);
+            this.notify(e.data.session);
+          }
         }
       }
     };
@@ -145,28 +224,44 @@ export const authService = {
   },
 
   /**
-   * Tək Vahid Profil ilə Giriş
+   * Tək Vahid Profil ilə Giriş - QEYDİYYAT VƏ ŞİFRƏ YOXLAMASI İLƏ
    */
-  login(username, grade = 10, pin = '', role = 'student') {
+  login(username, gradeOrClass = 10, pin = '', role = 'student') {
     const trimmed = (username || '').trim();
-    if (!trimmed) throw new Error('Zəhmət olmasa istifadəçi adını və ya şagird kodunu daxil edin.');
+    if (!trimmed) throw new Error('Zəhmət olmasa istifadəçi adınızı və ya şagird kodunuzu daxil edin.');
 
-    const cleanGrade = Number(grade) || 10;
-    const avatar = role === 'teacher' ? '👨‍🏫' : (cleanGrade >= 10 ? '🧑‍🎓' : '🎒');
+    // 1. Qeydiyyat yoxlaması
+    const user = this.findUser(trimmed);
+    if (!user) {
+      throw new Error(`⚠️ '${trimmed}' adlı qeydiyyatdan keçmiş istifadəçi tapılmadı! Yalnız qeydiyyatdan keçmiş istifadəçilər daxil ola bilər. Zəhmət olmasa 'Qeydiyyat' bölməsindən profil yaradın.`);
+    }
+
+    // 2. PIN / Şifrə yoxlaması
+    const cleanPin = pin ? String(pin).trim() : (typeof gradeOrClass === 'string' && /^\d{4}$/.test(gradeOrClass) ? gradeOrClass : '');
+    if (user.pin && user.pin.trim() !== '') {
+      if (!cleanPin || cleanPin !== user.pin.trim()) {
+        throw new Error('❌ Daxil edilmiş PIN kod və ya şifrə yanlışdır!');
+      }
+    }
+
+    const cleanGrade = user.grade || (typeof gradeOrClass === 'number' ? gradeOrClass : (Number(gradeOrClass) || 10));
+    const finalClass = user.schoolClass || (cleanGrade > 0 ? `${cleanGrade}A` : 'Müəllim');
+    const finalRole = user.role || role || (finalClass === 'Müəllim' || cleanGrade === 0 ? 'teacher' : 'student');
+    const avatar = user.avatar || (finalRole === 'teacher' ? '👨‍🏫' : (cleanGrade >= 10 ? '🧑‍🎓' : '🎒'));
 
     const session = {
-      userId: 'tdv-usr-' + Date.now().toString(36),
-      username: trimmed,
-      fullName: trimmed,
+      userId: user.userId || ('tdv-usr-' + Date.now().toString(36)),
+      username: user.username,
+      fullName: user.fullName || user.username,
       grade: cleanGrade,
-      schoolClass: cleanGrade > 0 ? `${cleanGrade}A` : 'Müəllim',
-      role: role || 'student',
+      schoolClass: finalClass,
+      role: finalRole,
       avatar: avatar,
       ecosystem: {
         eschool: { active: true, grade: cleanGrade },
-        sports: { team: `${cleanGrade}A`, role: 'player' },
-        games: { nickname: trimmed },
-        mafia: { tier: 'TIER_1', roleTitle: 'Klub Oyunçusu' }
+        sports: { team: finalClass, role: 'player' },
+        games: { nickname: user.username },
+        mafia: { tier: 'TIER_1', roleTitle: finalRole === 'teacher' ? 'Müəllim' : 'Klub Oyunçusu' }
       },
       token: 'tdv_token_' + Math.random().toString(36).substring(2) + Date.now().toString(36),
       createdAt: Date.now(),
@@ -175,7 +270,7 @@ export const authService = {
 
     try {
       localStorage.setItem(SESSION_KEY, JSON.stringify(session));
-      sendToBroker({ type: 'TDV_SSO_SET', session: session });
+      sendToBroker({ type: 'TDV_SSO_SET', session: session, users: this.getRegisteredUsers() });
       this.updateOutboundLinks(session);
       this.notify(session);
     } catch (e) {}
@@ -189,25 +284,50 @@ export const authService = {
   register({ fullName, username, grade = 10, schoolClass = '', pin = '', avatar = '🧑‍🎓', role = 'student' }) {
     const trimmedUser = (username || '').trim();
     const trimmedName = (fullName || '').trim() || trimmedUser;
-    if (!trimmedUser) throw new Error('Zəhmət olmasa istifadəçi adını daxil edin.');
+    if (!trimmedUser) throw new Error('Zəhmət olmasa istifadəçi adı daxil edin.');
+    if (!trimmedName) throw new Error('Zəhmət olmasa ad və soyadınızı daxil edin.');
+
+    const cleanPin = String(pin || '').trim();
+    if (!cleanPin) {
+      throw new Error('Zəhmət olmasa hesabınız üçün 4 rəqəmli PIN kod və ya şifrə təyin edin.');
+    }
+
+    // Təkrarlanan istifadəçi adı yoxlaması
+    const existing = this.findUser(trimmedUser);
+    if (existing) {
+      throw new Error(`⚠️ '${trimmedUser}' istifadəçi adı artıq qeydiyyatdan keçib! Zəhmət olmasa 'Daxil Ol' bölməsinə keçin və ya fərqli ad seçin.`);
+    }
 
     const cleanGrade = Number(grade) || 10;
     const finalClass = schoolClass || (cleanGrade > 0 ? `${cleanGrade}A` : 'Müəllim');
-    const finalAvatar = avatar || (role === 'teacher' ? '👨‍🏫' : (cleanGrade >= 10 ? '🧑‍🎓' : '🎒'));
+    const finalRole = role || (cleanGrade === 0 || finalClass === 'Müəllim' ? 'teacher' : 'student');
+    const finalAvatar = avatar || (finalRole === 'teacher' ? '👨‍🏫' : (cleanGrade >= 10 ? '🧑‍🎓' : '🎒'));
 
-    const session = {
+    const newUser = {
       userId: 'tdv-usr-' + Date.now().toString(36),
       username: trimmedUser,
       fullName: trimmedName,
       grade: cleanGrade,
       schoolClass: finalClass,
-      role: role || 'student',
+      role: finalRole,
+      avatar: finalAvatar,
+      pin: cleanPin,
+      createdAt: Date.now()
+    };
+
+    const session = {
+      userId: newUser.userId,
+      username: trimmedUser,
+      fullName: trimmedName,
+      grade: cleanGrade,
+      schoolClass: finalClass,
+      role: finalRole,
       avatar: finalAvatar,
       ecosystem: {
         eschool: { active: true, grade: cleanGrade },
         sports: { team: finalClass, role: 'player' },
         games: { nickname: trimmedUser },
-        mafia: { tier: 'TIER_1', roleTitle: 'Klub Oyunçusu' }
+        mafia: { tier: 'TIER_1', roleTitle: finalRole === 'teacher' ? 'Müəllim' : 'Klub Oyunçusu' }
       },
       token: 'tdv_token_' + Math.random().toString(36).substring(2) + Date.now().toString(36),
       createdAt: Date.now(),
@@ -215,9 +335,8 @@ export const authService = {
     };
 
     try {
-      const regUsersRaw = localStorage.getItem('tdv_registered_users_v1');
-      const regUsers = regUsersRaw ? JSON.parse(regUsersRaw) : [];
-      regUsers.push({ ...session, pin: pin || '' });
+      const regUsers = this.getRegisteredUsers();
+      regUsers.push(newUser);
       localStorage.setItem('tdv_registered_users_v1', JSON.stringify(regUsers));
       localStorage.setItem(SESSION_KEY, JSON.stringify(session));
       
@@ -231,12 +350,15 @@ export const authService = {
 
   loginWithDemo(type = 'student-10') {
     if (type === 'student-11') {
-      return this.login('Murad Məmmədov', 11, '1100', 'student');
+      return this.login('murad', 11, '1100', 'student');
     }
     if (type === 'teacher') {
-      return this.login('Aysel Müəllimə', 0, 'teacher2026', 'teacher');
+      return this.login('elvin_coach', 0, '2026', 'teacher');
     }
-    return this.login('Orxan Əliyev', 10, '1000', 'student');
+    if (type === 'admin') {
+      return this.login('admin', 0, 'admin2026', 'admin');
+    }
+    return this.login('orxan', 10, '1000', 'student');
   },
 
   logout() {
