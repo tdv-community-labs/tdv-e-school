@@ -219,19 +219,17 @@ E) 12x
           'div',
           { className: 'flex items-center space-x-2' },
           React.createElement(
-            'button',
-            {
+            'button', {
               onClick: handleDownloadDatabase,
-              className: 'px-3.5 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-bold text-xs hover:bg-indigo-100 transition flex items-center space-x-1.5'
+              className: 'btn-spring active:scale-[0.98] min-h-[44px] rounded-[8px] px-3.5 py-2 -[8px] bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-bold text-xs hover:bg-indigo-100 transition flex items-center space-x-1.5'
             },
             React.createElement('i', { className: 'fas fa-download' }),
             React.createElement('span', null, 'Bazanı Endir (JSON)')
           ),
           React.createElement(
-            'button',
-            {
+            'button', {
               onClick: handleResetDefaults,
-              className: 'px-3.5 py-2 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 font-bold text-xs hover:bg-zinc-200 transition'
+              className: 'btn-spring active:scale-[0.98] min-h-[44px] rounded-[8px] px-3.5 py-2 -[8px] bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 font-bold text-xs hover:bg-zinc-200 transition'
             },
             'Sıfırla'
           )
@@ -249,13 +247,10 @@ E) 12x
         ].map(t => {
           const isActive = activeSubTab === t.id;
           return React.createElement(
-            'button',
-            {
+            'button', {
               key: t.id,
               onClick: () => setActiveSubTab(t.id),
-              className: `px-4 py-2 rounded-xl text-xs font-bold flex items-center space-x-2 transition ${
-                isActive
-                  ? 'bg-indigo-600 text-white shadow-sm'
+              className: `btn-spring active:scale-[0.98] min-h-[44px] rounded-[8px] p-2.5 -[8px] text-xs font-bold flex items-center space-x-2 transition ${ isActive ?'bg-indigo-600 text-white shadow-sm'
                   : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:bg-zinc-200'
               }`
             },
@@ -295,7 +290,7 @@ E) 12x
               {
                 value: newQuestion.subjectId,
                 onChange: e => setNewQuestion({ ...newQuestion, subjectId: e.target.value }),
-                className: 'w-full p-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs font-semibold text-zinc-800 dark:text-zinc-200'
+                className: 'w-full p-2.5.5 rounded-[8px] bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-xs font-semibold text-zinc-800 dark:text-zinc-200'
               },
               SUBJECTS.map(s => React.createElement('option', { key: s.id, value: s.id }, s.name))
             )
@@ -309,7 +304,7 @@ E) 12x
               {
                 value: newQuestion.grade,
                 onChange: e => setNewQuestion({ ...newQuestion, grade: Number(e.target.value) }),
-                className: 'w-full p-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs font-semibold text-zinc-800 dark:text-zinc-200'
+                className: 'w-full p-2.5.5 rounded-[8px] bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-xs font-semibold text-zinc-800 dark:text-zinc-200'
               },
               GRADES.map(g => React.createElement('option', { key: g, value: g }, `${g}-ci sinif`))
             )
@@ -319,11 +314,10 @@ E) 12x
             null,
             React.createElement('label', { className: 'block text-[11px] font-bold text-zinc-500 mb-1' }, 'İmtahana Əlavə Et:'),
             React.createElement(
-              'select',
-              {
+              'select', {
                 value: targetExamId,
                 onChange: e => setTargetExamId(e.target.value),
-                className: 'w-full p-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs font-semibold text-zinc-800 dark:text-zinc-200'
+                className: 'rounded-[8px] p-2.5 min-h-[44px] focus:ring-1 focus:ring-emerald-500/50 w-full .5 -[8px] bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-xs font-semibold text-zinc-800 dark:text-zinc-200'
               },
               exams.map(ex => React.createElement('option', { key: ex.id, value: ex.id }, `${ex.grade}-ci sinif ${ex.examType} (${ex.variant})`))
             )
@@ -340,7 +334,7 @@ E) 12x
             value: newQuestion.text,
             onChange: e => setNewQuestion({ ...newQuestion, text: e.target.value }),
             placeholder: 'Məsələn: $f(x) = x^3 - 3x$ funksiyasının $x = 2$ nöqtəsində törəməsini tapın.',
-            className: 'w-full p-3 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs text-zinc-800 dark:text-zinc-200 font-mono focus:outline-none focus:border-indigo-500'
+            className: 'w-full p-2.5 rounded-[8px] bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-xs text-zinc-800 dark:text-zinc-200 font-mono focus:outline-none focus:border-indigo-500'
           })
         ),
 
@@ -370,7 +364,7 @@ E) 12x
                 value: newQuestion[`option${optKey}`],
                 onChange: e => setNewQuestion({ ...newQuestion, [`option${optKey}`]: e.target.value }),
                 placeholder: `Variant ${optKey} mətni (LaTeX $..$)`,
-                className: 'flex-1 p-2 text-xs rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200'
+                className: 'flex-1 p-2.5 text-xs rounded-[8px] bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200'
               })
             );
           })
@@ -386,23 +380,22 @@ E) 12x
             value: newQuestion.explanationFormula,
             onChange: e => setNewQuestion({ ...newQuestion, explanationFormula: e.target.value }),
             placeholder: 'Tətbiq edilən əsas düstur (məs: $(x^n)\' = n x^{n-1}$)',
-            className: 'w-full p-2 text-xs rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200'
+            className: 'w-full p-2.5 text-xs rounded-[8px] bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200'
           }),
           React.createElement('textarea', {
             rows: 2,
             value: newQuestion.explanationStep1,
             onChange: e => setNewQuestion({ ...newQuestion, explanationStep1: e.target.value }),
             placeholder: 'Addım-addım hesablama gedişi...',
-            className: 'w-full p-2 text-xs rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200'
+            className: 'w-full p-2.5 text-xs rounded-[8px] bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200'
           })
         ),
 
         // Təsdiq Düyməsi
         React.createElement(
-          'button',
-          {
+          'button', {
             type: 'submit',
-            className: 'w-full py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md transition'
+            className: 'btn-spring active:scale-[0.98] min-h-[44px] rounded-[8px] w-full py-3 -2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md transition'
           },
           'Sualı Məlumat Bazasına Əlavə Et'
         )
@@ -422,7 +415,7 @@ E) 12x
           
           React.createElement(
             'div',
-            { className: 'p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700 min-h-[120px]' },
+            { className: 'p-2.5 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-800 min-h-[120px]' },
             newQuestion.text ? React.createElement(KatexRenderer, { text: newQuestion.text }) : React.createElement('span', { className: 'text-xs text-zinc-400 italic' }, 'Sol tərəfdə sual mətni yazdıqca burada canlı riyazi render görünəcək.')
           ),
 
@@ -436,11 +429,11 @@ E) 12x
                 'div',
                 {
                   key: optKey,
-                  className: `p-2.5 rounded-xl border flex items-center space-x-2 ${
-                    isCorrect ? 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-500 font-bold' : 'bg-zinc-50 dark:bg-zinc-800/40 border-zinc-200 dark:border-zinc-700'
+                  className: `p-2.5.5 rounded-[8px] border flex items-center space-x-2 ${
+                    isCorrect ? 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-500 font-bold' : 'bg-zinc-50 dark:bg-zinc-800/40 border-zinc-200 dark:border-zinc-800'
                   }`
                 },
-                React.createElement('span', { className: 'w-5 h-5 rounded-md bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center text-[10px] font-black' }, optKey),
+                React.createElement('span', { className: 'w-5 h-5 rounded-[8px] bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center text-[10px] font-black' }, optKey),
                 React.createElement(KatexRenderer, { text: val || `(${optKey} variantı boşdur)` })
               );
             })
@@ -467,13 +460,12 @@ E) 12x
         rows: 8,
         value: ocrRawText,
         onChange: e => setOcrRawText(e.target.value),
-        className: 'w-full p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs font-mono text-zinc-800 dark:text-zinc-200 focus:outline-none focus:border-indigo-500'
+        className: 'rounded-[8px] p-2.5 min-h-[44px] focus:ring-1 focus:ring-emerald-500/50 w-full -2xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-xs font-mono text-zinc-800 dark:text-zinc-200 focus:outline-none focus:border-indigo-500'
       }),
       React.createElement(
-        'button',
-        {
+        'button', {
           onClick: handleParseOcr,
-          className: 'px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md transition flex items-center space-x-2'
+          className: 'btn-spring active:scale-[0.98] min-h-[44px] rounded-[8px] px-5 py-2.5 -[8px] bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md transition flex items-center space-x-2'
         },
         React.createElement('i', { className: 'fas fa-wand-magic-sparkles' }),
         React.createElement('span', null, 'Mətni Təhlil Et və Formaya Göndər')
@@ -499,24 +491,22 @@ E) 12x
         value: rawJsonInput,
         onChange: e => setRawJsonInput(e.target.value),
         placeholder: '{"lessons": [...], "exams": [...], "pvpQuestions": [...]}',
-        className: 'w-full p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs font-mono text-zinc-800 dark:text-zinc-200 focus:outline-none focus:border-indigo-500'
+        className: 'w-full p-2.5 rounded-2xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-xs font-mono text-zinc-800 dark:text-zinc-200 focus:outline-none focus:border-indigo-500'
       }),
       React.createElement(
         'div',
         { className: 'flex items-center space-x-3' },
         React.createElement(
-          'button',
-          {
+          'button', {
             onClick: handleImportJson,
-            className: 'px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md transition'
+            className: 'btn-spring active:scale-[0.98] min-h-[44px] rounded-[8px] px-5 py-2.5 -[8px] bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md transition'
           },
           'JSON Məlumatını Bazaya İdxal Et'
         ),
         React.createElement(
-          'button',
-          {
+          'button', {
             onClick: () => setRawJsonInput(StorageService.exportDatabaseJson()),
-            className: 'px-4 py-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 font-bold text-xs hover:bg-zinc-200'
+            className: 'btn-spring active:scale-[0.98] min-h-[44px] rounded-[8px] p-2.5.5 -[8px] bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 font-bold text-xs hover:bg-zinc-200'
           },
           'Cari Bazanı Ekrana Çıxar'
         )
