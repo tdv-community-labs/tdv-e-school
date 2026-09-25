@@ -305,7 +305,7 @@ export default function App() {
   if (isCheckingAuth && !session) {
     return React.createElement(
       'div',
-      { className: 'min-h-screen bg-zinc-950 flex flex-col items-center justify-center gap-3 text-white' },
+      { className: 'min-h-[100dvh] bg-zinc-950 flex flex-col items-center justify-center gap-3 text-white max-w-[100vw] overflow-x-clip' },
       React.createElement(
         'div',
         { className: 'w-12 h-12 rounded-2xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center animate-pulse' },
@@ -325,7 +325,7 @@ export default function App() {
 
     'div',
 
-    { className: 'min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-800 dark:text-zinc-100 transition-colors duration-200 flex flex-col' },
+    { className: 'min-h-[100dvh] bg-zinc-50 dark:bg-zinc-950 text-zinc-800 dark:text-zinc-100 transition-colors duration-200 flex flex-col max-w-[100vw] overflow-x-clip' },
 
     
 
@@ -533,7 +533,7 @@ export default function App() {
 
         'main',
 
-        { className: 'flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 w-full' },
+        { className: 'flex-1 min-w-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 w-full overflow-x-clip' },
 
       
 
