@@ -629,7 +629,7 @@ export default function App() {
 
         title: 'İnteraktiv Alətlər və Calculus Hesablayıcısı',
 
-        className: 'fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-gradient-to-l from-purple-600 via-purple-700 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white py-3.5 px-2.5 rounded-l-2xl shadow-2xl transition-all duration-200 transform hover:-translate-x-1 flex flex-col items-center space-y-1.5 no-print group border-y border-l border-purple-400/30'
+        className: 'hidden sm:flex fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-gradient-to-l from-purple-600 via-purple-700 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white py-3.5 px-2.5 rounded-l-2xl shadow-2xl transition-all duration-200 transform hover:-translate-x-1 flex-col items-center space-y-1.5 no-print group border-y border-l border-purple-400/30'
 
       },
 

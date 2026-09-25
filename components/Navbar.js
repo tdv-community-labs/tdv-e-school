@@ -135,7 +135,7 @@ export const Navbar = ({
         // 4. Action Suite (Tools, Theme, XP, Profile)
         React.createElement(
           'div',
-          { className: 'flex items-center space-x-2' },
+          { className: 'flex items-center space-x-1.5 sm:space-x-2 shrink-0' },
           
           // Alətlər Düyməsi
           React.createElement(
@@ -143,7 +143,7 @@ export const Navbar = ({
             {
               onClick: onOpenTools,
               title: 'İnteraktiv Alətlər və Calculus Hesablayıcısı',
-              className: 'px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-500/10 to-indigo-500/10 hover:from-purple-500/20 hover:to-indigo-500/20 border border-purple-500/30 text-purple-600 dark:text-purple-400 font-bold text-xs flex items-center space-x-1.5 transition shadow-sm cursor-pointer'
+              className: 'px-2.5 sm:px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-500/10 to-indigo-500/10 hover:from-purple-500/20 hover:to-indigo-500/20 border border-purple-500/30 text-purple-600 dark:text-purple-400 font-bold text-xs flex items-center space-x-1.5 transition shadow-sm cursor-pointer'
             },
             React.createElement('i', { className: 'fas fa-toolbox text-xs text-purple-500' }),
             React.createElement('span', { className: 'hidden sm:inline' }, 'Alətlər & Lab')
@@ -184,7 +184,7 @@ export const Navbar = ({
             {
               onClick: onOpenProfile,
               title: 'Şəxsi Kabinet',
-              className: 'flex items-center space-x-2 p-1 pr-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-900/80 hover:bg-purple-50 dark:hover:bg-zinc-800 transition border border-zinc-200/60 dark:border-white/[0.08] cursor-pointer'
+              className: 'flex items-center space-x-1.5 p-1 pr-2 sm:pr-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-900/80 hover:bg-purple-50 dark:hover:bg-zinc-800 transition border border-zinc-200/60 dark:border-white/[0.08] cursor-pointer'
             },
             React.createElement('span', { className: 'text-sm leading-none' }, userSession?.avatar || userStats?.avatar || '🧑‍🎓'),
             React.createElement('span', { className: 'hidden md:inline text-xs font-bold text-zinc-700 dark:text-zinc-200' }, userSession?.fullName || userSession?.username || userStats?.name || 'Məktəbli')
@@ -196,7 +196,7 @@ export const Navbar = ({
             {
               onClick: onLogout,
               title: 'Çıxış (Girişi kilidlə)',
-              className: 'p-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 border border-rose-500/20 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer'
+              className: 'hidden sm:flex p-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 border border-rose-500/20 text-xs font-bold transition items-center gap-1.5 cursor-pointer'
             },
             React.createElement('i', { className: 'fas fa-arrow-right-from-bracket text-xs' }),
             React.createElement('span', { className: 'hidden xl:inline' }, 'Çıxış')
