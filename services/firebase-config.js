@@ -1,33 +1,33 @@
 /**
  * ============================================================================
  * FAYL ADI: services/firebase-config.js
- * MÆQSÆDÄ°: TDV E-School Firebase Firestore KonfiqurasiyasÄ±
+ * MƏQSƏDİ: Firebase Layihə Konfiqurasiyası və Real/Lokal Rejim Seçicisi
+ * 
+ * BU MODULUN VƏZİFƏLƏRİ:
+ *   1. firebaseConfig: Google Firebase Firestore layihə parametrləri (tdv-football).
+ *   2. useRealFirebase: Canlı bulud bazası ilə yerli LocalStorage arasında kommutator.
+ * 
+ * İSTİFADƏ EDİLDİYİ YERLƏR:
+ *   - services/database.js
  * ============================================================================
  */
-
-const getSafeEnv = (key) => {
-  if (typeof window !== 'undefined' && window.ENV && window.ENV[key]) return window.ENV[key];
-  if (typeof process !== 'undefined' && process.env && process.env[key]) return process.env[key];
-  return '';
-};
-
-export const firebaseConfig = {
-  apiKey: getSafeEnv('FIREBASE_API_KEY') || (typeof localStorage !== 'undefined' ? localStorage.getItem('eschool_firebase_api_key') : '') || '',
-  authDomain: getSafeEnv('FIREBASE_AUTH_DOMAIN') || "tdv-e-school.firebaseapp.com",
-  projectId: getSafeEnv('FIREBASE_PROJECT_ID') || "tdv-e-school",
-  storageBucket: getSafeEnv('FIREBASE_STORAGE_BUCKET') || "tdv-e-school.firebasestorage.app",
-  messagingSenderId: getSafeEnv('FIREBASE_MESSAGING_SENDER_ID') || "977781712999",
-  appId: getSafeEnv('FIREBASE_APP_ID') || "1:977781712999:web:833aa3e615f5dce6370cc2",
-  measurementId: getSafeEnv('FIREBASE_MEASUREMENT_ID') || "G-CZ6XR8V1F6"
+let config = {
+  apiKey: (typeof window !== "undefined" && window.ENV?.FIREBASE_API_KEY) || (typeof process !== "undefined" && process.env?.NEXT_PUBLIC_FIREBASE_API_KEY) || (typeof localStorage !== "undefined" ? localStorage.getItem("btl_firebase_api_key") : "") || "",
+  authDomain: "tdv-football.firebaseapp.com",
+  projectId: "tdv-football",
+  storageBucket: "tdv-football.firebasestorage.app",
+  messagingSenderId: "492634553657",
+  appId: "1:492634553657:web:57ad01a633fc4568dd7ce8",
+  measurementId: "G-85XEEMZYGC"
 };
 
 try {
   if (typeof process !== 'undefined' && process.env && process.env.NEXT_PUBLIC_FIREBASE_CONFIG) {
-    const parsed = JSON.parse(process.env.NEXT_PUBLIC_FIREBASE_CONFIG);
-    Object.assign(firebaseConfig, parsed);
+    config = JSON.parse(process.env.NEXT_PUBLIC_FIREBASE_CONFIG);
   }
 } catch (error) {
   console.error("Error parsing NEXT_PUBLIC_FIREBASE_CONFIG:", error);
 }
 
+export const firebaseConfig = config;
 export const useRealFirebase = true;

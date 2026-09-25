@@ -1,10 +1,12 @@
-// TDV Community Labs - Vahid Ekosistem Profili və SSO Xidməti (Unified Ecosystem SSO)
-// TDV E-School üçün Vahid Sessiya və İdentifikasiya İdarəedicisi
-// Yalnız qeydiyyatdan keçmiş istifadəçilər daxil ola bilər.
-// 1 Portalda daxil olduqda bütün digər portallarda (E-School, TDV Sports, Games, Mafia, Hub) avtomatik aktiv qalır.
+/**
+ * TDV Community Labs - Vahid Ekosistem Profili və SSO Xidməti (Unified Ecosystem SSO)
+ * TDV Sports (Futbol Turniri) üçün Vahid Sessiya və İdentifikasiya İdarəedicisi
+ * Yalnız qeydiyyatdan keçmiş istifadəçilər daxil ola bilər.
+ * 1 Portalda daxil olduqda bütün digər portallarda (E-School, Sports, Hub, Games, Mafia) avtomatik aktiv qalır.
+ */
 
 const SESSION_KEY = 'tdv_ecosystem_session_v1';
-const BROKER_URL = 'https://tdv-community-hubs.vercel.app/sso-broker.html';
+const BROKER_URL = 'https://tdv-hub.vercel.app/sso-broker.html';
 
 export const DEFAULT_SEEDED_USERS = [
   {
@@ -13,9 +15,9 @@ export const DEFAULT_SEEDED_USERS = [
     fullName: 'Orxan Əliyev',
     grade: 10,
     schoolClass: '10A',
-    role: 'student',
+    role: 'player',
     pin: '1000',
-    avatar: '🧑‍🎓'
+    avatar: '⚽'
   },
   {
     userId: 'tdv-seed-murad',
@@ -23,7 +25,7 @@ export const DEFAULT_SEEDED_USERS = [
     fullName: 'Murad Məmmədov',
     grade: 11,
     schoolClass: '11B',
-    role: 'student',
+    role: 'player',
     pin: '1100',
     avatar: '⚡'
   },
@@ -32,8 +34,8 @@ export const DEFAULT_SEEDED_USERS = [
     username: 'elvin_coach',
     fullName: 'Elvin Müəllim',
     grade: 0,
-    schoolClass: 'Müəllim',
-    role: 'teacher',
+    schoolClass: 'Məşqçi',
+    role: 'coach',
     pin: '2026',
     avatar: '👨‍🏫'
   },
@@ -114,6 +116,9 @@ export const authService = {
     });
   },
 
+  /**
+   * Qeydiyyatdan keçmiş bütün istifadəçiləri qaytarır (əgər yoxdursa ilkin baza toxumlarını qeyd edir)
+   */
   getRegisteredUsers() {
     if (typeof window === 'undefined') return DEFAULT_SEEDED_USERS;
     try {
@@ -129,6 +134,9 @@ export const authService = {
     return DEFAULT_SEEDED_USERS;
   },
 
+  /**
+   * İstifadəçi adı və ya tam ada görə bazada axtarış aparır
+   */
   findUser(query) {
     if (!query) return null;
     const clean = query.trim().toLowerCase();
@@ -139,10 +147,13 @@ export const authService = {
     ) || null;
   },
 
+  /**
+   * Cari aktiv vahid profili oxuyur.
+   */
   getSession() {
     if (typeof window === 'undefined') return null;
 
-    // 1. URL-dən keçid biletini yoxla (?sso_ticket=...)
+    // 1. URL parametrlərindən SSO biletini yoxla
     try {
       const urlParams = new URLSearchParams(window.location.search);
       const ssoTicket = urlParams.get('sso_ticket');
@@ -155,6 +166,7 @@ export const authService = {
           };
           localStorage.setItem(SESSION_KEY, JSON.stringify(sessionData));
           
+          // URL-i təmizlə
           urlParams.delete('sso_ticket');
           const newSearch = urlParams.toString();
           const cleanUrl = window.location.pathname + (newSearch ? '?' + newSearch : '') + window.location.hash;
@@ -198,7 +210,7 @@ export const authService = {
 
   syncFromBroker() {
     if (typeof window === 'undefined') return;
-    const reqId = 'sync_eschool_' + Math.random().toString(36).slice(2);
+    const reqId = 'sync_sport_' + Math.random().toString(36).slice(2);
 
     const handler = (e) => {
       if (!e.origin.includes('vercel.app') && !e.origin.includes('localhost')) return;
@@ -267,11 +279,11 @@ export const authService = {
   },
 
   /**
-   * Tək Vahid Profil ilə Giriş - QEYDİYYAT VƏ ŞİFRƏ YOXLAMASI İLƏ
+   * Tək Vahid Profil ilə Daxilolma - QEYDİYYAT VƏ ŞİFRƏ YOXLAMASI İLƏ
    */
-  login(username, gradeOrClass = 10, pin = '', role = 'student') {
+  login(username, teamClass = '10A', pin = '', role = 'player') {
     const trimmed = (username || '').trim();
-    if (!trimmed) throw new Error('Zəhmət olmasa istifadəçi adınızı və ya şagird kodunuzu daxil edin.');
+    if (!trimmed) throw new Error('Zəhmət olmasa istifadəçi adınızı və ya adınızı daxil edin.');
 
     // 1. Qeydiyyat yoxlaması
     const user = this.findUser(trimmed);
@@ -280,31 +292,31 @@ export const authService = {
     }
 
     // 2. PIN / Şifrə yoxlaması
-    const cleanPin = pin ? String(pin).trim() : (typeof gradeOrClass === 'string' && /^\d{4}$/.test(gradeOrClass) ? gradeOrClass : '');
+    const cleanPin = pin ? String(pin).trim() : (typeof teamClass === 'string' && /^\d{4}$/.test(teamClass) ? teamClass : '');
     if (user.pin && user.pin.trim() !== '') {
       if (!cleanPin || cleanPin !== user.pin.trim()) {
         throw new Error('❌ Daxil edilmiş PIN kod və ya şifrə yanlışdır!');
       }
     }
 
-    const cleanGrade = user.grade || (typeof gradeOrClass === 'number' ? gradeOrClass : (Number(gradeOrClass) || 10));
-    const finalClass = user.schoolClass || (cleanGrade > 0 ? `${cleanGrade}A` : 'Müəllim');
-    const finalRole = user.role || role || (finalClass === 'Müəllim' || cleanGrade === 0 ? 'teacher' : 'student');
-    const avatar = user.avatar || (finalRole === 'teacher' ? '👨‍🏫' : (cleanGrade >= 10 ? '🧑‍🎓' : '🎒'));
+    const cleanClass = user.schoolClass || (typeof teamClass === 'string' && !/^\d{4}$/.test(teamClass) ? teamClass : '10A');
+    const grade = user.grade || (cleanClass.match(/\d+/) ? Number(cleanClass.match(/\d+/)[0]) : 10);
+    const finalRole = user.role || role || (cleanClass === 'Məşqçi' ? 'coach' : 'player');
+    const avatar = user.avatar || (finalRole === 'coach' ? '👨‍🏫' : '⚽');
 
     const session = {
       userId: user.userId || ('tdv-usr-' + Date.now().toString(36)),
       username: user.username,
       fullName: user.fullName || user.username,
-      grade: cleanGrade,
-      schoolClass: finalClass,
+      grade: grade,
+      schoolClass: cleanClass,
       role: finalRole,
       avatar: avatar,
       ecosystem: {
-        eschool: { active: true, grade: cleanGrade },
-        sports: { team: finalClass, role: 'player' },
+        eschool: { active: true, grade: grade },
+        sports: { team: cleanClass, role: finalRole },
         games: { nickname: user.username },
-        mafia: { tier: 'TIER_1', roleTitle: finalRole === 'teacher' ? 'Müəllim' : 'Klub Oyunçusu' }
+        mafia: { tier: 'TIER_1', roleTitle: finalRole === 'coach' ? 'Məşqçi' : 'Klub Oyunçusu' }
       },
       token: 'tdv_token_' + Math.random().toString(36).substring(2) + Date.now().toString(36),
       createdAt: Date.now(),
@@ -322,9 +334,9 @@ export const authService = {
   },
 
   /**
-   * Yeni Vahid Profil Qeydiyyatı (Bütün platformalar üçün 1 tək profil)
+   * Yeni Vahid Profil Qeydiyyatı (Bütün portallara 1 tək profil)
    */
-  register({ fullName, username, grade = 10, schoolClass = '', pin = '', avatar = '🧑‍🎓', role = 'student' }) {
+  register({ fullName, username, teamClass = '10A', pin = '', avatar = '⚽', role = 'player' }) {
     const trimmedUser = (username || '').trim();
     const trimmedName = (fullName || '').trim() || trimmedUser;
     if (!trimmedUser) throw new Error('Zəhmət olmasa istifadəçi adı daxil edin.');
@@ -341,17 +353,18 @@ export const authService = {
       throw new Error(`⚠️ '${trimmedUser}' istifadəçi adı artıq qeydiyyatdan keçib! Zəhmət olmasa 'Daxil Ol' bölməsinə keçin və ya fərqli ad seçin.`);
     }
 
-    const cleanGrade = Number(grade) || 10;
-    const finalClass = schoolClass || (cleanGrade > 0 ? `${cleanGrade}A` : 'Müəllim');
-    const finalRole = role || (cleanGrade === 0 || finalClass === 'Müəllim' ? 'teacher' : 'student');
-    const finalAvatar = avatar || (finalRole === 'teacher' ? '👨‍🏫' : (cleanGrade >= 10 ? '🧑‍🎓' : '🎒'));
+    const cleanClass = teamClass || '10A';
+    const gradeMatch = cleanClass.match(/\d+/);
+    const grade = gradeMatch ? Number(gradeMatch[0]) : 10;
+    const finalRole = role || (cleanClass === 'Məşqçi' ? 'coach' : 'player');
+    const finalAvatar = avatar || (finalRole === 'coach' ? '👨‍🏫' : '⚽');
 
     const newUser = {
       userId: 'tdv-usr-' + Date.now().toString(36),
       username: trimmedUser,
       fullName: trimmedName,
-      grade: cleanGrade,
-      schoolClass: finalClass,
+      grade: grade,
+      schoolClass: cleanClass,
       role: finalRole,
       avatar: finalAvatar,
       pin: cleanPin,
@@ -362,15 +375,15 @@ export const authService = {
       userId: newUser.userId,
       username: trimmedUser,
       fullName: trimmedName,
-      grade: cleanGrade,
-      schoolClass: finalClass,
+      grade: grade,
+      schoolClass: cleanClass,
       role: finalRole,
       avatar: finalAvatar,
       ecosystem: {
-        eschool: { active: true, grade: cleanGrade },
-        sports: { team: finalClass, role: 'player' },
+        eschool: { active: true, grade: grade },
+        sports: { team: cleanClass, role: finalRole },
         games: { nickname: trimmedUser },
-        mafia: { tier: 'TIER_1', roleTitle: finalRole === 'teacher' ? 'Müəllim' : 'Klub Oyunçusu' }
+        mafia: { tier: 'TIER_1', roleTitle: finalRole === 'coach' ? 'Məşqçi' : 'Klub Oyunçusu' }
       },
       token: 'tdv_token_' + Math.random().toString(36).substring(2) + Date.now().toString(36),
       createdAt: Date.now(),
@@ -382,7 +395,7 @@ export const authService = {
       regUsers.push(newUser);
       localStorage.setItem('tdv_registered_users_v1', JSON.stringify(regUsers));
       localStorage.setItem(SESSION_KEY, JSON.stringify(session));
-      
+
       sendToBroker({ type: 'TDV_SSO_SET', session: session, users: regUsers });
       this.updateOutboundLinks(session);
       this.notify(session);
@@ -391,17 +404,17 @@ export const authService = {
     return session;
   },
 
-  loginWithDemo(type = 'student-10') {
-    if (type === 'student-11') {
-      return this.login('murad', 11, '1100', 'student');
+  loginWithDemo(type = 'player-10a') {
+    if (type === 'player-11b') {
+      return this.login('murad', '11B', '1100', 'player');
     }
-    if (type === 'teacher') {
-      return this.login('elvin_coach', 0, '2026', 'teacher');
+    if (type === 'coach') {
+      return this.login('elvin_coach', 'Məşqçi', '2026', 'coach');
     }
     if (type === 'admin') {
-      return this.login('admin', 0, 'admin2026', 'admin');
+      return this.login('admin', 'Rəhbərlik', 'admin2026', 'admin');
     }
-    return this.login('orxan', 10, '1000', 'student');
+    return this.login('orxan', '10A', '1000', 'player');
   },
 
   logout() {
