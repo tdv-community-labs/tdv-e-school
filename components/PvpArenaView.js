@@ -583,7 +583,7 @@ export const PvpArenaView = ({
 
             if (roundEnded) {
               if (opt.key === currentQ.correctKey) {
-                btnStyle = 'bg-emerald-100 dark:bg-emerald-950 border-emerald-500 text-emerald-800 dark:text-emerald-200 font-bold scale-[1.02] shadow-sm';
+                btnStyle = 'bg-emerald-100 dark:bg-emerald-950 border-emerald-500 text-emerald-800 dark:text-emerald-200 font-bold scale-[1.02] ';
               } else if (isUserChoice && opt.key !== currentQ.correctKey) {
                 btnStyle = 'bg-rose-100 dark:bg-rose-950 border-rose-500 text-rose-800 dark:text-rose-200 font-bold';
               }
@@ -734,7 +734,7 @@ export const PvpArenaView = ({
       // 1. Təsadüfi Rəqib (Quick Match)
       React.createElement(
         'div',
-        { className: 'bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200/80 dark:border-zinc-800 shadow-sm flex flex-col justify-between space-y-4' },
+        { className: 'bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200/80 dark:border-zinc-800  flex flex-col justify-between space-y-4' },
         React.createElement(
           'div',
           { className: 'space-y-2' },
@@ -824,7 +824,7 @@ export const PvpArenaView = ({
     // 5. Həftəlik Liderlər Cədvəli (Leaderboard)
     React.createElement(
       'div',
-      { className: 'bg-white dark:bg-zinc-900 rounded-3xl p-6 sm:p-8 border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-4' },
+      { className: 'bg-white dark:bg-zinc-900 rounded-3xl p-6 sm:p-8 border border-zinc-200/80 dark:border-zinc-800  space-y-4' },
       React.createElement(
         'div',
         { className: 'flex items-center justify-between pb-3 border-b border-zinc-100 dark:border-zinc-800' },

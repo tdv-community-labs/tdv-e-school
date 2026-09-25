@@ -182,7 +182,7 @@ export const ExamArchiveView = ({
               {
                 value: filterSubject,
                 onChange: e => setFilterSubject(e.target.value),
-                className: 'w-full p-2.5 rounded-xl bg-zinc-800/80 border border-white/10 text-xs font-semibold text-zinc-200 focus:outline-none focus:border-indigo-500 transition-colors'
+                className: 'w-full p-2.5 rounded-[8px] bg-zinc-800/80 border border-white/10 text-xs font-semibold text-zinc-200 focus:outline-none focus:border-indigo-500 transition-colors'
               },
               React.createElement('option', { value: 'all' }, 'Bütün Fənlər'),
               SUBJECTS.map(s => React.createElement('option', { key: s.id, value: s.id }, s.name))
@@ -199,7 +199,7 @@ export const ExamArchiveView = ({
               {
                 value: filterGrade,
                 onChange: e => setFilterGrade(e.target.value),
-                className: 'w-full p-2.5 rounded-xl bg-zinc-800/80 border border-white/10 text-xs font-semibold text-zinc-200 focus:outline-none focus:border-indigo-500 transition-colors'
+                className: 'w-full p-2.5 rounded-[8px] bg-zinc-800/80 border border-white/10 text-xs font-semibold text-zinc-200 focus:outline-none focus:border-indigo-500 transition-colors'
               },
               React.createElement('option', { value: 'all' }, 'Bütün Siniflər (6-11)'),
               GRADES.map(g => React.createElement('option', { key: g, value: g }, `${g}-ci sinif`))
@@ -216,7 +216,7 @@ export const ExamArchiveView = ({
               {
                 value: filterType,
                 onChange: e => setFilterType(e.target.value),
-                className: 'w-full p-2.5 rounded-xl bg-zinc-800/80 border border-white/10 text-xs font-semibold text-zinc-200 focus:outline-none focus:border-indigo-500 transition-colors'
+                className: 'w-full p-2.5 rounded-[8px] bg-zinc-800/80 border border-white/10 text-xs font-semibold text-zinc-200 focus:outline-none focus:border-indigo-500 transition-colors'
               },
               React.createElement('option', { value: 'all' }, 'BSQ və KSQ Birlikdə'),
               React.createElement('option', { value: 'BSQ' }, 'BSQ (Böyük Summativ)'),
@@ -234,7 +234,7 @@ export const ExamArchiveView = ({
               {
                 value: filterSemester,
                 onChange: e => setFilterSemester(e.target.value),
-                className: 'w-full p-2.5 rounded-xl bg-zinc-800/80 border border-white/10 text-xs font-semibold text-zinc-200 focus:outline-none focus:border-indigo-500 transition-colors'
+                className: 'w-full p-2.5 rounded-[8px] bg-zinc-800/80 border border-white/10 text-xs font-semibold text-zinc-200 focus:outline-none focus:border-indigo-500 transition-colors'
               },
               React.createElement('option', { value: 'all' }, 'Hər İki Yarımil'),
               React.createElement('option', { value: '1' }, 'I Yarımil'),
@@ -310,7 +310,7 @@ export const ExamArchiveView = ({
                     setActiveExam(exam);
                     setPrintMode(false);
                   },
-                  className: 'flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-500/20 transition flex items-center justify-center space-x-2'
+                  className: 'flex-1 py-2.5 rounded-[8px] bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-500/20 transition flex items-center justify-center space-x-2'
                 },
                 React.createElement('i', { className: 'fas fa-play text-[11px]' }),
                 React.createElement('span', null, 'İnteraktiv Həll Et')
@@ -322,7 +322,7 @@ export const ExamArchiveView = ({
                     setActiveExam(exam);
                     setPrintMode(true);
                   },
-                  className: 'px-4 py-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 font-bold text-xs transition flex items-center space-x-2'
+                  className: 'px-4 py-2.5 rounded-[8px] bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 font-bold text-xs transition flex items-center space-x-2'
                 },
                 React.createElement('i', { className: 'fas fa-print text-[11px]' }),
                 React.createElement('span', null, 'Çap / PDF')
@@ -345,7 +345,7 @@ export const ExamArchiveView = ({
       // Çap üçün İdarəetmə Paneli (Ekran rejimində görünür, çapda gizlənir)
       React.createElement(
         'div',
-        { className: 'no-print bg-white dark:bg-zinc-900 p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm flex items-center justify-between' },
+        { className: 'no-print bg-white dark:bg-zinc-900 p-4 rounded-[20px] p-2 border border-zinc-200 dark:border-zinc-800 shadow-sm flex items-center justify-between' },
         React.createElement(
           'button',
           {
@@ -353,7 +353,7 @@ export const ExamArchiveView = ({
               setActiveExam(null);
               setPrintMode(false);
             },
-            className: 'px-3 py-1.5 rounded-xl text-xs font-bold bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200'
+            className: 'px-3 py-1.5 rounded-[8px] text-xs font-bold bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200'
           },
           '← Arxivə Qayıt'
         ),
@@ -364,7 +364,7 @@ export const ExamArchiveView = ({
             'button',
             {
               onClick: () => setPrintMode(false),
-              className: 'px-3.5 py-1.5 rounded-xl text-xs font-bold bg-indigo-50 text-indigo-700 hover:bg-indigo-100'
+              className: 'px-3.5 py-1.5 rounded-[8px] text-xs font-bold bg-indigo-50 text-indigo-700 hover:bg-indigo-100'
             },
             'İnteraktiv Rejimə Keç'
           ),
@@ -372,7 +372,7 @@ export const ExamArchiveView = ({
             'button',
             {
               onClick: handlePrint,
-              className: 'px-4 py-1.5 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-md hover:bg-indigo-700 flex items-center space-x-2'
+              className: 'px-4 py-1.5 rounded-[8px] text-xs font-bold bg-indigo-600 text-white shadow-md hover:bg-indigo-700 flex items-center space-x-2'
             },
             React.createElement('i', { className: 'fas fa-print' }),
             React.createElement('span', null, 'Vərəqi Çap Et / PDF Saxla')
@@ -486,7 +486,7 @@ export const ExamArchiveView = ({
           'button',
           {
             onClick: () => setActiveExam(null),
-            className: 'p-2 rounded-xl text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition'
+            className: 'p-2 rounded-[8px] text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition'
           },
           React.createElement('i', { className: 'fas fa-arrow-left' })
         ),
@@ -505,7 +505,7 @@ export const ExamArchiveView = ({
         // Taymer (əgər bitməyibsə)
         !isExamCompleted && React.createElement(
           'div',
-          { className: `px-3.5 py-1.5 rounded-xl font-mono text-xs font-black flex items-center space-x-2 ${
+          { className: `px-3.5 py-1.5 rounded-[8px] font-mono text-xs font-black flex items-center space-x-2 ${
             timeLeft < 300 ? 'bg-rose-100 text-rose-700 animate-pulse' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300'
           }` },
           React.createElement('i', { className: 'fas fa-stopwatch text-indigo-500' }),
@@ -518,7 +518,7 @@ export const ExamArchiveView = ({
           {
             onClick: () => setPrintMode(true),
             title: 'Çap vərəqi görünüşü',
-            className: 'p-2 rounded-xl text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800'
+            className: 'p-2 rounded-[8px] text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800'
           },
           React.createElement('i', { className: 'fas fa-print' })
         ),
@@ -528,7 +528,7 @@ export const ExamArchiveView = ({
           'button',
           {
             onClick: finishExam,
-            className: 'px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-500/20 transition'
+            className: 'px-4 py-2 rounded-[8px] bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-500/20 transition'
           },
           'İmtahanı Bitir'
         ) : React.createElement(
@@ -539,7 +539,7 @@ export const ExamArchiveView = ({
               setTimeLeft(activeExam.durationMinutes * 60);
               setSelectedAnswers({});
             },
-            className: 'px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-xs transition'
+            className: 'px-4 py-2 rounded-[8px] bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-xs transition'
           },
           'Yenidən Həll Et'
         )
@@ -565,13 +565,13 @@ export const ExamArchiveView = ({
           { className: 'flex items-center space-x-3 self-end sm:self-auto' },
           React.createElement(
             'div',
-            { className: 'text-center px-4 py-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20' },
+            { className: 'text-center px-4 py-3 rounded-[20px] p-2 bg-white/10 backdrop-blur-md border border-white/20' },
             React.createElement('div', { className: 'text-2xl font-black text-amber-300' }, `${results.totalScore}`),
             React.createElement('div', { className: 'text-[10px] text-indigo-200 uppercase font-bold' }, 'Toplanan Bal')
           ),
           React.createElement(
             'div',
-            { className: 'text-center px-4 py-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20' },
+            { className: 'text-center px-4 py-3 rounded-[20px] p-2 bg-white/10 backdrop-blur-md border border-white/20' },
             React.createElement('div', { className: 'text-2xl font-black text-emerald-400' }, `${results.schoolGrade}`),
             React.createElement('div', { className: 'text-[10px] text-indigo-200 uppercase font-bold' }, 'Məktəb Qiyməti')
           )
@@ -620,7 +620,7 @@ export const ExamArchiveView = ({
                 {
                   key: q.id,
                   onClick: () => setCurrentQuestionIndex(idx),
-                  className: `h-10 rounded-xl text-xs font-bold transition relative ${btnBg}`
+                  className: `h-10 rounded-[8px] text-xs font-bold transition relative ${btnBg}`
                 },
                 idx + 1,
                 isFlagged && !isExamCompleted && React.createElement('span', { className: 'absolute top-1 right-1 w-2 h-2 rounded-full bg-amber-500' })
@@ -670,7 +670,7 @@ export const ExamArchiveView = ({
               'button',
               {
                 onClick: () => toggleReviewMark(currentQuestionIndex),
-                className: `px-3 py-1 rounded-xl text-xs font-semibold flex items-center space-x-1.5 transition ${
+                className: `px-3 py-1 rounded-[8px] text-xs font-semibold flex items-center space-x-1.5 transition ${
                   markedForReview[currentQuestionIndex]
                     ? 'bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-400'
                     : 'text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800'
@@ -711,11 +711,11 @@ export const ExamArchiveView = ({
                 {
                   key: opt.key,
                   onClick: () => handleSelectAnswer(currentQ.id, opt.key),
-                  className: `w-full p-3.5 rounded-2xl border text-left text-xs sm:text-sm flex items-center space-x-3 transition-all ${optClass}`
+                  className: `w-full p-3.5 rounded-[20px] p-2 border text-left text-xs sm:text-sm flex items-center space-x-3 transition-all ${optClass}`
                 },
                 React.createElement(
                   'span',
-                  { className: `w-7 h-7 rounded-xl flex items-center justify-center font-bold text-xs shrink-0 ${
+                  { className: `w-7 h-7 rounded-[8px] flex items-center justify-center font-bold text-xs shrink-0 ${
                     isCurrentSelected ? 'bg-indigo-600 text-white' : 'bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300'
                   }` },
                   opt.key
@@ -736,7 +736,7 @@ export const ExamArchiveView = ({
               {
                 onClick: () => setCurrentQuestionIndex(prev => Math.max(0, prev - 1)),
                 disabled: currentQuestionIndex === 0,
-                className: `px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 ${
+                className: `px-4 py-2 rounded-[8px] text-xs font-bold transition flex items-center space-x-2 ${
                   currentQuestionIndex === 0 ? 'opacity-40 cursor-not-allowed' : 'bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200'
                 }`
               },
@@ -748,7 +748,7 @@ export const ExamArchiveView = ({
               {
                 onClick: () => setCurrentQuestionIndex(prev => Math.min(activeExam.questions.length - 1, prev + 1)),
                 disabled: currentQuestionIndex === activeExam.questions.length - 1,
-                className: `px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 ${
+                className: `px-4 py-2 rounded-[8px] text-xs font-bold transition flex items-center space-x-2 ${
                   currentQuestionIndex === activeExam.questions.length - 1 ? 'opacity-40 cursor-not-allowed' : 'bg-indigo-600 text-white hover:bg-indigo-700'
                 }`
               },
@@ -772,7 +772,7 @@ export const ExamArchiveView = ({
           // 1. Verilənlər
           React.createElement(
             'div',
-            { className: 'p-3.5 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 text-xs sm:text-sm' },
+            { className: 'p-3.5 rounded-[20px] p-2 bg-zinc-50 dark:bg-zinc-800/60 text-xs sm:text-sm' },
             React.createElement('div', { className: 'font-bold text-zinc-500 text-[11px] uppercase mb-1' }, '1. Verilənlər və Şərt:'),
             React.createElement(KatexRenderer, { text: currentQ.explanationCoT.given })
           ),
@@ -780,7 +780,7 @@ export const ExamArchiveView = ({
           // 2. Qayda / Düstur
           React.createElement(
             'div',
-            { className: 'p-3.5 rounded-2xl bg-indigo-50/50 dark:bg-indigo-950/30 text-xs sm:text-sm' },
+            { className: 'p-3.5 rounded-[20px] p-2 bg-indigo-50/50 dark:bg-indigo-950/30 text-xs sm:text-sm' },
             React.createElement('div', { className: 'font-bold text-indigo-500 text-[11px] uppercase mb-1' }, '2. Əsas Qayda və Düstur:'),
             React.createElement(KatexRenderer, { text: currentQ.explanationCoT.formula })
           ),
@@ -793,7 +793,7 @@ export const ExamArchiveView = ({
             currentQ.explanationCoT.steps.map(st => {
               return React.createElement(
                 'div',
-                { key: st.stepNumber, className: 'p-3.5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs sm:text-sm space-y-1' },
+                { key: st.stepNumber, className: 'p-3.5 rounded-[20px] p-2 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs sm:text-sm space-y-1' },
                 React.createElement('div', { className: 'font-black text-indigo-600 dark:text-indigo-400' }, `Addım ${st.stepNumber}: ${st.title}`),
                 React.createElement(KatexRenderer, { text: st.content })
               );
@@ -803,7 +803,7 @@ export const ExamArchiveView = ({
           // 4. Yekun Nəticə
           React.createElement(
             'div',
-            { className: 'p-3.5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs sm:text-sm' },
+            { className: 'p-3.5 rounded-[20px] p-2 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs sm:text-sm' },
             React.createElement('div', { className: 'font-bold text-emerald-700 dark:text-emerald-300 text-[11px] uppercase mb-1' }, '4. Yekun Nəticə və Doğru Variant:'),
             React.createElement(KatexRenderer, { text: currentQ.explanationCoT.conclusion })
           )

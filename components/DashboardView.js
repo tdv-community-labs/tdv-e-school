@@ -79,7 +79,7 @@ export const DashboardView = ({
               'button',
               {
                 onClick: () => setActiveTab('lessons'),
-                className: 'px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-blue-600 hover:from-indigo-400 hover:to-blue-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-indigo-600/30 hover:scale-[1.02] transition transform flex items-center space-x-2 cursor-pointer'
+                className: 'px-5 py-2.5 rounded-[8px] bg-gradient-to-r from-indigo-500 to-blue-600 hover:from-indigo-400 hover:to-blue-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-indigo-600/30 hover:scale-[1.02] transition transform flex items-center space-x-2 cursor-pointer'
               },
               React.createElement('i', { className: 'fas fa-book-open-reader text-xs' }),
               React.createElement('span', null, 'Dərslərə Başla'),
@@ -89,7 +89,7 @@ export const DashboardView = ({
               'button',
               {
                 onClick: () => setActiveTab('exams'),
-                className: 'px-5 py-2.5 rounded-xl bg-zinc-800/80 hover:bg-zinc-700/80 border border-zinc-700/70 text-zinc-200 font-bold text-xs sm:text-sm transition flex items-center space-x-2 cursor-pointer'
+                className: 'px-5 py-2.5 rounded-[8px] bg-zinc-800/80 hover:bg-zinc-700/80 border border-zinc-700/70 text-zinc-200 font-bold text-xs sm:text-sm transition flex items-center space-x-2 cursor-pointer'
               },
               React.createElement('i', { className: 'fas fa-file-signature text-xs text-indigo-400' }),
               React.createElement('span', null, 'BSQ / KSQ Arxiv')
@@ -98,7 +98,7 @@ export const DashboardView = ({
               'button',
               {
                 onClick: () => onStartPvp('quick'),
-                className: 'px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-zinc-950 font-black text-xs sm:text-sm shadow-md transition flex items-center space-x-2 cursor-pointer'
+                className: 'px-5 py-2.5 rounded-[8px] bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-zinc-950 font-black text-xs sm:text-sm shadow-md transition flex items-center space-x-2 cursor-pointer'
               },
               React.createElement('i', { className: 'fas fa-bolt text-xs' }),
               React.createElement('span', null, '1v1 Sürətli Döyüş')
@@ -107,7 +107,7 @@ export const DashboardView = ({
               'button',
               {
                 onClick: onOpenTools,
-                className: 'px-4 py-2.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 font-bold text-xs sm:text-sm transition flex items-center space-x-2 cursor-pointer'
+                className: 'px-4 py-2.5 rounded-[8px] bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 font-bold text-xs sm:text-sm transition flex items-center space-x-2 cursor-pointer'
               },
               React.createElement('i', { className: 'fas fa-toolbox text-xs' }),
               React.createElement('span', null, 'Alətlər & Lab')
@@ -168,7 +168,7 @@ export const DashboardView = ({
               { className: 'space-y-2' },
               React.createElement(
                 'div',
-                { className: 'p-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800/80 flex items-center justify-between' },
+                { className: 'p-2.5 rounded-[8px] bg-zinc-900/80 border border-zinc-800/80 flex items-center justify-between' },
                 React.createElement('div', { className: 'flex items-center gap-2 text-xs text-zinc-300' },
                   React.createElement('i', { className: 'fas fa-graduation-cap text-indigo-400' }),
                   React.createElement('span', null, 'Tədris Fənləri')
@@ -177,7 +177,7 @@ export const DashboardView = ({
               ),
               React.createElement(
                 'div',
-                { className: 'p-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800/80 flex items-center justify-between' },
+                { className: 'p-2.5 rounded-[8px] bg-zinc-900/80 border border-zinc-800/80 flex items-center justify-between' },
                 React.createElement('div', { className: 'flex items-center gap-2 text-xs text-zinc-300' },
                   React.createElement('i', { className: 'fas fa-book-open text-cyan-400' }),
                   React.createElement('span', null, 'Dərs Konspektləri')
@@ -186,7 +186,7 @@ export const DashboardView = ({
               ),
               React.createElement(
                 'div',
-                { className: 'p-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800/80 flex items-center justify-between' },
+                { className: 'p-2.5 rounded-[8px] bg-zinc-900/80 border border-zinc-800/80 flex items-center justify-between' },
                 React.createElement('div', { className: 'flex items-center gap-2 text-xs text-zinc-300' },
                   React.createElement('i', { className: 'fas fa-file-signature text-emerald-400' }),
                   React.createElement('span', null, 'İmtahan Arxivi')
@@ -252,7 +252,7 @@ export const DashboardView = ({
               React.createElement(
                 'div',
                 {
-                  className: `w-11 h-11 rounded-xl bg-gradient-to-tr ${subject.gradient} flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform`
+                  className: `w-11 h-11 rounded-[8px] bg-gradient-to-tr ${subject.gradient} flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform`
                 },
                 React.createElement('i', { className: `fas ${getSubjectIconClass(subject.icon)} text-base` })
               ),
@@ -333,7 +333,7 @@ export const DashboardView = ({
                 { className: 'flex items-center space-x-3' },
                 React.createElement(
                   'div',
-                  { className: 'w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center font-extrabold text-xs' },
+                  { className: 'w-10 h-10 rounded-[8px] bg-indigo-500/10 text-indigo-500 flex items-center justify-center font-extrabold text-xs' },
                   exam.examType
                 ),
                 React.createElement(
@@ -394,7 +394,7 @@ export const DashboardView = ({
                 { className: 'flex items-center space-x-3' },
                 React.createElement(
                   'div',
-                  { className: 'w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center font-extrabold text-xs' },
+                  { className: 'w-10 h-10 rounded-[8px] bg-cyan-500/10 text-cyan-500 flex items-center justify-center font-extrabold text-xs' },
                   les.grade + ' kl'
                 ),
                 React.createElement(

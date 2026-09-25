@@ -41,7 +41,7 @@ export const Navbar = ({
               className: 'relative w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-700 via-purple-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-purple-500/25 border border-white/20 group-hover:scale-105 transition-transform duration-200'
             },
             React.createElement('i', { className: 'fas fa-graduation-cap text-lg' }),
-            React.createElement('span', { className: 'absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-400 rounded-full border-2 border-[#09090b] shadow-sm' })
+            React.createElement('span', { className: 'absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-400 rounded-full border-2 border-[#09090b] ' })
           ),
           React.createElement(
             'div',
@@ -117,7 +117,7 @@ export const Navbar = ({
                 onClick: () => setActiveTab(item.id),
                 className: `px-3.5 py-1.5 rounded-xl text-xs font-semibold flex items-center space-x-2 transition-all duration-150 cursor-pointer ${
                   isActive
-                    ? 'bg-white dark:bg-zinc-800 text-purple-600 dark:text-purple-400 shadow-sm border border-zinc-200/60 dark:border-white/[0.08]'
+                    ? 'bg-white dark:bg-zinc-800 text-purple-600 dark:text-purple-400  border border-zinc-200/60 dark:border-white/[0.08]'
                     : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-white/50 dark:hover:bg-zinc-900/50'
                 }`
               },
@@ -143,7 +143,7 @@ export const Navbar = ({
             {
               onClick: onOpenTools,
               title: 'İnteraktiv Alətlər və Calculus Hesablayıcısı',
-              className: 'px-2.5 sm:px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-500/10 to-indigo-500/10 hover:from-purple-500/20 hover:to-indigo-500/20 border border-purple-500/30 text-purple-600 dark:text-purple-400 font-bold text-xs flex items-center space-x-1.5 transition shadow-sm cursor-pointer'
+              className: 'px-2.5 sm:px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-500/10 to-indigo-500/10 hover:from-purple-500/20 hover:to-indigo-500/20 border border-purple-500/30 text-purple-600 dark:text-purple-400 font-bold text-xs flex items-center space-x-1.5 transition  cursor-pointer'
             },
             React.createElement('i', { className: 'fas fa-toolbox text-xs text-purple-500' }),
             React.createElement('span', { className: 'hidden sm:inline' }, 'Alətlər & Lab')
