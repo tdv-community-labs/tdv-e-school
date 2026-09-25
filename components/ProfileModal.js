@@ -146,24 +146,15 @@ export const ProfileModal = ({
           'div',
           { className: 'w-24' },
           React.createElement('label', { className: 'block text-[10px] font-bold text-zinc-500 mb-1' }, 'Sinif:'),
-          React.createElement('select', {
-            value: grade,
-            onChange: (e) => setGrade(e.target.value),
-            className: 'w-full p-2 text-xs rounded-[8px] bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 font-bold'
-          },
-            GRADES.map(g => React.createElement('option', { key: g, value: g }, `${g}-ci sinif`))
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'w-32' },
-          React.createElement('label', { className: 'block text-[10px] font-bold text-zinc-500 mb-1' }, 'Avatar:'),
-          React.createElement('select', {
-            value: avatar,
-            onChange: (e) => setAvatar(e.target.value),
-            className: 'w-full p-2 text-xs rounded-[8px] bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 font-bold text-base'
-          },
-            avatarsList.map(a => React.createElement('option', { key: a, value: a }, a))
+          React.createElement('div', { className: 'flex flex-wrap gap-2' },
+              avatarsList.map(a => React.createElement('button', {
+                type: 'button',
+                key: a,
+                onClick: () => setAvatar(a),
+                className: `w-10 h-10 flex items-center justify-center rounded-[8px] border-2 transition ${avatar === a ? 'border-emerald-500 bg-emerald-500/10' : 'border-zinc-200 dark:border-zinc-700 hover:border-emerald-300'}`,
+                dangerouslySetInnerHTML: { __html: a }
+              }))
+            )
           )
         ),
         React.createElement(
