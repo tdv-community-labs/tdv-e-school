@@ -189,7 +189,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
                   type: 'number',
                   value: polyA,
                   onChange: e => setPolyA(Number(e.target.value) || 0),
-                  className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
+                  className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
                 })
               ),
               React.createElement(
@@ -200,7 +200,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
                   type: 'number',
                   value: polyB,
                   onChange: e => setPolyB(Number(e.target.value) || 0),
-                  className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
+                  className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
                 })
               ),
               React.createElement(
@@ -211,7 +211,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
                   type: 'number',
                   value: polyC,
                   onChange: e => setPolyC(Number(e.target.value) || 0),
-                  className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
+                  className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
                 })
               )
             ),
@@ -223,7 +223,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
                 type: 'number',
                 value: evalX,
                 onChange: e => setEvalX(Number(e.target.value) || 0),
-                className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
+                className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
               })
             )
           ),
@@ -297,7 +297,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
                   type: 'number',
                   value: geomA,
                   onChange: e => setGeomA(Math.max(1, Number(e.target.value) || 1)),
-                  className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
+                  className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
                 })
               ),
               React.createElement(
@@ -308,7 +308,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
                   type: 'number',
                   value: geomB,
                   onChange: e => setGeomB(Math.max(1, Number(e.target.value) || 1)),
-                  className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
+                  className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
                 })
               )
             )
@@ -442,7 +442,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
               type: 'number',
               value: convertVal,
               onChange: e => setConvertVal(Number(e.target.value) || 0),
-              className: 'w-full p-2 text-xs rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
+              className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
             })
           ),
 

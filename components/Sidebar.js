@@ -181,7 +181,7 @@ export const Sidebar = ({
             },
             className: 'p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 flex items-center space-x-3 cursor-pointer hover:bg-purple-50 dark:hover:bg-zinc-700/80 transition group'
           },
-          React.createElement('div', { className: 'w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-950 flex items-center justify-center text-xl shadow-inner' }, (userSession && userSession.avatar) || (userStats && userStats.avatar) || '🧑‍🎓'),
+          React.createElement('div', { className: 'w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-950 flex items-center justify-center text-xl shadow-inner' }, (userSession && userSession.avatar) || (userStats && userStats.avatar) || '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" className="inline-block opacity-80 mr-1.5 align-middle"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" className="inline-block opacity-80 mr-1.5 align-middle"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>'),
           React.createElement(
             'div',
             { className: 'flex-1 min-w-0' },

@@ -1,11 +1,18 @@
 // MəktəbPlus - İnteraktiv Alətlər və Kalkulyatorlar Laboratoriyası (Tools & Lab)
 
 import React, { useState } from 'react';
+import { Skeleton, EmptyState } from './ui.js';
 import { PhetEmbed } from './PhetEmbed.js';
 import { KatexRenderer } from './KatexRenderer.js';
 
 export const ToolsView = () => {
-  const [activeTool, setActiveTool] = useState('calculus'); // 'calculus', 'derivative_calc', 'physics_sim', 'geometry', 'periodic'
+  const [activeTool, setActiveTool] = useState('calculus');
+  const [loading, setLoading] = useState(false);
+  const handleToolChange = (id) => {
+    setLoading(true);
+    setActiveTool(id);
+    setTimeout(() => setLoading(false), 800);
+  }; // 'calculus', 'derivative_calc', 'physics_sim', 'geometry', 'periodic'
 
   // Törəmə və Funksiya Kalkulyatoru vəziyyəti
   const [polyA, setPolyA] = useState(2);
@@ -82,13 +89,13 @@ export const ToolsView = () => {
     React.createElement(
       'div',
       { className: 'grid grid-cols-2 sm:grid-cols-4 gap-3' },
-      toolsList.map(tool => {
+      toolsList.length === 0 ? React.createElement(EmptyState, { icon: 'search', title: 'Alət Tapılmadı', description: 'Göstəriləcək heç bir alət yoxdur.' }) : toolsList.map(tool => {
         const isActive = activeTool === tool.id;
         return React.createElement(
           'button',
           {
             key: tool.id,
-            onClick: () => setActiveTool(tool.id),
+            onClick: () => handleToolChange(tool.id),
             className: `p-4 rounded-2xl border text-left transition-all duration-200 flex flex-col justify-between space-y-2 ${
               isActive
                 ? 'bg-white dark:bg-zinc-900 border-purple-500 shadow-md ring-2 ring-purple-500/20'
