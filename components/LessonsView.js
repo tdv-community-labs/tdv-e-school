@@ -106,7 +106,7 @@ export const LessonsView = ({
   // Səsli oxuma funksiyası (Web Speech API)
   const handleToggleAudio = () => {
     if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
-      console.warn('Sizin brauzerinizdə səsli oxuma funksiyası dəstəklənmir.');
+      console.warn("Xəbərdarlıq: Funksiya icra olunmadı.");
       return;
     }
 
