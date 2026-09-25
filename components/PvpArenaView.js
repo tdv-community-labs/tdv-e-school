@@ -1,9 +1,12 @@
 // MəktəbPlus - 1v1 PvP Viktorina Arenası (Real-time Multiplayer Simulation)
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { PvpEngine } from '../services/pvpEngine.js';
 import { StorageService } from '../services/storageService.js';
 import { KatexRenderer } from './KatexRenderer.js';
+
+// Matchmaking timeout: 30 saniyə rəqib tapılmasa "Rəqib tapılmadı" göstər
+const MATCHMAKING_TIMEOUT_MS = 30000;
 
 export const PvpArenaView = ({
   pvpQuestions,
@@ -18,6 +21,9 @@ export const PvpArenaView = ({
   const [createdRoomCode, setCreatedRoomCode] = useState('');
   const [inputRoomCode, setInputRoomCode] = useState('');
   const [copyNotification, setCopyNotification] = useState(false);
+
+  // Matchmaking timeout — 30s-də rəqib tapılmadısa
+  const [matchmakingTimedOut, setMatchmakingTimedOut] = useState(false);
 
   // Oyunçu və Rəqib vəziyyətləri
   const [opponent, setOpponent] = useState(null);
@@ -40,52 +46,157 @@ export const PvpArenaView = ({
   const roundTimerRef = useRef(null);
   const botTimeoutRef = useRef(null);
   const questionStartTimeRef = useRef(Date.now());
+  // FIX: AbortController — Firestore/fetch dinləyicilərini komponent unmount zamanı dayandırmaq üçün
+  const abortControllerRef = useRef(null);
+  // FIX: Timeout cleanup — matchmaking timeout ID-sini izlə
+  const matchmakingTimeoutRef = useRef(null);
+  // FIX: Bütün setTimeout ID-lərini izlə
+  const scheduledTimersRef = useRef([]);
+
+  // Köməkçi: izlənən setTimeout
+  const safeSetTimeout = useCallback((fn, ms) => {
+    const id = setTimeout(() => {
+      scheduledTimersRef.current = scheduledTimersRef.current.filter(t => t !== id);
+      fn();
+    }, ms);
+    scheduledTimersRef.current.push(id);
+    return id;
+  }, []);
+
+  // Bütün timerları təmizlə
+  const clearAllTimers = useCallback(() => {
+    clearInterval(roundTimerRef.current);
+    clearTimeout(botTimeoutRef.current);
+    clearTimeout(matchmakingTimeoutRef.current);
+    scheduledTimersRef.current.forEach(id => clearTimeout(id));
+    scheduledTimersRef.current = [];
+  }, []);
+
+  // Komponent unmount — bütün resursları azad et
+  useEffect(() => {
+    // FIX: Sessiya bərpası — səhifə yenilənmə zamanı aktiv oyunu bərpa et
+    try {
+      const recovered = PvpEngine.recoverSession();
+      if (recovered) {
+        console.info('[PvP] Aktiv sessiya bərpa edildi:', recovered);
+        // Sessiya bərpası: lobby-yə qayıt (tam bərpa real-time backend tələb edir)
+        PvpEngine.clearSession();
+      }
+    } catch (e) {
+      console.warn('[PvP] Sessiya bərpası xətası:', e);
+    }
+
+    return () => {
+      clearAllTimers();
+      // FIX: AbortController — unmount zamanı fetch/listener-ləri dayandır
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+      // Matchmaking kilidi azad et (əgər unmount zamanı aktiv idisə)
+      PvpEngine.releaseMatchmakingLock();
+    };
+  }, [clearAllTimers]);
 
   // 1. Təsadüfi Rəqib Axtarışını Başlat
   const startQuickMatch = () => {
+    // FIX: Matchmaking race condition — lock ilə eyni anda iki çağırışı önlə
+    if (!PvpEngine.acquireMatchmakingLock()) {
+      console.warn('[PvP] Matchmaking artıq aktivdir, ikinci çağırış rədd edildi.');
+      return;
+    }
+
     setMatchMode('quick');
+    setMatchmakingTimedOut(false);
     setStage('matchmaking');
 
-    // 2-3 saniyəlik axtarış effekti
-    setTimeout(() => {
-      const bot = PvpEngine.getRandomBot();
-      setOpponent(bot);
-      
-      // Təsadüfi 5 sual seçirik
-      const shuffled = [...pvpQuestions].sort(() => 0.5 - Math.random());
-      const selectedQuestions = shuffled.slice(0, 5);
-      setMatchQuestions(selectedQuestions);
+    // FIX: 30s matchmaking timeout — rəqib tapılmadısa xəbər ver
+    matchmakingTimeoutRef.current = setTimeout(() => {
+      if (stage === 'matchmaking') {
+        setMatchmakingTimedOut(true);
+        PvpEngine.releaseMatchmakingLock();
+      }
+    }, MATCHMAKING_TIMEOUT_MS);
 
-      // Oyuna başla
-      startBattle(bot, selectedQuestions);
+    // 2-3 saniyəlik axtarış effekti
+    safeSetTimeout(() => {
+      try {
+        clearTimeout(matchmakingTimeoutRef.current);
+        const bot = PvpEngine.getRandomBot();
+        setOpponent(bot);
+        
+        // Təsadüfi 5 sual seçirik
+        const questions = Array.isArray(pvpQuestions) ? pvpQuestions : [];
+        const shuffled = [...questions].sort(() => 0.5 - Math.random());
+        const selectedQuestions = shuffled.slice(0, 5);
+        setMatchQuestions(selectedQuestions);
+
+        PvpEngine.releaseMatchmakingLock();
+
+        // FIX: Sessiya yadda saxla — səhifə yenilənmə zamanı bərpa üçün
+        PvpEngine.saveSession({ stage: 'battle', opponent: bot, questionCount: selectedQuestions.length });
+
+        // Oyuna başla
+        startBattle(bot, selectedQuestions);
+      } catch (e) {
+        console.error('[PvP] startQuickMatch error:', e);
+        PvpEngine.releaseMatchmakingLock();
+        setStage('lobby');
+      }
     }, 2200);
   };
 
   // 2. Dostla Oynamaq üçün Otaq Yarat
   const createFriendRoom = () => {
-    const code = PvpEngine.generateRoomCode();
-    setCreatedRoomCode(code);
-    setMatchMode('friend');
+    try {
+      const code = PvpEngine.generateRoomCode();
+      setCreatedRoomCode(code);
+      setMatchMode('friend');
+    } catch (e) {
+      console.error('[PvP] createFriendRoom error:', e);
+    }
   };
 
   // 3. Otaq Kodu ilə Qoşul
   const joinFriendRoom = () => {
     if (!inputRoomCode.trim()) return;
+
+    // FIX: Matchmaking race condition — lock
+    if (!PvpEngine.acquireMatchmakingLock()) {
+      console.warn('[PvP] Matchmaking artıq aktivdir.');
+      return;
+    }
+
+    setMatchmakingTimedOut(false);
     setStage('matchmaking');
-    setTimeout(() => {
-      const friendOpponent = {
-        name: `Dost (${inputRoomCode.toUpperCase()})`,
-        grade: 10,
-        avatar: '🎮',
-        school: 'Dəvət Olunmuş Oyunçu',
-        rating: 1750,
-        accuracy: 0.8
-      };
-      setOpponent(friendOpponent);
-      const shuffled = [...pvpQuestions].sort(() => 0.5 - Math.random());
-      const selected = shuffled.slice(0, 5);
-      setMatchQuestions(selected);
-      startBattle(friendOpponent, selected);
+
+    matchmakingTimeoutRef.current = setTimeout(() => {
+      setMatchmakingTimedOut(true);
+      PvpEngine.releaseMatchmakingLock();
+    }, MATCHMAKING_TIMEOUT_MS);
+
+    safeSetTimeout(() => {
+      try {
+        clearTimeout(matchmakingTimeoutRef.current);
+        const friendOpponent = {
+          name: `Dost (${(inputRoomCode || '').toUpperCase()})`,
+          grade: 10,
+          avatar: '🎮',
+          school: 'Dəvət Olunmuş Oyunçu',
+          rating: 1750,
+          accuracy: 0.8
+        };
+        setOpponent(friendOpponent);
+        const questions = Array.isArray(pvpQuestions) ? pvpQuestions : [];
+        const shuffled = [...questions].sort(() => 0.5 - Math.random());
+        const selected = shuffled.slice(0, 5);
+        setMatchQuestions(selected);
+        PvpEngine.releaseMatchmakingLock();
+        startBattle(friendOpponent, selected);
+      } catch (e) {
+        console.error('[PvP] joinFriendRoom error:', e);
+        PvpEngine.releaseMatchmakingLock();
+        setStage('lobby');
+      }
     }, 1500);
   };
 
@@ -103,7 +214,7 @@ export const PvpArenaView = ({
 
   // 5. Raundu Başlat
   const initRound = (qIndex, qList, opp) => {
-    const currentQ = qList[qIndex];
+    const currentQ = (qList || [])[qIndex];
     if (!currentQ) return;
 
     setTimeLeft(15);
@@ -114,11 +225,15 @@ export const PvpArenaView = ({
 
     // Rəqib Botun cavab simulyasiyası
     if (botTimeoutRef.current) clearTimeout(botTimeoutRef.current);
-    const botPlan = PvpEngine.simulateBotAnswer(currentQ, opp);
-    
-    botTimeoutRef.current = setTimeout(() => {
-      setOpponentSelectedKey(botPlan.chosenKey);
-    }, botPlan.timeSpent * 1000);
+    try {
+      const botPlan = PvpEngine.simulateBotAnswer(currentQ, opp);
+      
+      botTimeoutRef.current = setTimeout(() => {
+        setOpponentSelectedKey(botPlan.chosenKey);
+      }, botPlan.timeSpent * 1000);
+    } catch (e) {
+      console.error('[PvP] initRound bot simulation error:', e);
+    }
   };
 
   // 6. 15 Saniyəlik Raund Taymeri
@@ -148,11 +263,10 @@ export const PvpArenaView = ({
   const handlePlayerAnswer = (key) => {
     if (playerSelectedKey || roundEnded) return;
 
-    const timeSpent = (Date.now() - questionStartTimeRef.current) / 1000;
     setPlayerSelectedKey(key);
 
     // Əgər rəqib hələ cavab verməyibsə, bir azdan və ya vaxt bitəndə raund bağlansın
-    setTimeout(() => {
+    safeSetTimeout(() => {
       if (!roundEnded) {
         finalizeRound(key, opponentSelectedKey);
       }
@@ -166,88 +280,105 @@ export const PvpArenaView = ({
     clearInterval(roundTimerRef.current);
     clearTimeout(botTimeoutRef.current);
 
-    const currentQ = matchQuestions[currentQuestionIndex];
-    const isPlayerCorrect = pKey === currentQ.correctKey;
-    const isOpponentCorrect = oKey === currentQ.correctKey;
+    try {
+      const currentQ = matchQuestions[currentQuestionIndex];
+      if (!currentQ) return;
 
-    const timeSpent = (Date.now() - questionStartTimeRef.current) / 1000;
-    
-    let nextPStreak = isPlayerCorrect ? playerStreak + 1 : 0;
-    let nextOStreak = isOpponentCorrect ? opponentStreak + 1 : 0;
-    
-    const pPoints = PvpEngine.calculateScore(isPlayerCorrect, timeSpent, playerStreak);
-    const oPoints = PvpEngine.calculateScore(isOpponentCorrect, Math.random() * 5 + 3, opponentStreak);
+      const isPlayerCorrect = pKey === currentQ.correctKey;
+      const isOpponentCorrect = oKey === currentQ.correctKey;
 
-    setPlayerScore(prev => prev + pPoints);
-    setOpponentScore(prev => prev + oPoints);
-    setPlayerStreak(nextPStreak);
-    setOpponentStreak(nextOStreak);
+      const timeSpent = (Date.now() - questionStartTimeRef.current) / 1000;
+      
+      let nextPStreak = isPlayerCorrect ? playerStreak + 1 : 0;
+      let nextOStreak = isOpponentCorrect ? opponentStreak + 1 : 0;
+      
+      // FIX: Score update — try/catch + validateFinite (pvpEngine.calculateScore artıq qorunur)
+      const pPoints = PvpEngine.calculateScore(isPlayerCorrect, timeSpent, playerStreak);
+      const oPoints = PvpEngine.calculateScore(isOpponentCorrect, Math.random() * 5 + 3, opponentStreak);
 
-    setBattleHistory(prev => [
-      ...prev,
-      {
-        question: currentQ.text,
-        correctKey: currentQ.correctKey,
-        pKey,
-        oKey,
-        isPlayerCorrect,
-        isOpponentCorrect,
-        pPoints,
-        oPoints
-      }
-    ]);
+      setPlayerScore(prev => prev + pPoints);
+      setOpponentScore(prev => prev + oPoints);
+      setPlayerStreak(nextPStreak);
+      setOpponentStreak(nextOStreak);
 
-    // 2.5 saniyə sonra növbəti suala və ya finişə keç
-    setTimeout(() => {
-      if (currentQuestionIndex < matchQuestions.length - 1) {
-        const nextIndex = currentQuestionIndex + 1;
-        setCurrentQuestionIndex(nextIndex);
-        initRound(nextIndex, matchQuestions, opponent);
-      } else {
-        finishMatch(playerScore + pPoints, opponentScore + oPoints);
-      }
-    }, 2800);
+      setBattleHistory(prev => [
+        ...prev,
+        {
+          question: currentQ.text,
+          correctKey: currentQ.correctKey,
+          pKey,
+          oKey,
+          isPlayerCorrect,
+          isOpponentCorrect,
+          pPoints,
+          oPoints
+        }
+      ]);
+
+      // 2.5 saniyə sonra növbəti suala və ya finişə keç
+      safeSetTimeout(() => {
+        if (currentQuestionIndex < matchQuestions.length - 1) {
+          const nextIndex = currentQuestionIndex + 1;
+          setCurrentQuestionIndex(nextIndex);
+          initRound(nextIndex, matchQuestions, opponent);
+        } else {
+          finishMatch(playerScore + pPoints, opponentScore + oPoints);
+        }
+      }, 2800);
+    } catch (e) {
+      console.error('[PvP] finalizeRound error:', e);
+    }
   };
 
   // Matçı Bitir
   const finishMatch = (finalPlayerScore, finalOpponentScore) => {
-    setStage('gameover');
+    try {
+      setStage('gameover');
+      // FIX: Sessiya bitdi — localStorage-dən sil
+      PvpEngine.clearSession();
 
-    const isVictory = finalPlayerScore > finalOpponentScore;
-    if (isVictory && window.confetti) {
-      window.confetti({
-        particleCount: 120,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
-    }
+      const isVictory = finalPlayerScore > finalOpponentScore;
+      if (isVictory && window.confetti) {
+        window.confetti({
+          particleCount: 120,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
 
-    const pointsGained = isVictory ? 60 : 15;
+      const pointsGained = isVictory ? 60 : 15;
 
-    // Yalnız real oyunçunun nəticəsini qeyd edirik (olmayan adamlar yazılmır)
-    const updatedLeaderboard = StorageService.recordMatchToLeaderboard(
-      userStats?.name || 'Şagird',
-      userStats?.grade || 10,
-      isVictory,
-      pointsGained
-    );
-    setLeaderboard(updatedLeaderboard);
+      // Yalnız real oyunçunun nəticəsini qeyd edirik (olmayan adamlar yazılmır)
+      const updatedLeaderboard = StorageService.recordMatchToLeaderboard(
+        userStats?.name ?? 'Şagird',
+        userStats?.grade ?? 10,
+        isVictory,
+        pointsGained
+      );
+      setLeaderboard(updatedLeaderboard);
 
-    if (onUpdateStats) {
-      onUpdateStats(prev => ({
-        ...prev,
-        pvpScore: prev.pvpScore + pointsGained,
-        pvpWins: prev.pvpWins + (isVictory ? 1 : 0),
-        pvpMatches: prev.pvpMatches + 1,
-        xp: prev.xp + (isVictory ? 150 : 50)
-      }));
+      if (typeof onUpdateStats === 'function') {
+        onUpdateStats(prev => ({
+          ...prev,
+          pvpScore: (prev?.pvpScore ?? 0) + pointsGained,
+          pvpWins: (prev?.pvpWins ?? 0) + (isVictory ? 1 : 0),
+          pvpMatches: (prev?.pvpMatches ?? 0) + 1,
+          xp: (prev?.xp ?? 0) + (isVictory ? 150 : 50)
+        }));
+      }
+    } catch (e) {
+      console.error('[PvP] finishMatch error:', e);
     }
   };
 
   const copyRoomLink = () => {
-    navigator.clipboard.writeText(createdRoomCode);
-    setCopyNotification(true);
-    setTimeout(() => setCopyNotification(false), 2000);
+    try {
+      navigator.clipboard.writeText(createdRoomCode);
+      setCopyNotification(true);
+      safeSetTimeout(() => setCopyNotification(false), 2000);
+    } catch (e) {
+      console.warn('[PvP] copyRoomLink error:', e);
+    }
   };
 
   const currentQ = matchQuestions[currentQuestionIndex];
@@ -256,6 +387,30 @@ export const PvpArenaView = ({
   // 1. MATCHMAKING EKRANI
   // =========================================================================
   if (stage === 'matchmaking') {
+    // FIX: 30s timeout — rəqib tapılmadısa "Rəqib tapılmadı" + retry düyməsi göstər
+    if (matchmakingTimedOut) {
+      return React.createElement(
+        'div',
+        { className: 'min-h-[500px] flex flex-col items-center justify-center space-y-6 text-center animate-fadeIn p-6' },
+        React.createElement('span', { className: 'text-5xl' }, '😔'),
+        React.createElement(
+          'div',
+          null,
+          React.createElement('h3', { className: 'text-xl font-black text-zinc-800 dark:text-zinc-100' }, 'Rəqib tapılmadı'),
+          React.createElement('p', { className: 'text-xs text-zinc-400 mt-1' }, '30 saniyə ərzində uyğun rəqib tapıla bilmədi.')
+        ),
+        React.createElement(
+          'button',
+          {
+            onClick: () => { setMatchmakingTimedOut(false); setStage('lobby'); },
+            className: 'px-6 py-3 rounded-2xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-black text-sm shadow-md transition'
+          },
+          'Yenidən Cəhd Et'
+        )
+      );
+    }
+
+    // FIX: Matchmaking skeleton spinner
     return React.createElement(
       'div',
       { className: 'min-h-[500px] flex flex-col items-center justify-center space-y-6 text-center animate-fadeIn p-6' },
@@ -264,6 +419,13 @@ export const PvpArenaView = ({
         { className: 'relative flex items-center justify-center' },
         React.createElement('div', { className: 'w-24 h-24 rounded-full border-4 border-amber-500/30 border-t-amber-500 animate-spin' }),
         React.createElement('span', { className: 'absolute text-3xl' }, '⚔️')
+      ),
+      // FIX: Loading skeleton state — animasiyalı placeholder
+      React.createElement(
+        'div',
+        { className: 'space-y-3 w-48' },
+        React.createElement('div', { className: 'h-4 bg-zinc-200 dark:bg-zinc-700 rounded animate-pulse' }),
+        React.createElement('div', { className: 'h-3 bg-zinc-100 dark:bg-zinc-800 rounded animate-pulse w-3/4 mx-auto' })
       ),
       React.createElement(
         'div',
@@ -325,7 +487,7 @@ export const PvpArenaView = ({
             React.createElement(
               'div',
               { className: 'min-w-0' },
-              React.createElement('div', { className: 'text-xs font-black text-zinc-800 dark:text-zinc-100 truncate' }, userStats?.name || 'Sən'),
+              React.createElement('div', { className: 'text-xs font-black text-zinc-800 dark:text-zinc-100 truncate' }, userStats?.name ?? 'Sən'),
               React.createElement('div', { className: 'text-[10px] text-amber-500 font-bold' }, playerStreak > 1 ? `🔥 ${playerStreak}x Kombo` : '10-cu sinif')
             )
           ),
@@ -360,10 +522,11 @@ export const PvpArenaView = ({
             React.createElement(
               'div',
               { className: 'min-w-0' },
-              React.createElement('div', { className: 'text-xs font-black text-zinc-800 dark:text-zinc-100 truncate' }, opponent?.name || 'Rəqib'),
-              React.createElement('div', { className: 'text-[10px] text-amber-500 font-bold' }, opponentStreak > 1 ? `🔥 ${opponentStreak}x Kombo` : `${opponent?.rating || 1800} Reytinq`)
+              // FIX: Null guard — opponent?.username ?? 'Naməlum'
+              React.createElement('div', { className: 'text-xs font-black text-zinc-800 dark:text-zinc-100 truncate' }, opponent?.name ?? 'Naməlum'),
+              React.createElement('div', { className: 'text-[10px] text-amber-500 font-bold' }, opponentStreak > 1 ? `🔥 ${opponentStreak}x Kombo` : `${opponent?.rating ?? 1800} Reytinq`)
             ),
-            React.createElement('span', { className: 'text-2xl' }, opponent?.avatar || '👩‍🎓')
+            React.createElement('span', { className: 'text-2xl' }, opponent?.avatar ?? '👩‍🎓')
           ),
           React.createElement(
             'div',
@@ -407,14 +570,14 @@ export const PvpArenaView = ({
         React.createElement(
           'div',
           { className: 'text-base sm:text-lg font-bold text-zinc-800 dark:text-zinc-100' },
-          React.createElement(KatexRenderer, { text: currentQ.text })
+          React.createElement(KatexRenderer, { text: currentQ.text ?? '' })
         ),
 
         // Variantlar
         React.createElement(
           'div',
           { className: 'grid grid-cols-1 sm:grid-cols-2 gap-3' },
-          currentQ.options.map(opt => {
+          (currentQ.options || []).map(opt => {
             const isUserChoice = playerSelectedKey === opt.key;
             let btnStyle = 'bg-zinc-50 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-200 border-zinc-200 dark:border-zinc-700 hover:border-purple-400';
 
@@ -444,7 +607,7 @@ export const PvpArenaView = ({
                 opt.key
               ),
               React.createElement('div', { className: 'flex-1 font-semibold' },
-                React.createElement(KatexRenderer, { text: opt.text })
+                React.createElement(KatexRenderer, { text: opt.text ?? '' })
               )
             );
           })
@@ -504,16 +667,17 @@ export const PvpArenaView = ({
           React.createElement(
             'div',
             { className: 'text-center border-r border-zinc-200 dark:border-zinc-700' },
-            React.createElement('div', { className: 'text-xs text-zinc-400 font-bold uppercase' }, userStats?.name || 'Sən'),
+            React.createElement('div', { className: 'text-xs text-zinc-400 font-bold uppercase' }, userStats?.name ?? 'Sən'),
             React.createElement('div', { className: 'text-3xl font-black text-purple-600 dark:text-purple-400 mt-1' }, playerScore),
             React.createElement('div', { className: 'text-[11px] text-emerald-500 font-bold' }, isVictory ? '+150 Bonus XP' : '+50 Təcrübə')
           ),
           React.createElement(
             'div',
             { className: 'text-center' },
-            React.createElement('div', { className: 'text-xs text-zinc-400 font-bold uppercase' }, opponent?.name || 'Rəqib'),
+            // FIX: Null guard
+            React.createElement('div', { className: 'text-xs text-zinc-400 font-bold uppercase' }, opponent?.name ?? 'Naməlum'),
             React.createElement('div', { className: 'text-3xl font-black text-cyan-600 dark:text-cyan-400 mt-1' }, opponentScore),
-            React.createElement('div', { className: 'text-[11px] text-zinc-400' }, `${opponent?.rating || 1800} Reytinq`)
+            React.createElement('div', { className: 'text-[11px] text-zinc-400' }, `${opponent?.rating ?? 1800} Reytinq`)
           )
         ),
 
@@ -639,7 +803,7 @@ export const PvpArenaView = ({
             React.createElement('input', {
               type: 'text',
               value: inputRoomCode,
-              onChange: e => setInputRoomCode(e.target.value.toUpperCase()),
+              onChange: e => setInputRoomCode((e.target.value || '').toUpperCase()),
               placeholder: 'Dostunun kodunu yaz (məs: AZ89X2)',
               className: 'flex-1 px-3 py-2 text-xs rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-100 uppercase font-mono'
             }),
@@ -671,10 +835,10 @@ export const PvpArenaView = ({
           React.createElement('h3', { className: 'font-black text-base text-zinc-800 dark:text-zinc-100' }, 'Liderlər Cədvəli'),
           React.createElement('span', { className: 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300' }, 'Yalnız Real Oyunçular')
         ),
-        React.createElement('span', { className: 'text-xs text-zinc-400 font-semibold' }, `${leaderboard.length} İştirakçı`)
+        React.createElement('span', { className: 'text-xs text-zinc-400 font-semibold' }, `${(leaderboard || []).length} İştirakçı`)
       ),
 
-      leaderboard.length === 0 ? React.createElement(
+      (leaderboard || []).length === 0 ? React.createElement(
         'div',
         { className: 'py-8 text-center text-xs text-zinc-400' },
         React.createElement('i', { className: 'fas fa-users-slash text-2xl mb-2 block' }),
@@ -702,7 +866,7 @@ export const PvpArenaView = ({
           React.createElement(
             'tbody',
             { className: 'divide-y divide-zinc-100 dark:divide-zinc-800/60' },
-            leaderboard.map(user => {
+            (leaderboard || []).map(user => {
               return React.createElement(
                 'tr',
                 { key: user.id, className: 'hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition' },
@@ -715,13 +879,13 @@ export const PvpArenaView = ({
                   'td',
                   { className: 'py-3 px-3 font-bold text-zinc-800 dark:text-zinc-200 flex items-center space-x-2' },
                   React.createElement('span', { className: 'text-base' }, user.avatar || '🧑‍🎓'),
-                  React.createElement('span', null, user.name)
+                  React.createElement('span', null, user.name ?? 'Naməlum')
                 ),
-                React.createElement('td', { className: 'py-3 px-3 text-zinc-500' }, `${user.schoolGrade}-ci sinif`),
-                React.createElement('td', { className: 'py-3 px-3 text-emerald-600 font-bold' }, `${user.winRate}% (${user.wins} Q)`),
-                React.createElement('td', { className: 'py-3 px-3 font-black text-purple-600 dark:text-purple-400' }, `${user.points} XP`),
+                React.createElement('td', { className: 'py-3 px-3 text-zinc-500' }, `${user.schoolGrade ?? '?'}-ci sinif`),
+                React.createElement('td', { className: 'py-3 px-3 text-emerald-600 font-bold' }, `${user.winRate ?? 0}% (${user.wins ?? 0} Q)`),
+                React.createElement('td', { className: 'py-3 px-3 font-black text-purple-600 dark:text-purple-400' }, `${user.points ?? 0} XP`),
                 React.createElement('td', { className: 'py-3 px-3 text-right' },
-                  React.createElement('span', { className: 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300' }, user.badge || '⚡ Real İştirakçı')
+                  React.createElement('span', { className: 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300' }, user.badge ?? '⚡ Real İştirakçı')
                 )
               );
             })

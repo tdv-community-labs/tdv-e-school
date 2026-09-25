@@ -21,3 +21,11 @@ env.js
 
 # Vercel
 .vercel
+
+# Deactivated auto-push scripts (security risk in CI)
+auto_push_watch.py
+auto-push.bat
+auto-push-watch.ps1
+auto_push_watch.py
+auto-push.bat
+auto-push-watch.ps1
