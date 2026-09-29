@@ -46,7 +46,7 @@ export const Sidebar = ({
     React.createElement(
       'div',
       {
-        className: 'fixed inset-y-0 left-0 max-w-xs w-full bg-white dark:bg-zinc-900 shadow-2xl p-6 flex flex-col justify-between z-10 transition-transform'
+        className: 'fixed inset-y-0 left-0 max-w-xs w-full bg-white dark:bg-[#080808] dark:backdrop-blur-xl shadow-2xl p-6 flex flex-col justify-between z-10 transition-transform'
       },
       React.createElement(
         'div',
@@ -54,7 +54,7 @@ export const Sidebar = ({
         // Header
         React.createElement(
           'div',
-          { className: 'flex items-center justify-between pb-6 border-b border-zinc-200 dark:border-zinc-800' },
+          { className: 'flex items-center justify-between pb-6 border-b border-zinc-200 dark:border-white/10' },
           React.createElement(
             'div',
             { className: 'flex items-center space-x-3' },
@@ -119,7 +119,7 @@ export const Sidebar = ({
         // Ekosistem Portallar (Mobil Keid)
         React.createElement(
           'div',
-          { className: 'mt-6 pt-4 border-t border-zinc-200/80 dark:border-zinc-800' },
+          { className: 'mt-6 pt-4 border-t border-zinc-200/80 dark:border-white/10' },
           React.createElement(
             'div',
             { className: 'text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-2.5 px-1' },
@@ -171,7 +171,7 @@ export const Sidebar = ({
       // Footer User stats (Profilə keçid & Çıxış)
       React.createElement(
         'div',
-        { className: 'pt-4 border-t border-zinc-200 dark:border-zinc-800 space-y-2' },
+        { className: 'pt-4 border-t border-zinc-200 dark:border-white/10 space-y-2' },
         React.createElement(
           'div',
           {

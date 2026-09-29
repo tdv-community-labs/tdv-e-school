@@ -97,13 +97,13 @@ export const PhetEmbed = ({ simUrl, title, description }) => {
     'div',
     {
       ref: containerRef,
-      className: 'bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden shadow-lg my-6 transition-all duration-200'
+      className: 'bg-white dark:bg-[#080808] dark:backdrop-blur-xl rounded-2xl border border-zinc-200 dark:border-white/10 overflow-hidden shadow-lg my-6 transition-all duration-200'
     },
     // Başlıq və Alətlər Paneli
     React.createElement(
       'div',
       {
-        className: 'flex items-center justify-between px-5 py-3.5 bg-zinc-100 dark:bg-zinc-800/80 border-b border-zinc-200 dark:border-zinc-800'
+        className: 'flex items-center justify-between px-5 py-3.5 bg-zinc-100 dark:bg-[#050505] border-b border-zinc-200 dark:border-white/10'
       },
       React.createElement(
         'div',
@@ -175,7 +175,7 @@ export const PhetEmbed = ({ simUrl, title, description }) => {
     // Alt Bildiriş
     React.createElement(
       'div',
-      { className: 'px-5 py-2.5 bg-zinc-50 dark:bg-zinc-900/50 text-[11px] text-zinc-500 dark:text-zinc-400 flex items-center justify-between' },
+      { className: 'px-5 py-2.5 bg-zinc-50 dark:bg-[#080808] dark:backdrop-blur-xl/50 text-[11px] text-zinc-500 dark:text-zinc-400 flex items-center justify-between' },
       React.createElement(
         'span',
         null,

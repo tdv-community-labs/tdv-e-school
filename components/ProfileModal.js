@@ -72,7 +72,7 @@ export const ProfileModal = ({
     
     React.createElement(
       'div',
-      { className: 'bg-white dark:bg-zinc-900 rounded-[20px] max-w-2xl w-full shadow-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden flex flex-col max-h-[90vh]' },
+      { className: 'bg-white dark:bg-[#080808] dark:backdrop-blur-xl rounded-[20px] max-w-2xl w-full shadow-2xl border border-zinc-200 dark:border-white/10 overflow-hidden flex flex-col max-h-[90vh]' },
       
       // Başlıq və Profil Kartı
       React.createElement(
@@ -130,7 +130,7 @@ export const ProfileModal = ({
       // Redaktə Forması (əgər aktivdirsə)
       isEditing && React.createElement(
         'form',
-        { onSubmit: handleSaveProfile, className: 'p-4 bg-indigo-50 dark:bg-zinc-800/80 border-b border-indigo-100 dark:border-zinc-700 flex flex-wrap items-center gap-3' },
+        { onSubmit: handleSaveProfile, className: 'p-4 bg-indigo-50 dark:bg-[#050505] border-b border-indigo-100 dark:border-zinc-700 flex flex-wrap items-center gap-3' },
         React.createElement(
           'div',
           { className: 'flex-1 min-w-[150px]' },
@@ -139,7 +139,7 @@ export const ProfileModal = ({
             type: 'text',
             value: name,
             onChange: (e) => setName(e.target.value),
-            className: 'w-full p-2 text-xs rounded-[8px] bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 font-bold'
+            className: 'w-full p-2 text-xs rounded-[8px] bg-white dark:bg-[#080808] dark:backdrop-blur-xl border border-zinc-300 dark:border-zinc-700 font-bold'
           })
         ),
         React.createElement(
@@ -170,7 +170,7 @@ export const ProfileModal = ({
       // Naviqasiya Tabları
       React.createElement(
         'div',
-        { className: 'p-3 bg-zinc-50 dark:bg-zinc-800/50 border-b border-zinc-200 dark:border-zinc-800 flex space-x-2' },
+        { className: 'p-3 bg-zinc-50 dark:bg-zinc-800/50 border-b border-zinc-200 dark:border-white/10 flex space-x-2' },
         [
           { id: 'overview', label: 'Ümumi Statistikalar', icon: 'fa-chart-pie' },
           { id: 'mastery', label: 'Fənn Mənimsəməsi', icon: 'fa-graduation-cap' },
@@ -304,7 +304,7 @@ export const ProfileModal = ({
                 className: `p-3.5 rounded-[20px] border text-center transition-all ${
                   b.unlocked
                     ? 'bg-white dark:bg-zinc-800 border-amber-300 dark:border-amber-600/60 shadow-sm'
-                    : 'bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 opacity-40 grayscale'
+                    : 'bg-zinc-50 dark:bg-[#080808] dark:backdrop-blur-xl border-zinc-200 dark:border-white/10 opacity-40 grayscale'
                 }`
               },
               React.createElement('div', { className: 'text-3xl mb-1.5' }, b.icon),

@@ -89,7 +89,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
     React.createElement(
       'div',
       {
-        className: `fixed inset-y-0 right-0 max-w-2xl w-full bg-white dark:bg-zinc-900 shadow-2xl border-l border-zinc-200/80 dark:border-zinc-800 flex flex-col transform transition-transform duration-200 ease-out z-10 ${
+        className: `fixed inset-y-0 right-0 max-w-2xl w-full bg-white dark:bg-[#080808] dark:backdrop-blur-xl shadow-2xl border-l border-zinc-200/80 dark:border-white/10 flex flex-col transform transition-transform duration-200 ease-out z-10 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`
       },
@@ -97,7 +97,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
       // Panel Başlığı (Header)
       React.createElement(
         'div',
-        { className: 'p-5 border-b border-zinc-100 dark:border-zinc-800 flex items-center justify-between bg-zinc-50/80 dark:bg-zinc-800/60' },
+        { className: 'p-5 border-b border-zinc-100 dark:border-white/10 flex items-center justify-between bg-zinc-50/80 dark:bg-zinc-800/60' },
         React.createElement(
           'div',
           { className: 'flex items-center space-x-3' },
@@ -126,7 +126,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
       // Alət Seçim Düymələri (Tabs)
       React.createElement(
         'div',
-        { className: 'p-2.5 bg-white dark:bg-zinc-900 border-b border-zinc-100 dark:border-zinc-800 grid grid-cols-3 sm:grid-cols-6 gap-1.5' },
+        { className: 'p-2.5 bg-white dark:bg-[#080808] dark:backdrop-blur-xl border-b border-zinc-100 dark:border-white/10 grid grid-cols-3 sm:grid-cols-6 gap-1.5' },
         toolsList.map(t => {
           const isActive = activeTool === t.id;
           return React.createElement(
@@ -189,7 +189,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
                   type: 'number',
                   value: polyA,
                   onChange: e => setPolyA(Number(e.target.value) || 0),
-                  className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
+                  className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-[#080808] dark:backdrop-blur-xl border border-zinc-200 dark:border-zinc-700 font-bold'
                 })
               ),
               React.createElement(
@@ -200,7 +200,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
                   type: 'number',
                   value: polyB,
                   onChange: e => setPolyB(Number(e.target.value) || 0),
-                  className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
+                  className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-[#080808] dark:backdrop-blur-xl border border-zinc-200 dark:border-zinc-700 font-bold'
                 })
               ),
               React.createElement(
@@ -211,7 +211,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
                   type: 'number',
                   value: polyC,
                   onChange: e => setPolyC(Number(e.target.value) || 0),
-                  className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
+                  className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-[#080808] dark:backdrop-blur-xl border border-zinc-200 dark:border-zinc-700 font-bold'
                 })
               )
             ),
@@ -223,7 +223,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
                 type: 'number',
                 value: evalX,
                 onChange: e => setEvalX(Number(e.target.value) || 0),
-                className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
+                className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-[#080808] dark:backdrop-blur-xl border border-zinc-200 dark:border-zinc-700 font-bold'
               })
             )
           ),
@@ -240,13 +240,13 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
               { className: 'grid grid-cols-2 gap-3 pt-2' },
               React.createElement(
                 'div',
-                { className: 'p-3 rounded-xl bg-white dark:bg-zinc-900 text-center' },
+                { className: 'p-3 rounded-xl bg-white dark:bg-[#080808] dark:backdrop-blur-xl text-center' },
                 React.createElement('div', { className: 'text-[10px] text-zinc-400 font-bold' }, 'f(x₀) Qiyməti'),
                 React.createElement('div', { className: 'text-xl font-black text-indigo-600 dark:text-indigo-400' }, funcValue)
               ),
               React.createElement(
                 'div',
-                { className: 'p-3 rounded-xl bg-white dark:bg-zinc-900 text-center' },
+                { className: 'p-3 rounded-xl bg-white dark:bg-[#080808] dark:backdrop-blur-xl text-center' },
                 React.createElement('div', { className: 'text-[10px] text-zinc-400 font-bold' }, 'Bucaq Əmsalı (k)'),
                 React.createElement('div', { className: 'text-xl font-black text-cyan-600 dark:text-cyan-400' }, derivativeSlope)
               )
@@ -297,7 +297,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
                   type: 'number',
                   value: geomA,
                   onChange: e => setGeomA(Math.max(1, Number(e.target.value) || 1)),
-                  className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
+                  className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-[#080808] dark:backdrop-blur-xl border border-zinc-200 dark:border-zinc-700 font-bold'
                 })
               ),
               React.createElement(
@@ -308,7 +308,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
                   type: 'number',
                   value: geomB,
                   onChange: e => setGeomB(Math.max(1, Number(e.target.value) || 1)),
-                  className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
+                  className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-[#080808] dark:backdrop-blur-xl border border-zinc-200 dark:border-zinc-700 font-bold'
                 })
               )
             )
@@ -442,7 +442,7 @@ export const ToolsDrawer = ({ isOpen, onClose }) => {
               type: 'number',
               value: convertVal,
               onChange: e => setConvertVal(Number(e.target.value) || 0),
-              className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 font-bold'
+              className: 'w-full p-2 text-xs tabular-nums tracking-tight rounded-xl bg-white dark:bg-[#080808] dark:backdrop-blur-xl border border-zinc-200 dark:border-zinc-700 font-bold'
             })
           ),
 

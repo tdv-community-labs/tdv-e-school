@@ -34,7 +34,7 @@ check('index.html contains valid HTML5 doctype and lang tag', () => {
 
 check('index.html uses zinc-50 and zinc-950 theme tokens', () => {
   const html = fs.readFileSync('index.html', 'utf8');
-  return html.includes('bg-zinc-50') && html.includes('dark:bg-zinc-950');
+  return html.includes('bg-zinc-50') && html.includes('dark:bg-[#030303]');
 });
 
 // 2. Check styles.css

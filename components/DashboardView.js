@@ -326,7 +326,7 @@ export const DashboardView = ({
               {
                 key: exam.id,
                 onClick: () => onOpenExam(exam),
-                className: 'p-3 rounded-2xl bg-zinc-50/80 dark:bg-zinc-900/60 hover:bg-indigo-50/40 dark:hover:bg-zinc-800/80 border border-zinc-200/60 dark:border-white/[0.06] cursor-pointer transition flex items-center justify-between'
+                className: 'p-3 rounded-2xl bg-zinc-50/80 dark:bg-[#080808] dark:backdrop-blur-xl/60 hover:bg-indigo-50/40 dark:hover:bg-zinc-800/80 border border-zinc-200/60 dark:border-white/[0.06] cursor-pointer transition flex items-center justify-between'
               },
               React.createElement(
                 'div',
@@ -387,7 +387,7 @@ export const DashboardView = ({
                   setSelectedSubjectId(les.subjectId);
                   setActiveTab('lessons');
                 },
-                className: 'p-3 rounded-2xl bg-zinc-50/80 dark:bg-zinc-900/60 hover:bg-cyan-50/40 dark:hover:bg-zinc-800/80 border border-zinc-200/60 dark:border-white/[0.06] cursor-pointer transition flex items-center justify-between'
+                className: 'p-3 rounded-2xl bg-zinc-50/80 dark:bg-[#080808] dark:backdrop-blur-xl/60 hover:bg-cyan-50/40 dark:hover:bg-zinc-800/80 border border-zinc-200/60 dark:border-white/[0.06] cursor-pointer transition flex items-center justify-between'
               },
               React.createElement(
                 'div',

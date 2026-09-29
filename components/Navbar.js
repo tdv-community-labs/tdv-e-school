@@ -71,7 +71,7 @@ export const Navbar = ({
           React.createElement(
             'div',
             {
-              className: 'relative flex items-center bg-zinc-100/90 dark:bg-zinc-900/80 border border-zinc-200/80 dark:border-white/[0.08] hover:border-purple-500/40 rounded-xl px-3 py-1.5 transition-all focus-within:border-purple-500 focus-within:ring-2 focus-within:ring-purple-500/20'
+              className: 'relative flex items-center bg-zinc-100/90 dark:bg-[#080808] dark:backdrop-blur-xl/80 border border-zinc-200/80 dark:border-white/[0.08] hover:border-purple-500/40 rounded-xl px-3 py-1.5 transition-all focus-within:border-purple-500 focus-within:ring-2 focus-within:ring-purple-500/20'
             },
             React.createElement('i', { className: 'fas fa-search text-zinc-400 text-xs mr-2.5 pointer-events-none' }),
             React.createElement('input', {
@@ -91,7 +91,7 @@ export const Navbar = ({
             ) : React.createElement(
               'kbd',
               {
-                className: 'hidden lg:inline-flex items-center gap-0.5 text-[10px] font-mono text-zinc-400 dark:text-zinc-500 bg-white dark:bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-zinc-700/60 shadow-2xs'
+                className: 'hidden lg:inline-flex items-center gap-0.5 text-[10px] font-mono text-zinc-400 dark:text-zinc-500 bg-white dark:bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-white/20 shadow-2xs'
               },
               '⌘K'
             )
@@ -101,7 +101,7 @@ export const Navbar = ({
         // 3. Floating Nav Tabs (Linear-Grade Integrated Pill Nav)
         React.createElement(
           'nav',
-          { className: 'hidden lg:flex items-center space-x-1 bg-zinc-100/80 dark:bg-zinc-950/60 border border-zinc-200/60 dark:border-white/[0.06] p-1 rounded-2xl backdrop-blur-md' },
+          { className: 'hidden lg:flex items-center space-x-1 bg-zinc-100/80 dark:bg-[#030303]/60 border border-zinc-200/60 dark:border-white/[0.06] p-1 rounded-2xl backdrop-blur-md' },
           [
             { id: 'dashboard', label: 'Ana Səhifə', icon: 'fa-house' },
             { id: 'lessons', label: 'Dərslər', icon: 'fa-book-open-reader' },
@@ -156,7 +156,7 @@ export const Navbar = ({
               onClick: () => setDarkMode(!darkMode),
               title: darkMode ? 'İşıqlı rejimə keç' : 'Qaranlıq rejimə keç',
               'aria-label': darkMode ? 'İşıqlı rejimə keç' : 'Qaranlıq rejimə keç',
-              className: 'p-2 rounded-xl bg-zinc-100 dark:bg-zinc-900/80 border border-zinc-200/60 dark:border-white/[0.08] text-zinc-600 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition cursor-pointer'
+              className: 'p-2 rounded-xl bg-zinc-100 dark:bg-[#080808] dark:backdrop-blur-xl/80 border border-zinc-200/60 dark:border-white/[0.08] text-zinc-600 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition cursor-pointer'
             },
             React.createElement('i', { className: darkMode ? 'fas fa-sun text-amber-400 text-xs' : 'fas fa-moon text-purple-500 text-xs' })
           ),
@@ -184,7 +184,7 @@ export const Navbar = ({
             {
               onClick: onOpenProfile,
               title: 'Şəxsi Kabinet',
-              className: 'flex items-center space-x-1.5 p-1 pr-2 sm:pr-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-900/80 hover:bg-purple-50 dark:hover:bg-zinc-800 transition border border-zinc-200/60 dark:border-white/[0.08] cursor-pointer'
+              className: 'flex items-center space-x-1.5 p-1 pr-2 sm:pr-2.5 rounded-xl bg-zinc-100 dark:bg-[#080808] dark:backdrop-blur-xl/80 hover:bg-purple-50 dark:hover:bg-zinc-800 transition border border-zinc-200/60 dark:border-white/[0.08] cursor-pointer'
             },
             React.createElement('span', { className: 'text-sm leading-none' }, userSession?.avatar || userStats?.avatar || '🧑‍🎓'),
             React.createElement('span', { className: 'hidden md:inline text-xs font-bold text-zinc-700 dark:text-zinc-200' }, userSession?.fullName || userSession?.username || userStats?.name || 'Məktəbli')
@@ -208,7 +208,7 @@ export const Navbar = ({
             {
               onClick: onOpenMobileMenu,
               'aria-label': 'Menyunu aç',
-              className: 'lg:hidden p-2 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/60 dark:border-white/[0.08] text-zinc-600 dark:text-zinc-300 cursor-pointer'
+              className: 'lg:hidden p-2 rounded-xl bg-zinc-100 dark:bg-[#080808] dark:backdrop-blur-xl border border-zinc-200/60 dark:border-white/[0.08] text-zinc-600 dark:text-zinc-300 cursor-pointer'
             },
             React.createElement('i', { className: 'fas fa-bars text-sm' })
           )

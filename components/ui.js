@@ -30,7 +30,7 @@ export const Button = ({
 
   const variantClasses = {
     primary: 'bg-purple-600 hover:bg-purple-500 active:bg-purple-700 text-white shadow-sm shadow-purple-600/25 border border-purple-500/30',
-    secondary: 'bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800/80 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-sm',
+    secondary: 'bg-zinc-100 hover:bg-zinc-200 dark:bg-[#050505] dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-sm',
     danger: 'bg-rose-600 hover:bg-rose-500 active:bg-rose-700 text-white shadow-sm shadow-rose-600/25 border border-rose-500/30',
     outline: 'bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-300 dark:border-zinc-700',
     ghost: 'bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-800/60 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white'
@@ -100,7 +100,7 @@ export const EmptyState = ({
   return React.createElement(
     'div',
     {
-      className: `flex flex-col items-center justify-center text-center p-8 sm:p-12 rounded-[20px] border border-dashed border-zinc-300 dark:border-zinc-800 bg-zinc-50/60 dark:bg-zinc-900/40 transition-colors duration-200 ${className}`
+      className: `flex flex-col items-center justify-center text-center p-8 sm:p-12 rounded-[20px] border border-dashed border-zinc-300 dark:border-white/10 bg-zinc-50/60 dark:bg-[#080808] dark:backdrop-blur-xl/40 transition-colors duration-200 ${className}`
     },
     React.createElement(
       'div',

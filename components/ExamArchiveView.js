@@ -153,7 +153,7 @@ export const ExamArchiveView = ({
         { className: 'bento-card p-6 rounded-3xl bg-zinc-900/80 backdrop-blur-xl border border-white/10 shadow-xl space-y-4' },
         React.createElement(
           'div',
-          { className: 'flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-zinc-100 dark:border-zinc-800' },
+          { className: 'flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-zinc-100 dark:border-white/10' },
           React.createElement(
             'div',
             null,
@@ -247,7 +247,7 @@ export const ExamArchiveView = ({
       // İmtahan Kartları Şəbəkəsi
       filteredExams.length === 0 ? React.createElement(
         'div',
-        { className: 'bg-white dark:bg-zinc-900 rounded-3xl p-12 text-center text-zinc-400 border border-zinc-200 dark:border-zinc-800' },
+        { className: 'bg-white dark:bg-[#080808] dark:backdrop-blur-xl rounded-3xl p-12 text-center text-zinc-400 border border-zinc-200 dark:border-white/10' },
         React.createElement('i', { className: 'fas fa-magnifying-glass text-3xl mb-3 block text-zinc-300' }),
         'Seçilmiş süzgəc parametrlərinə uyğun imtahan vərəqi tapılmadı.'
       ) : React.createElement(
@@ -302,7 +302,7 @@ export const ExamArchiveView = ({
             // Düymələr: İnteraktiv Həll Et və məktəb Çap Görünüşü
             React.createElement(
               'div',
-              { className: 'mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center gap-3' },
+              { className: 'mt-6 pt-4 border-t border-zinc-100 dark:border-white/10/80 flex items-center gap-3' },
               React.createElement(
                 'button',
                 {
@@ -345,7 +345,7 @@ export const ExamArchiveView = ({
       // Çap üçün İdarəetmə Paneli (Ekran rejimində görünür, çapda gizlənir)
       React.createElement(
         'div',
-        { className: 'no-print bg-white dark:bg-zinc-900 p-4 rounded-[20px] p-2 border border-zinc-200 dark:border-zinc-800 shadow-sm flex items-center justify-between' },
+        { className: 'no-print bg-white dark:bg-[#080808] dark:backdrop-blur-xl p-4 rounded-[20px] p-2 border border-zinc-200 dark:border-white/10 shadow-sm flex items-center justify-between' },
         React.createElement(
           'button',
           {
@@ -477,7 +477,7 @@ export const ExamArchiveView = ({
     // Yuxarı Başlıq və Taymer Paneli
     React.createElement(
       'div',
-      { className: 'bg-white dark:bg-zinc-900 p-4 sm:p-5 rounded-3xl border border-zinc-200/80 dark:border-zinc-800 shadow-sm flex flex-wrap items-center justify-between gap-4 sticky top-20 z-20' },
+      { className: 'bg-white dark:bg-[#080808] dark:backdrop-blur-xl p-4 sm:p-5 rounded-3xl border border-zinc-200/80 dark:border-white/10 shadow-sm flex flex-wrap items-center justify-between gap-4 sticky top-20 z-20' },
       
       React.createElement(
         'div',
@@ -595,7 +595,7 @@ export const ExamArchiveView = ({
         { className: 'lg:col-span-3 space-y-4' },
         React.createElement(
           'div',
-          { className: 'bg-white dark:bg-zinc-900 p-5 rounded-3xl border border-zinc-200/80 dark:border-zinc-800 shadow-sm' },
+          { className: 'bg-white dark:bg-[#080808] dark:backdrop-blur-xl p-5 rounded-3xl border border-zinc-200/80 dark:border-white/10 shadow-sm' },
           React.createElement('h4', { className: 'text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase mb-3' }, 'Suallar Palitrası'),
           React.createElement(
             'div',
@@ -629,7 +629,7 @@ export const ExamArchiveView = ({
           ),
           !isExamCompleted && React.createElement(
             'div',
-            { className: 'mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800 text-[11px] space-y-1.5 text-zinc-500' },
+            { className: 'mt-4 pt-3 border-t border-zinc-100 dark:border-white/10 text-[11px] space-y-1.5 text-zinc-500' },
             React.createElement('div', { className: 'flex items-center gap-2' },
               React.createElement('span', { className: 'w-2.5 h-2.5 rounded-full bg-indigo-600' }),
               React.createElement('span', null, 'Aktiv sual')
@@ -654,12 +654,12 @@ export const ExamArchiveView = ({
         // Cari Sual Kartı
         React.createElement(
           'div',
-          { className: 'bg-white dark:bg-zinc-900 p-6 sm:p-8 rounded-3xl border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-6' },
+          { className: 'bg-white dark:bg-[#080808] dark:backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-zinc-200/80 dark:border-white/10 shadow-sm space-y-6' },
           
           // Sualın Başlıq Barı
           React.createElement(
             'div',
-            { className: 'flex items-center justify-between pb-4 border-b border-zinc-100 dark:border-zinc-800' },
+            { className: 'flex items-center justify-between pb-4 border-b border-zinc-100 dark:border-white/10' },
             React.createElement(
               'div',
               { className: 'flex items-center space-x-2' },
@@ -730,7 +730,7 @@ export const ExamArchiveView = ({
           // Naviqasiya Düymələri (Əvvəlki / Növbəti)
           React.createElement(
             'div',
-            { className: 'flex items-center justify-between pt-4 border-t border-zinc-100 dark:border-zinc-800' },
+            { className: 'flex items-center justify-between pt-4 border-t border-zinc-100 dark:border-white/10' },
             React.createElement(
               'button',
               {
@@ -761,7 +761,7 @@ export const ExamArchiveView = ({
         // AI CHAIN-OF-THOUGHT (Addım-addım Həll İzahı - İmtahan Bitdikdə Görünür)
         isExamCompleted && currentQ.explanationCoT && React.createElement(
           'div',
-          { className: 'bg-white dark:bg-zinc-900 p-6 sm:p-8 rounded-3xl border border-indigo-200 dark:border-indigo-900 shadow-sm space-y-5 animate-fadeIn' },
+          { className: 'bg-white dark:bg-[#080808] dark:backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-indigo-200 dark:border-indigo-900 shadow-sm space-y-5 animate-fadeIn' },
           React.createElement(
             'div',
             { className: 'flex items-center space-x-2.5 text-indigo-600 dark:text-indigo-400 pb-3 border-b border-indigo-100 dark:border-indigo-900/50' },
@@ -793,7 +793,7 @@ export const ExamArchiveView = ({
             currentQ.explanationCoT.steps.map(st => {
               return React.createElement(
                 'div',
-                { key: st.stepNumber, className: 'p-3.5 rounded-[20px] p-2 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs sm:text-sm space-y-1' },
+                { key: st.stepNumber, className: 'p-3.5 rounded-[20px] p-2 border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#080808] dark:backdrop-blur-xl text-xs sm:text-sm space-y-1' },
                 React.createElement('div', { className: 'font-black text-indigo-600 dark:text-indigo-400' }, `Addım ${st.stepNumber}: ${st.title}`),
                 React.createElement(KatexRenderer, { text: st.content })
               );

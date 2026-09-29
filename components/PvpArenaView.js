@@ -456,7 +456,7 @@ export const PvpArenaView = ({
       // Yuxarı Xal və Oyunçular Barları (Split Screen)
       React.createElement(
         'div',
-        { className: 'grid grid-cols-2 gap-4 bg-white dark:bg-zinc-900 p-4 sm:p-6 rounded-3xl border border-zinc-200/80 dark:border-zinc-800 shadow-lg relative overflow-hidden' },
+        { className: 'grid grid-cols-2 gap-4 bg-white dark:bg-[#080808] dark:backdrop-blur-xl p-4 sm:p-6 rounded-3xl border border-zinc-200/80 dark:border-white/10 shadow-lg relative overflow-hidden' },
         
         // Mərkəzi 15s Taymer Dairəsi
         React.createElement(
@@ -468,7 +468,7 @@ export const PvpArenaView = ({
               className: `w-14 h-14 rounded-full flex flex-col items-center justify-center font-mono font-black shadow-lg border-4 transition-all ${
                 timeLeft <= 3
                   ? 'bg-rose-600 border-rose-300 text-white animate-bounce'
-                  : 'bg-white dark:bg-zinc-900 border-purple-500 text-purple-600 dark:text-purple-400'
+                  : 'bg-white dark:bg-[#080808] dark:backdrop-blur-xl border-purple-500 text-purple-600 dark:text-purple-400'
               }`
             },
             React.createElement('span', { className: 'text-base leading-none' }, timeLeft),
@@ -561,7 +561,7 @@ export const PvpArenaView = ({
         
         React.createElement(
           'div',
-          { className: 'flex items-center justify-between pb-3 border-b border-zinc-100 dark:border-zinc-800' },
+          { className: 'flex items-center justify-between pb-3 border-b border-zinc-100 dark:border-white/10' },
           React.createElement('span', { className: 'text-xs font-black px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-600' }, `Raund ${currentQuestionIndex + 1} / ${matchQuestions.length}`),
           React.createElement('span', { className: 'text-xs text-zinc-400' }, 'Sürətli cavaba görə +50 əlavə XP')
         ),
@@ -579,7 +579,7 @@ export const PvpArenaView = ({
           { className: 'grid grid-cols-1 sm:grid-cols-2 gap-3' },
           (currentQ.options || []).map(opt => {
             const isUserChoice = playerSelectedKey === opt.key;
-            let btnStyle = 'bg-zinc-50 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-200 border-zinc-200 dark:border-zinc-700 hover:border-purple-400';
+            let btnStyle = 'bg-zinc-50 dark:bg-[#050505] text-zinc-700 dark:text-zinc-200 border-zinc-200 dark:border-zinc-700 hover:border-purple-400';
 
             if (roundEnded) {
               if (opt.key === currentQ.correctKey) {
@@ -642,7 +642,7 @@ export const PvpArenaView = ({
       
       React.createElement(
         'div',
-        { className: 'bg-white dark:bg-zinc-900 p-8 sm:p-12 rounded-3xl border border-zinc-200/80 dark:border-zinc-800 shadow-xl space-y-6' },
+        { className: 'bg-white dark:bg-[#080808] dark:backdrop-blur-xl p-8 sm:p-12 rounded-3xl border border-zinc-200/80 dark:border-white/10 shadow-xl space-y-6' },
         
         React.createElement(
           'div',
@@ -734,7 +734,7 @@ export const PvpArenaView = ({
       // 1. Təsadüfi Rəqib (Quick Match)
       React.createElement(
         'div',
-        { className: 'bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200/80 dark:border-zinc-800  flex flex-col justify-between space-y-4' },
+        { className: 'bg-white dark:bg-[#080808] dark:backdrop-blur-xl p-6 rounded-3xl border border-zinc-200/80 dark:border-white/10  flex flex-col justify-between space-y-4' },
         React.createElement(
           'div',
           { className: 'space-y-2' },
@@ -824,10 +824,10 @@ export const PvpArenaView = ({
     // 5. Həftəlik Liderlər Cədvəli (Leaderboard)
     React.createElement(
       'div',
-      { className: 'bg-white dark:bg-zinc-900 rounded-3xl p-6 sm:p-8 border border-zinc-200/80 dark:border-zinc-800  space-y-4' },
+      { className: 'bg-white dark:bg-[#080808] dark:backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-zinc-200/80 dark:border-white/10  space-y-4' },
       React.createElement(
         'div',
-        { className: 'flex items-center justify-between pb-3 border-b border-zinc-100 dark:border-zinc-800' },
+        { className: 'flex items-center justify-between pb-3 border-b border-zinc-100 dark:border-white/10' },
         React.createElement(
           'div',
           { className: 'flex items-center space-x-2' },
@@ -851,7 +851,7 @@ export const PvpArenaView = ({
           { className: 'w-full text-left text-xs' },
           React.createElement(
             'thead',
-            { className: 'text-[10px] uppercase font-bold text-zinc-400 border-b border-zinc-100 dark:border-zinc-800' },
+            { className: 'text-[10px] uppercase font-bold text-zinc-400 border-b border-zinc-100 dark:border-white/10' },
             React.createElement(
               'tr',
               null,

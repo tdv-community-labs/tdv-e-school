@@ -239,7 +239,7 @@ export const LessonsView = ({
           
           React.createElement(
             'div',
-            { className: 'flex items-center justify-between pb-3 mb-3 border-b border-zinc-100 dark:border-zinc-800' },
+            { className: 'flex items-center justify-between pb-3 mb-3 border-b border-zinc-100 dark:border-white/10' },
             React.createElement(
               'div',
               { className: 'flex items-center space-x-2' },
@@ -261,7 +261,7 @@ export const LessonsView = ({
               const isExpanded = expandedUnits[unitName] ?? true;
               return React.createElement(
                 'div',
-                { key: unitName, className: 'rounded-2xl border border-zinc-100 dark:border-zinc-800 overflow-hidden' },
+                { key: unitName, className: 'rounded-2xl border border-zinc-100 dark:border-white/10 overflow-hidden' },
                 // Unit header (Collapsible)
                 React.createElement(
                   'button',
@@ -280,7 +280,7 @@ export const LessonsView = ({
                 // Lessons in unit
                 isExpanded && React.createElement(
                   'div',
-                  { className: 'p-1.5 space-y-1 bg-white dark:bg-zinc-900' },
+                  { className: 'p-1.5 space-y-1 bg-white dark:bg-[#080808] dark:backdrop-blur-xl' },
                   unitLessons.map(les => {
                     const isCurrent = currentLesson?.id === les.id;
                     return React.createElement(
@@ -326,7 +326,7 @@ export const LessonsView = ({
           // Dərs Başlığı və Metadata (Səsli Oxuma ilə)
           React.createElement(
             'div',
-            { className: 'pb-5 border-b border-zinc-100 dark:border-zinc-800' },
+            { className: 'pb-5 border-b border-zinc-100 dark:border-white/10' },
             React.createElement(
               'div',
               { className: 'flex flex-wrap items-center justify-between gap-3 mb-3' },
@@ -383,7 +383,7 @@ export const LessonsView = ({
               currentLesson.keyFormulas.map(f => {
                 return React.createElement(
                   'div',
-                  { key: f.id, className: 'p-3 rounded-xl bg-white dark:bg-zinc-900 border border-indigo-100 dark:border-indigo-900 shadow-sm' },
+                  { key: f.id, className: 'p-3 rounded-xl bg-white dark:bg-[#080808] dark:backdrop-blur-xl border border-indigo-100 dark:border-indigo-900 shadow-sm' },
                   React.createElement('div', { className: 'text-xs font-bold text-zinc-700 dark:text-zinc-300 mb-1' }, f.name),
                   React.createElement(KatexRenderer, { text: `$$${f.latex}$$`, block: true }),
                   React.createElement('div', { className: 'text-[11px] text-zinc-500 dark:text-zinc-400 mt-1' }, f.description)
@@ -417,7 +417,7 @@ export const LessonsView = ({
               currentLesson.glossary.map((g, idx) => {
                 return React.createElement(
                   'div',
-                  { key: idx, className: 'p-3 rounded-xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200/60 dark:border-zinc-800' },
+                  { key: idx, className: 'p-3 rounded-xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200/60 dark:border-white/10' },
                   React.createElement('div', { className: 'text-xs font-black text-indigo-600 dark:text-indigo-400' }, g.term),
                   React.createElement('div', { className: 'text-xs text-zinc-600 dark:text-zinc-300 mt-0.5' }, g.definition)
                 );
@@ -428,7 +428,7 @@ export const LessonsView = ({
           // Həlli Gizlədilmiş Nümunəvi Məsələlər (Accordion)
           currentLesson.solvedExamples && currentLesson.solvedExamples.length > 0 && React.createElement(
             'div',
-            { className: 'space-y-3 pt-4 border-t border-zinc-100 dark:border-zinc-800' },
+            { className: 'space-y-3 pt-4 border-t border-zinc-100 dark:border-white/10' },
             React.createElement('h3', { className: 'font-black text-base text-zinc-800 dark:text-zinc-200 flex items-center gap-2' },
               React.createElement('i', { className: 'fas fa-lightbulb text-amber-500' }),
               React.createElement('span', null, 'Nümunəvi Məsələ və Addım-Addım Həlli')
@@ -459,7 +459,7 @@ export const LessonsView = ({
                 ),
                 isRevealed && React.createElement(
                   'div',
-                  { className: 'p-4 bg-white dark:bg-zinc-900 border-t border-amber-200/70 dark:border-amber-900/50 text-xs sm:text-sm space-y-2' },
+                  { className: 'p-4 bg-white dark:bg-[#080808] dark:backdrop-blur-xl border-t border-amber-200/70 dark:border-amber-900/50 text-xs sm:text-sm space-y-2' },
                   React.createElement(KatexRenderer, { text: ex.solution })
                 )
               );
@@ -552,7 +552,7 @@ export const LessonsView = ({
           )
         ) : React.createElement(
           'div',
-          { className: 'bg-white dark:bg-zinc-900 rounded-3xl p-12 text-center text-zinc-400 border border-zinc-200 dark:border-zinc-800' },
+          { className: 'bg-white dark:bg-[#080808] dark:backdrop-blur-xl rounded-3xl p-12 text-center text-zinc-400 border border-zinc-200 dark:border-white/10' },
           'Dərs seçilməyib'
         )
       )

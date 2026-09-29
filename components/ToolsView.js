@@ -98,8 +98,8 @@ export const ToolsView = () => {
             onClick: () => handleToolChange(tool.id),
             className: `p-4 rounded-2xl border text-left transition-all duration-200 flex flex-col justify-between space-y-2 ${
               isActive
-                ? 'bg-white dark:bg-zinc-900 border-purple-500 shadow-md ring-2 ring-purple-500/20'
-                : 'bg-white dark:bg-zinc-900/60 border-zinc-200/80 dark:border-zinc-800 hover:border-purple-300'
+                ? 'bg-white dark:bg-[#080808] dark:backdrop-blur-xl border-purple-500 shadow-md ring-2 ring-purple-500/20'
+                : 'bg-white dark:bg-[#080808] dark:backdrop-blur-xl/60 border-zinc-200/80 dark:border-white/10 hover:border-purple-300'
             }`
           },
           React.createElement(
@@ -121,7 +121,7 @@ export const ToolsView = () => {
       { className: 'space-y-4 animate-fadeIn' },
       React.createElement(
         'div',
-        { className: 'bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-2' },
+        { className: 'bg-white dark:bg-[#080808] dark:backdrop-blur-xl p-6 rounded-3xl border border-zinc-200/80 dark:border-white/10 shadow-sm space-y-2' },
         React.createElement('h3', { className: 'font-black text-base text-zinc-800 dark:text-zinc-100 flex items-center gap-2' },
           React.createElement('i', { className: 'fas fa-chart-line text-indigo-600' }),
           React.createElement('span', null, 'PhET: Calculus Grapher (Funksiya, Törəmə və İnteqral Qrafiki)')
@@ -147,7 +147,7 @@ export const ToolsView = () => {
       // Sol: Parametrlər Paneli
       React.createElement(
         'div',
-        { className: 'lg:col-span-6 bg-white dark:bg-zinc-900 p-6 sm:p-8 rounded-3xl border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-5' },
+        { className: 'lg:col-span-6 bg-white dark:bg-[#080808] dark:backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-zinc-200/80 dark:border-white/10 shadow-sm space-y-5' },
         React.createElement('h3', { className: 'font-black text-base text-zinc-800 dark:text-zinc-100' }, 'Kvadratik Funksiya və Törəmə Tənliyi'),
         React.createElement('p', { className: 'text-xs text-zinc-400' },
           'Parametrləri dəyişərək $f(x) = ax^2 + bx + c$ funksiyasının verilmiş nöqtədə toxunanının tənliyini və bucaq əmsalını hesablayın.'
@@ -207,7 +207,7 @@ export const ToolsView = () => {
       // Sağ: Hesablama və Nəticə Paneli
       React.createElement(
         'div',
-        { className: 'lg:col-span-6 bg-white dark:bg-zinc-900 p-6 sm:p-8 rounded-3xl border border-indigo-200 dark:border-indigo-900 shadow-sm space-y-4' },
+        { className: 'lg:col-span-6 bg-white dark:bg-[#080808] dark:backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-indigo-200 dark:border-indigo-900 shadow-sm space-y-4' },
         React.createElement('h4', { className: 'font-black text-xs uppercase tracking-wider text-indigo-600 dark:text-indigo-400' }, 'Addım-Addım Hesablama Nəticəsi'),
         
         React.createElement(
@@ -253,7 +253,7 @@ export const ToolsView = () => {
       { className: 'space-y-4 animate-fadeIn' },
       React.createElement(
         'div',
-        { className: 'bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200/80 dark:border-zinc-800 shadow-sm' },
+        { className: 'bg-white dark:bg-[#080808] dark:backdrop-blur-xl p-6 rounded-3xl border border-zinc-200/80 dark:border-white/10 shadow-sm' },
         React.createElement('h3', { className: 'font-black text-base text-zinc-800 dark:text-zinc-100 flex items-center gap-2' },
           React.createElement('i', { className: 'fas fa-atom text-emerald-600' }),
           React.createElement('span', null, 'PhET: Forces and Motion (Qüvvələr, Sürtünmə və Nyuton Qanunları)')
@@ -278,7 +278,7 @@ export const ToolsView = () => {
       
       React.createElement(
         'div',
-        { className: 'lg:col-span-6 bg-white dark:bg-zinc-900 p-6 sm:p-8 rounded-3xl border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-4' },
+        { className: 'lg:col-span-6 bg-white dark:bg-[#080808] dark:backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-zinc-200/80 dark:border-white/10 shadow-sm space-y-4' },
         React.createElement('h3', { className: 'font-black text-base text-zinc-800 dark:text-zinc-100' }, 'Düzbucaqlı Üçbucaq və Çevrə Parametrləri'),
         React.createElement('p', { className: 'text-xs text-zinc-400' },
           'Katetləri daxil edin. Alət hipotenuzu ($c$), sahəni ($S$), xaricə ($R$) və daxilə ($r$) çəkilmiş çevrələrin radiuslarını hesablayır.'
@@ -313,7 +313,7 @@ export const ToolsView = () => {
 
       React.createElement(
         'div',
-        { className: 'lg:col-span-6 bg-white dark:bg-zinc-900 p-6 sm:p-8 rounded-3xl border border-amber-200 dark:border-amber-900 shadow-sm space-y-4' },
+        { className: 'lg:col-span-6 bg-white dark:bg-[#080808] dark:backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-amber-200 dark:border-amber-900 shadow-sm space-y-4' },
         React.createElement('h4', { className: 'font-black text-xs uppercase tracking-wider text-amber-600 dark:text-amber-400' }, 'Həndəsi Hesablama Nəticələri'),
         
         React.createElement(

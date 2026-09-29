@@ -49,7 +49,7 @@ class ErrorBoundary extends React.Component {
         { className: 'min-h-[60vh] flex flex-col items-center justify-center p-6 text-center' },
         React.createElement(
           'div',
-          { className: 'max-w-md w-full p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-2xl space-y-4' },
+          { className: 'max-w-md w-full p-8 rounded-3xl bg-white dark:bg-[#080808] dark:backdrop-blur-xl border border-zinc-200 dark:border-white/10 shadow-2xl space-y-4' },
           React.createElement('div', { className: 'w-14 h-14 mx-auto rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-2xl' }, '⚠️'),
           React.createElement('h2', { className: 'text-lg font-black text-zinc-900 dark:text-white' }, 'İş sahəsində xəta baş verdi'),
           React.createElement('p', { className: 'text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed' }, 'Resurslar yüklənərkən müvəqqəti problem yarandı. Səhifəni yenidən yükləyərək davam edə bilərsiniz.'),
@@ -325,7 +325,7 @@ export default function App() {
 
     'div',
 
-    { className: 'min-h-[100dvh] bg-zinc-50 dark:bg-zinc-950 text-zinc-800 dark:text-zinc-100 transition-colors duration-200 flex flex-col max-w-[100vw] overflow-x-clip' },
+    { className: 'min-h-[100dvh] bg-zinc-50 dark:bg-[#030303] text-zinc-800 dark:text-zinc-100 transition-colors duration-200 flex flex-col max-w-[100vw] overflow-x-clip' },
 
     
 
@@ -399,13 +399,13 @@ export default function App() {
 
         'div',
 
-        { className: 'p-5 bg-white dark:bg-zinc-900 rounded-3xl border border-purple-200 dark:border-purple-900 shadow-2xl space-y-4 animate-fadeIn' },
+        { className: 'p-5 bg-white dark:bg-[#080808] dark:backdrop-blur-xl rounded-3xl border border-purple-200 dark:border-purple-900 shadow-2xl space-y-4 animate-fadeIn' },
 
         React.createElement(
 
           'div',
 
-          { className: 'flex items-center justify-between pb-2 border-b border-zinc-100 dark:border-zinc-800' },
+          { className: 'flex items-center justify-between pb-2 border-b border-zinc-100 dark:border-white/10' },
 
           React.createElement('h3', { className: 'text-xs font-black uppercase text-purple-600 dark:text-purple-400' }, `Axtarış Nəticələri: "${searchQuery}"`),
 
@@ -679,7 +679,7 @@ export default function App() {
 
       'footer',
 
-      { className: 'no-print border-t border-zinc-200/80 dark:border-zinc-800/80 bg-white/50 dark:bg-zinc-900/50 py-6 text-center text-xs text-zinc-400 mt-auto' },
+      { className: 'no-print border-t border-zinc-200/80 dark:border-white/10/80 bg-white/50 dark:bg-[#080808] dark:backdrop-blur-xl/50 py-6 text-center text-xs text-zinc-400 mt-auto' },
 
       React.createElement(
 
