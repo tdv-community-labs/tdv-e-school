@@ -1803,5 +1803,144 @@
     })();
   </script>
 
+
+  <!-- TDV Focus Mode (Pomodoro Timer) -->
+  <style id="tdv-pomodoro-styles">
+    #tdv-pomodoro-container {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 9999998;
+      background: rgba(9, 9, 11, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      border-radius: 20px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 20px rgba(244, 63, 94, 0.05);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    #tdv-pomodoro-container:hover {
+      border-color: rgba(244, 63, 94, 0.6);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6), inset 0 0 20px rgba(244, 63, 94, 0.15);
+      transform: translateY(-5px);
+    }
+    
+    #tdv-pomodoro-time {
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(244, 63, 94, 0.5);
+      letter-spacing: 2px;
+    }
+    
+    .pomo-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: rgba(244, 63, 94, 0.1);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      color: #fb7185;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .pomo-btn:hover {
+      background: rgba(244, 63, 94, 0.3);
+      color: white;
+      transform: scale(1.1);
+    }
+    
+    #tdv-pomodoro-label {
+      font-size: 10px;
+      color: #fb7185;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 2px;
+    }
+  </style>
+
+  <div id="tdv-pomodoro-container">
+    <div>
+      <div id="tdv-pomodoro-label">FOCUS MODE</div>
+      <div id="tdv-pomodoro-time">25:00</div>
+    </div>
+    <div style="display: flex; gap: 8px;">
+      <button class="pomo-btn" id="pomo-start">▶</button>
+      <button class="pomo-btn" id="pomo-reset">↺</button>
+    </div>
+  </div>
+
+  <script id="tdv-pomodoro-script">
+    (function() {
+      const timeDisplay = document.getElementById('tdv-pomodoro-time');
+      const startBtn = document.getElementById('pomo-start');
+      const resetBtn = document.getElementById('pomo-reset');
+      
+      let timeLeft = 25 * 60; // 25 mins
+      let timerId = null;
+      let isRunning = false;
+      
+      function updateDisplay() {
+        const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+        const s = (timeLeft % 60).toString().padStart(2, '0');
+        timeDisplay.innerText = `${m}:${s}`;
+      }
+      
+      function toggleTimer() {
+        if (isRunning) {
+          clearInterval(timerId);
+          startBtn.innerText = '▶';
+          isRunning = false;
+        } else {
+          timerId = setInterval(() => {
+            timeLeft--;
+            updateDisplay();
+            if (timeLeft <= 0) {
+              clearInterval(timerId);
+              isRunning = false;
+              startBtn.innerText = '▶';
+              // Play alarm
+              const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+              if (AudioContextClass) {
+                const actx = new AudioContextClass();
+                const osc = actx.createOscillator();
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(880, actx.currentTime);
+                osc.connect(actx.destination);
+                osc.start();
+                osc.stop(actx.currentTime + 1);
+              }
+              // If achievements enabled
+              if (window.unlockAchievement) {
+                window.unlockAchievement('focus_master', 'Dərin Zəka (25 dəq focus)', '🧠', 'legendary');
+              }
+            }
+          }, 1000);
+          startBtn.innerText = '⏸';
+          isRunning = true;
+        }
+      }
+      
+      startBtn.addEventListener('click', toggleTimer);
+      
+      resetBtn.addEventListener('click', () => {
+        clearInterval(timerId);
+        isRunning = false;
+        startBtn.innerText = '▶';
+        timeLeft = 25 * 60;
+        updateDisplay();
+      });
+    })();
+  </script>
+
 </body>
 </html>
