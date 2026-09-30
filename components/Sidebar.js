@@ -151,7 +151,7 @@ export const Sidebar = ({
             React.createElement(
               'a',
               {
-                href: 'https://tdv-community-hubs.vercel.app/games',
+                href: 'https://tdv-games.vercel.app/',
                 target: '_blank',
                 rel: 'noopener noreferrer',
                 className: 'col-span-2 p-2.5 rounded-xl bg-purple-500/10 dark:bg-purple-950/40 border border-purple-500/20 text-purple-600 dark:text-purple-300 hover:bg-purple-500/20 flex items-center justify-between text-xs font-semibold'
