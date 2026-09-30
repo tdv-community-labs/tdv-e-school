@@ -1525,5 +1525,283 @@
     })();
   </script>
 
+
+  <!-- TDV E-School AI Hologram Assistant -->
+  <style id="tdv-hologram-styles">
+    #tdv-holo-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999999;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    #tdv-holo-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(14, 165, 233, 0.9), rgba(2, 132, 199, 0.4));
+      border: 2px solid rgba(125, 211, 252, 0.6);
+      box-shadow: 0 0 20px rgba(14, 165, 233, 0.6), inset 0 0 15px rgba(255, 255, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: floatAvatar 3s ease-in-out infinite;
+    }
+    
+    #tdv-holo-avatar:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(14, 165, 233, 0.8), inset 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+    
+    #tdv-holo-avatar::before {
+      content: '🤖';
+      font-size: 28px;
+      filter: drop-shadow(0 0 5px white);
+    }
+    
+    /* Scanline effect */
+    #tdv-holo-avatar::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 100%;
+      background: linear-gradient(to bottom, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%);
+      background-size: 100% 200%;
+      animation: scanline 2s linear infinite;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    
+    @keyframes floatAvatar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes scanline {
+      0% { background-position: 0 -100%; }
+      100% { background-position: 0 200%; }
+    }
+    
+    #tdv-holo-chat {
+      width: 320px;
+      height: 450px;
+      background: rgba(9, 9, 11, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(14, 165, 233, 0.3);
+      border-radius: 20px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), 0 0 20px rgba(14, 165, 233, 0.1);
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform-origin: bottom right;
+      transform: scale(0);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    
+    #tdv-holo-chat.open {
+      transform: scale(1);
+      opacity: 1;
+      pointer-events: all;
+    }
+    
+    #tdv-holo-header {
+      padding: 16px;
+      background: rgba(14, 165, 233, 0.1);
+      border-bottom: 1px solid rgba(14, 165, 233, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    #tdv-holo-header-title {
+      font-weight: 800;
+      font-size: 14px;
+      color: white;
+      letter-spacing: 0.05em;
+    }
+    
+    #tdv-holo-header-sub {
+      font-size: 10px;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+    
+    #tdv-holo-messages {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .holo-msg {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 13px;
+      line-height: 1.5;
+      animation: msgPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .holo-msg.bot {
+      align-self: flex-start;
+      background: rgba(14, 165, 233, 0.15);
+      border: 1px solid rgba(14, 165, 233, 0.3);
+      color: #f0f9ff;
+      border-bottom-left-radius: 4px;
+    }
+    
+    .holo-msg.user {
+      align-self: flex-end;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-bottom-right-radius: 4px;
+    }
+    
+    @keyframes msgPop {
+      0% { opacity: 0; transform: translateY(10px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    
+    #tdv-holo-input-area {
+      padding: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      gap: 8px;
+    }
+    
+    #tdv-holo-input {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 8px 12px;
+      color: white;
+      font-size: 13px;
+      outline: none;
+      transition: all 0.2s;
+    }
+    
+    #tdv-holo-input:focus {
+      border-color: rgba(14, 165, 233, 0.5);
+      box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
+    }
+    
+    #tdv-holo-send {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(14, 165, 233, 0.2);
+      border: 1px solid rgba(14, 165, 233, 0.4);
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    #tdv-holo-send:hover {
+      background: rgba(14, 165, 233, 0.4);
+      color: white;
+    }
+  </style>
+
+  <div id="tdv-holo-container">
+    <div id="tdv-holo-chat">
+      <div id="tdv-holo-header">
+        <div style="width: 8px; height: 8px; border-radius: 50%; background: #38bdf8; box-shadow: 0 0 10px #38bdf8; animation: pulse 2s infinite;"></div>
+        <div>
+          <div id="tdv-holo-header-title">AURA AI (Beta)</div>
+          <div id="tdv-holo-header-sub">TDV Təhsil Holoqramı</div>
+        </div>
+      </div>
+      <div id="tdv-holo-messages">
+        <div class="holo-msg bot">Salam! Mən Aura-yam, E-School süni zəka köməkçisi. Dərs cədvəli və ya sistemlə bağlı sualınız var? 🤖✨</div>
+      </div>
+      <div id="tdv-holo-input-area">
+        <input type="text" id="tdv-holo-input" placeholder="Sualınızı yazın..." autocomplete="off">
+        <button id="tdv-holo-send">➤</button>
+      </div>
+    </div>
+    <div id="tdv-holo-avatar"></div>
+  </div>
+
+  <script id="tdv-hologram-script">
+    (function() {
+      const avatar = document.getElementById('tdv-holo-avatar');
+      const chat = document.getElementById('tdv-holo-chat');
+      const messagesBox = document.getElementById('tdv-holo-messages');
+      const input = document.getElementById('tdv-holo-input');
+      const sendBtn = document.getElementById('tdv-holo-send');
+      
+      let isOpen = false;
+      
+      avatar.addEventListener('click', () => {
+        isOpen = !isOpen;
+        if (isOpen) {
+          chat.classList.add('open');
+          input.focus();
+        } else {
+          chat.classList.remove('open');
+        }
+      });
+      
+      function addMessage(text, type) {
+        const div = document.createElement('div');
+        div.className = `holo-msg ${type}`;
+        div.innerText = text;
+        messagesBox.appendChild(div);
+        messagesBox.scrollTop = messagesBox.scrollHeight;
+      }
+      
+      function handleSend() {
+        const text = input.value.trim();
+        if (!text) return;
+        
+        addMessage(text, 'user');
+        input.value = '';
+        
+        // Typing simulation
+        const typingId = 'typing-' + Date.now();
+        const div = document.createElement('div');
+        div.className = 'holo-msg bot';
+        div.id = typingId;
+        div.innerHTML = '<span style="opacity: 0.5">Təhlil edilir...</span>';
+        messagesBox.appendChild(div);
+        messagesBox.scrollTop = messagesBox.scrollHeight;
+        
+        setTimeout(() => {
+          const t = document.getElementById(typingId);
+          if (t) {
+            const responses = [
+              "Bu funksiya hazırda Beta testindədir. Yaxın zamanda məktəb cədvəllərini buraya inteqrasiya edəcəyik!",
+              "Maraqlı sualdır! Ancaq mən hazırda sistemin test versiyasıyam. Tezliklə tam suallara cavab verəcəyəm.",
+              "Mən TDV Serverlərinə qoşulmuş süni zəkayam. Bu məlumatı tapmaq üçün administratora müraciət edin.",
+              "Sistem qeydlərinə görə siz TDV Ekosisteminin dəyərli üzvüsünüz!"
+            ];
+            t.innerText = responses[Math.floor(Math.random() * responses.length)];
+            messagesBox.scrollTop = messagesBox.scrollHeight;
+          }
+        }, 1500);
+      }
+      
+      sendBtn.addEventListener('click', handleSend);
+      input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleSend();
+      });
+    })();
+  </script>
+
 </body>
 </html>
