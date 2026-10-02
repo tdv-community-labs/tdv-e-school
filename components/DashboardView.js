@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { SUBJECTS } from '../data/subjects.js';
+import { AcademicAnalyticsWidget } from './AcademicAnalyticsWidget.js';
 
 export const DashboardView = ({
   setActiveTab,
@@ -139,9 +140,15 @@ export const DashboardView = ({
               React.createElement('span', null, 'Mühərriki')
             )
           )
-        ),
+        )
+      ),
 
-        // Right Column: Academic Resource Overview Card
+      // ACADEMIC ANALYTICS WIDGET
+      React.createElement(AcademicAnalyticsWidget),
+
+      React.createElement(
+        'div',
+        { className: 'lg:col-span-4 hidden lg:block' },
         React.createElement(
           'div',
           { className: 'lg:col-span-4 hidden lg:block' },

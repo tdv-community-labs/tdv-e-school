@@ -19,6 +19,7 @@ import { ExamArchiveView } from './components/ExamArchiveView.js';
 import { PvpArenaView } from './components/PvpArenaView.js';
 
 import { ContentManagerView } from './components/ContentManagerView.js';
+import { AITutorWidget } from './components/AITutorWidget.js';
 
 import { ToolsDrawer } from './components/ToolsDrawer.js';
 
@@ -655,7 +656,7 @@ export default function App() {
 
     // Şagird Şəxsi Kabineti & Nailiyyət Modalı (Profile & Analytics)
 
-    React.createElement(ProfileModal, {
+    React.createElement(AITutorWidget), React.createElement(ProfileModal, {
 
       isOpen: isProfileOpen,
 
