@@ -16,6 +16,31 @@ export const Navbar = ({
   onOpenTools,
   onOpenProfile
 }) => {
+  const [isListening, setIsListening] = React.useState(false);
+  const handleVoiceSearch = () => {
+    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+      alert("Səsli axtarış bu brauzerdə dəstəklənmir.");
+      return;
+    }
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'az-AZ';
+    recognition.interimResults = false;
+    
+    recognition.onstart = () => setIsListening(true);
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setSearchQuery(transcript);
+    };
+    recognition.onerror = (event) => {
+      console.error('Speech recognition error', event.error);
+      setIsListening(false);
+    };
+    recognition.onend = () => setIsListening(false);
+    
+    recognition.start();
+  };
+
   return React.createElement(
     'header',
     {
@@ -74,6 +99,10 @@ export const Navbar = ({
               className: 'relative flex items-center bg-zinc-100/90 dark:bg-[#080808] dark:backdrop-blur-xl/80 border border-zinc-200/80 dark:border-white/[0.08] hover:border-purple-500/40 rounded-xl px-3 py-1.5 transition-all focus-within:border-purple-500 focus-within:ring-2 focus-within:ring-purple-500/20'
             },
             React.createElement('i', { className: 'fas fa-search text-zinc-400 text-xs mr-2.5 pointer-events-none' }),
+            React.createElement('button', { 
+              onClick: handleVoiceSearch,
+              className: `mr-2 w-6 h-6 flex items-center justify-center rounded-full transition-colors ${isListening ? 'bg-red-500 text-white animate-pulse' : 'text-zinc-400 hover:text-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/30'}`
+            }, React.createElement('i', { className: 'fa-solid fa-microphone text-[10px]' })),
             React.createElement('input', {
               type: 'text',
               value: searchQuery,

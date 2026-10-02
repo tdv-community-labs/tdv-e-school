@@ -18,6 +18,34 @@ export const LessonsView = ({
   const [quizAnswers, setQuizAnswers] = useState({});
   const [quizSubmitted, setQuizSubmitted] = useState({});
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+  
+  // Pomodoro Focus Timer State
+  const [focusTime, setFocusTime] = useState(25 * 60);
+  const [isFocusing, setIsFocusing] = useState(false);
+
+  useEffect(() => {
+    let interval = null;
+    if (isFocusing && focusTime > 0) {
+      interval = setInterval(() => {
+        setFocusTime(prev => prev - 1);
+      }, 1000);
+    } else if (focusTime === 0) {
+      setIsFocusing(false);
+      alert("Pomodoro tamamlandı! 5 dəqiqə fasilə edin və XP qazandınız!");
+      setFocusTime(25 * 60);
+    }
+    return () => clearInterval(interval);
+  }, [isFocusing, focusTime]);
+
+  const toggleFocus = () => {
+    setIsFocusing(!isFocusing);
+  };
+  
+  const formatTime = (seconds) => {
+    const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+    const s = (seconds % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+  };
 
   // Fənn və sinifə görə dərsləri filtrləyirik
   const filteredLessons = useMemo(() => {
