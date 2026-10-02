@@ -23,6 +23,7 @@ export const Sidebar = ({
     { id: 'pvp', label: '1v1 DA yAY', icon: 'fa-gamepad', badge: 'Canl' },
     { id: 'library', label: 'E-Kitabxana', icon: 'fa-book-journal-whills', desc: 'Rəqəmsal kitablar və vəsaitlər' },
     { id: 'leaderboard', label: 'Liderlər', icon: 'fa-trophy', desc: 'Qlobal reytinq cədvəli' },
+    { id: 'shop', label: 'XP Mağazası', icon: 'fa-store', desc: 'Xallarla mükafatlar al' },
     { id: 'parent', label: 'Valideyn NTzarTti', icon: 'fa-shield-halved', desc: 'gA ndTlik izlT vT rTportlar' },
     { id: 'admin', label: 'darTetmT', icon: 'fa-database' }
   ];

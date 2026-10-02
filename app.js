@@ -23,6 +23,7 @@ import { AITutorWidget } from './components/AITutorWidget.js';
 import { ParentalDashboardView } from './components/ParentalDashboardView.js';
 import { LibraryView } from './components/LibraryView.js';
 import { LeaderboardView } from './components/LeaderboardView.js';
+import { ShopView } from './components/ShopView.js';
 
 import { ToolsDrawer } from './components/ToolsDrawer.js';
 
@@ -546,6 +547,8 @@ export default function App() {
       activeTab === 'library' && React.createElement(LibraryView),
 
       activeTab === 'leaderboard' && React.createElement(LeaderboardView),
+
+      activeTab === 'shop' && React.createElement(ShopView, { userStats }),
 
       activeTab === 'dashboard' && React.createElement(DashboardView, {
 
