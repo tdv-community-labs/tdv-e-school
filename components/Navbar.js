@@ -106,8 +106,9 @@ export const Navbar = ({
             { id: 'dashboard', label: 'Ana Səhifə', icon: 'fa-house' },
             { id: 'lessons', label: 'Dərslər', icon: 'fa-book-open-reader' },
             { id: 'exams', label: 'BSQ / KSQ', icon: 'fa-file-lines' },
-            { id: 'pvp', label: '1v1 Döyüş', icon: 'fa-gamepad', badge: 'Canlı' },
-            { id: 'admin', label: 'İdarəetmə', icon: 'fa-database' }
+            { id: 'pvp', label: '1v1 DA yAY', icon: 'fa-gamepad', badge: 'Canl' },
+            { id: 'parent', label: 'Valideyn NTzarTti', icon: 'fa-shield-halved' },
+            { id: 'admin', label: 'darTetmT', icon: 'fa-database' }
           ].map(item => {
             const isActive = activeTab === item.id;
             return React.createElement(

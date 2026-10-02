@@ -20,6 +20,7 @@ import { PvpArenaView } from './components/PvpArenaView.js';
 
 import { ContentManagerView } from './components/ContentManagerView.js';
 import { AITutorWidget } from './components/AITutorWidget.js';
+import { ParentalDashboardView } from './components/ParentalDashboardView.js';
 
 import { ToolsDrawer } from './components/ToolsDrawer.js';
 
@@ -537,6 +538,8 @@ export default function App() {
         { className: 'flex-1 min-w-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 w-full overflow-x-clip' },
 
       
+
+      activeTab === 'parent' && React.createElement(ParentalDashboardView),
 
       activeTab === 'dashboard' && React.createElement(DashboardView, {
 

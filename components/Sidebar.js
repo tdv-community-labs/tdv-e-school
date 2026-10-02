@@ -20,8 +20,9 @@ export const Sidebar = ({
     { id: 'lessons', label: 'Dərslər və Nəzəriyyə', icon: 'fa-book-open-reader', desc: 'KaTeX & PhET interaktiv dərsləri' },
     { id: 'tools', label: 'Alətlər & Laboratoriya', icon: 'fa-toolbox', desc: 'Calculus, Törəmə və PhET simulyatorları', badge: 'Sağ Panel' },
     { id: 'exams', label: 'BSQ / KSQ Arxiv', icon: 'fa-file-lines', desc: 'İnteraktiv test və çap vərəqi' },
-    { id: 'pvp', label: '1v1 Viktorina Arenası', icon: 'fa-gamepad', desc: 'Dostla oyna & sürətli matç', badge: 'Canlı' },
-    { id: 'admin', label: 'İdarəetmə & Skan Paneli', icon: 'fa-database', desc: 'Yeni sual və JSON idarəetməsi' }
+    { id: 'pvp', label: '1v1 DA yAY', icon: 'fa-gamepad', badge: 'Canl' },
+    { id: 'parent', label: 'Valideyn NTzarTti', icon: 'fa-shield-halved', desc: 'gA ndTlik izlT vT rTportlar' },
+    { id: 'admin', label: 'darTetmT', icon: 'fa-database' }
   ];
 
   const handleItemClick = (id) => {
