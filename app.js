@@ -24,6 +24,7 @@ import { ParentalDashboardView } from './components/ParentalDashboardView.js';
 import { LibraryView } from './components/LibraryView.js';
 import { LeaderboardView } from './components/LeaderboardView.js';
 import { ShopView } from './components/ShopView.js';
+import { WhiteboardView } from './components/WhiteboardView.js';
 
 import { ToolsDrawer } from './components/ToolsDrawer.js';
 
@@ -549,6 +550,8 @@ export default function App() {
       activeTab === 'leaderboard' && React.createElement(LeaderboardView),
 
       activeTab === 'shop' && React.createElement(ShopView, { userStats }),
+
+      activeTab === 'whiteboard' && React.createElement(WhiteboardView),
 
       activeTab === 'dashboard' && React.createElement(DashboardView, {
 

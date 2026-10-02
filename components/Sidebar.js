@@ -24,6 +24,7 @@ export const Sidebar = ({
     { id: 'library', label: 'E-Kitabxana', icon: 'fa-book-journal-whills', desc: 'Rəqəmsal kitablar və vəsaitlər' },
     { id: 'leaderboard', label: 'Liderlər', icon: 'fa-trophy', desc: 'Qlobal reytinq cədvəli' },
     { id: 'shop', label: 'XP Mağazası', icon: 'fa-store', desc: 'Xallarla mükafatlar al' },
+    { id: 'whiteboard', label: 'Qara Lövhə', icon: 'fa-chalkboard', desc: 'Rəsm və düsturlar üçün' },
     { id: 'parent', label: 'Valideyn NTzarTti', icon: 'fa-shield-halved', desc: 'gA ndTlik izlT vT rTportlar' },
     { id: 'admin', label: 'darTetmT', icon: 'fa-database' }
   ];

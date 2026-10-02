@@ -139,6 +139,7 @@ export const Navbar = ({
             { id: 'library', label: 'E-Kitabxana', icon: 'fa-book-journal-whills' },
             { id: 'leaderboard', label: 'Liderlər', icon: 'fa-trophy' },
             { id: 'shop', label: 'Mağaza', icon: 'fa-store' },
+            { id: 'whiteboard', label: 'Lövhə', icon: 'fa-chalkboard' },
             { id: 'parent', label: 'Valideyn NTzarTti', icon: 'fa-shield-halved' },
             { id: 'admin', label: 'darTetmT', icon: 'fa-database' }
           ].map(item => {
