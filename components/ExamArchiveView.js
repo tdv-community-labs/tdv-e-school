@@ -474,6 +474,17 @@ export const ExamArchiveView = ({
     'div',
     { className: 'space-y-6 animate-fadeIn pb-16 no-print' },
     
+    // Anti-Cheat Alert
+    showCheatAlert && React.createElement(
+      'div',
+      { className: 'fixed top-10 left-1/2 transform -translate-x-1/2 z-[150] bg-red-600 text-white px-6 py-4 rounded-2xl shadow-[0_10px_40px_rgba(220,38,38,0.6)] flex items-center gap-4 animate-bounce' },
+      React.createElement('i', { className: 'fa-solid fa-triangle-exclamation text-3xl' }),
+      React.createElement('div', null,
+        React.createElement('h4', { className: 'font-black text-lg uppercase tracking-wider' }, 'Diqqət! İmtahan Qaydaları Pozulur!'),
+        React.createElement('p', { className: 'text-sm opacity-90' }, `Ekransızlaşma aşkarlandı. Xəbərdarlıq sayı: ${cheatWarnings}`)
+      )
+    ),
+    
     // Yuxarı Başlıq və Taymer Paneli
     React.createElement(
       'div',
