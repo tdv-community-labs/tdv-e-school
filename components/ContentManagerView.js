@@ -11,7 +11,9 @@ export const ContentManagerView = ({
   pvpQuestions,
   onDataRefresh
 }) => {
-  const [activeSubTab, setActiveSubTab] = useState('form'); // 'form', 'json', 'scanner'
+  const [activeSubTab, setActiveSubTab] = useState('form');
+  const [aiPrompt, setAiPrompt] = useState('');
+  const [isAiLoading, setIsAiLoading] = useState(false); // 'form', 'json', 'scanner'
   const [toastMessage, setToastMessage] = useState(null);
 
   // Forma vəziyyəti: Yeni Sual Daxil Etmə
@@ -243,7 +245,8 @@ E) 12x
         [
           { id: 'form', label: 'Forma İlə Yeni Sual', icon: 'fa-plus-circle' },
           { id: 'scanner', label: 'OCR Skan Köməkçisi', icon: 'fa-scanner' },
-          { id: 'json', label: 'Birbaşa JSON İmport/İxrac', icon: 'fa-code' }
+          { id: 'json', label: 'BirbaŞa JSON İmport/İxrac', icon: 'fa-code' },
+            { id: 'ai', label: 'AI Test Yaradıcı', icon: 'fa-robot' }
         ].map(t => {
           const isActive = activeSubTab === t.id;
           return React.createElement(

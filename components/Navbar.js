@@ -17,6 +17,7 @@ export const Navbar = ({
   onOpenProfile
 }) => {
   const [isListening, setIsListening] = React.useState(false);
+  const [showNotifications, setShowNotifications] = React.useState(false);
   const handleVoiceSearch = () => {
     if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
       alert("Səsli axtarış bu brauzerdə dəstəklənmir.");
