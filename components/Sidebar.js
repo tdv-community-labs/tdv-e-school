@@ -22,6 +22,7 @@ export const Sidebar = ({
     { id: 'exams', label: 'BSQ / KSQ Arxiv', icon: 'fa-file-lines', desc: 'İnteraktiv test və çap vərəqi' },
     { id: 'pvp', label: '1v1 DA yAY', icon: 'fa-gamepad', badge: 'Canl' },
     { id: 'library', label: 'E-Kitabxana', icon: 'fa-book-journal-whills', desc: 'Rəqəmsal kitablar və vəsaitlər' },
+    { id: 'leaderboard', label: 'Liderlər', icon: 'fa-trophy', desc: 'Qlobal reytinq cədvəli' },
     { id: 'parent', label: 'Valideyn NTzarTti', icon: 'fa-shield-halved', desc: 'gA ndTlik izlT vT rTportlar' },
     { id: 'admin', label: 'darTetmT', icon: 'fa-database' }
   ];

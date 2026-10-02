@@ -22,6 +22,7 @@ import { ContentManagerView } from './components/ContentManagerView.js';
 import { AITutorWidget } from './components/AITutorWidget.js';
 import { ParentalDashboardView } from './components/ParentalDashboardView.js';
 import { LibraryView } from './components/LibraryView.js';
+import { LeaderboardView } from './components/LeaderboardView.js';
 
 import { ToolsDrawer } from './components/ToolsDrawer.js';
 
@@ -543,6 +544,8 @@ export default function App() {
       activeTab === 'parent' && React.createElement(ParentalDashboardView),
 
       activeTab === 'library' && React.createElement(LibraryView),
+
+      activeTab === 'leaderboard' && React.createElement(LeaderboardView),
 
       activeTab === 'dashboard' && React.createElement(DashboardView, {
 

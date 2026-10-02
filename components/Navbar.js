@@ -137,6 +137,7 @@ export const Navbar = ({
             { id: 'exams', label: 'BSQ / KSQ', icon: 'fa-file-lines' },
             { id: 'pvp', label: '1v1 DA yAY', icon: 'fa-gamepad', badge: 'Canl' },
             { id: 'library', label: 'E-Kitabxana', icon: 'fa-book-journal-whills' },
+            { id: 'leaderboard', label: 'Liderlər', icon: 'fa-trophy' },
             { id: 'parent', label: 'Valideyn NTzarTti', icon: 'fa-shield-halved' },
             { id: 'admin', label: 'darTetmT', icon: 'fa-database' }
           ].map(item => {
