@@ -155,7 +155,6 @@ export const ProfileModal = ({
                 dangerouslySetInnerHTML: { __html: a }
               }))
             )
-          )
         ),
         React.createElement(
           'button',

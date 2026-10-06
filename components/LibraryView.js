@@ -41,11 +41,11 @@ export const LibraryView = () => {
             <button 
               key=${c.id}
               onClick=${() => setActiveCategory(c.id)}
-              className=\`px-4 py-2 rounded-xl text-xs font-bold transition-all \${
+              className=${`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                 activeCategory === c.id 
                   ? 'bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 shadow-md' 
                   : 'bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800'
-              }\`
+              }`}
             >
               ${c.label}
             </button>
@@ -59,7 +59,7 @@ export const LibraryView = () => {
           <div 
             key=${book.id} 
             className="group relative h-64 w-full cursor-pointer transition-transform duration-500 hover:-translate-y-4"
-            style=${{ transformStyle: 'preserve-3d', animationDelay: \`\${idx * 100}ms\`, transform: 'rotateY(-5deg)' }}
+            style=${{ transformStyle: 'preserve-3d', animationDelay: `${idx * 100}ms`, transform: 'rotateY(-5deg)' }}
             onMouseEnter=${(e) => e.currentTarget.style.transform = 'rotateY(10deg) translateY(-10px)'}
             onMouseLeave=${(e) => e.currentTarget.style.transform = 'rotateY(-5deg) translateY(0px)'}
           >
@@ -70,7 +70,7 @@ export const LibraryView = () => {
             </div>
 
             {/* Book Front Cover */}
-            <div className=\`absolute inset-0 \${book.color} rounded-r-md border-l border-white/10 shadow-[5px_5px_15px_rgba(0,0,0,0.3)] group-hover:shadow-[15px_15px_25px_rgba(0,0,0,0.4)] transition-shadow duration-500 overflow-hidden flex flex-col p-4\`} 
+            <div className=${`absolute inset-0 ${book.color} rounded-r-md border-l border-white/10 shadow-[5px_5px_15px_rgba(0,0,0,0.3)] group-hover:shadow-[15px_15px_25px_rgba(0,0,0,0.4)] transition-shadow duration-500 overflow-hidden flex flex-col p-4`} 
                  style=${{ transform: 'translateZ(24px)' }}>
               
               {/* Cover Design Details */}

@@ -69,7 +69,7 @@ export const AcademicAnalyticsWidget = () => {
                   
                   {/* Bar fill */}
                   <div className="w-full max-w-[48px] rounded-t-xl transition-all duration-1000 ease-out relative overflow-hidden flex items-end"
-                       style=${{ height: animated ? \`\${heightPct}%\` : '0%', backgroundColor: data.color, minHeight: '4px' }}>
+                       style=${{ height: animated ? `${heightPct}%` : '0%', backgroundColor: data.color, minHeight: '4px' }}>
                     <div className="w-full h-full bg-gradient-to-t from-black/20 to-transparent"></div>
                   </div>
                   
