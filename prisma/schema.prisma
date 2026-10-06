@@ -1,0 +1,98 @@
+// Prisma Schema for TDV E-School & Multi-Tenant Educational Core
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Subject {
+  id           String   @id @db.VarChar(50)
+  name         String
+  shortName    String?  @map("short_name") @db.VarChar(20)
+  icon         String?
+  color        String?
+  accentColor  String?  @map("accent_color")
+  description  String?
+  totalLessons Int      @default(0) @map("total_lessons")
+  totalExams   Int      @default(0) @map("total_exams")
+  createdAt    DateTime @default(now()) @map("created_at")
+  lessons      Lesson[]
+  exams        Exam[]
+
+  @@map("school_subjects")
+}
+
+model Lesson {
+  id              String   @id @db.VarChar(100)
+  subjectId       String   @map("subject_id") @db.VarChar(50)
+  grade           Int
+  unit            String
+  unitOrder       Int      @default(1) @map("unit_order")
+  title           String
+  orderNum        Int      @default(1) @map("order_num")
+  readTimeMinutes Int      @default(5) @map("read_time_minutes")
+  difficulty      Int      @default(1)
+  summary         String?
+  theoryMarkdown  String?  @map("theory_markdown")
+  keyFormulas     Json?    @default("[]") @map("key_formulas")
+  glossary        Json?    @default("[]")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  subject         Subject  @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+
+  @@map("school_lessons")
+}
+
+model Exam {
+  id              String   @id @db.VarChar(100)
+  title           String
+  subjectId       String   @map("subject_id") @db.VarChar(50)
+  grade           Int
+  examType        String   @map("exam_type") @db.VarChar(10)
+  semester        Int      @default(1)
+  variant         String   @default("A") @db.VarChar(5)
+  durationMinutes Int      @default(45) @map("duration_minutes")
+  totalQuestions  Int      @default(5) @map("total_questions")
+  maxScore        Int      @default(100) @map("max_score")
+  questions       Json?    @default("[]")
+  schoolMetadata  Json?    @map("school_metadata")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  subject         Subject  @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+
+  @@map("school_exams")
+}
+
+model LeaderboardEntry {
+  id          String   @id @db.VarChar(100)
+  name        String
+  rank        Int      @default(1)
+  avatar      String?
+  schoolGrade Int      @default(10) @map("school_grade")
+  points      Int      @default(0)
+  wins        Int      @default(0)
+  winRate     Float    @default(0) @map("win_rate")
+  badge       String?
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@map("school_leaderboard")
+}
+
+model StudentAnalytics {
+  id               String   @id @db.VarChar(100)
+  studentId        String   @map("student_id") @db.VarChar(100)
+  studentName      String   @map("student_name")
+  grade            Int      @default(10)
+  overallAverage   Float    @default(85.5) @map("overall_average")
+  examsCompleted   Int      @default(12) @map("exams_completed")
+  studyHours       Float    @default(42.5) @map("study_hours")
+  xpBalance        Int      @default(1450) @map("xp_balance")
+  subjectBreakdown Json?    @default("[]") @map("subject_breakdown")
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  @@map("school_analytics")
+}
