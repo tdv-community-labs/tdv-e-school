@@ -64,10 +64,14 @@ export const Navbar = ({
           React.createElement(
             'div',
             {
-              className: 'relative w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-700 via-purple-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-purple-500/25 border border-white/20 group-hover:scale-105 transition-transform duration-200'
+              className: 'relative w-10 h-10 rounded-2xl bg-purple-600/10 border border-purple-500/30 flex items-center justify-center p-1 group-hover:scale-105 transition-transform duration-200 shadow-sm shrink-0'
             },
-            React.createElement('i', { className: 'fas fa-graduation-cap text-lg' }),
-            React.createElement('span', { className: 'absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-400 rounded-full border-2 border-[#09090b] ' })
+            React.createElement('img', {
+              src: 'assets/tdv-logo.png',
+              alt: 'TDV Crest',
+              className: 'w-8 h-8 rounded-full object-cover border border-amber-500/60 shadow-xs'
+            }),
+            React.createElement('span', { className: 'absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-[#09090b]' })
           ),
           React.createElement(
             'div',

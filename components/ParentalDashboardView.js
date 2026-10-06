@@ -6,7 +6,6 @@ const html = htm.bind(React.createElement);
 export const ParentalDashboardView = () => {
   return html`
     <div className="flex flex-col gap-8 pb-12 animate-fadeIn max-w-5xl mx-auto w-full">
-      {/* Header Section */}
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-900 via-zinc-900 to-indigo-950 border border-indigo-500/20 p-8 sm:p-12 text-white shadow-2xl">
         <div className="absolute -right-20 -top-20 w-96 h-96 rounded-full bg-indigo-500/15 blur-3xl pointer-events-none"></div>
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -32,7 +31,6 @@ export const ParentalDashboardView = () => {
         </div>
       </div>
 
-      {/* Main Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 shadow-sm">
           <div className="flex items-center justify-between mb-4">
@@ -68,7 +66,6 @@ export const ParentalDashboardView = () => {
         </div>
       </div>
 
-      {/* Screen Time & Lock Control */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 sm:p-8 shadow-sm">
           <h3 className="font-bold text-lg mb-6 flex items-center gap-2">
@@ -101,7 +98,6 @@ export const ParentalDashboardView = () => {
           </div>
         </div>
 
-        {/* Recent Teacher Reports */}
         <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 sm:p-8 shadow-sm">
           <div className="flex items-center justify-between mb-6">
             <h3 className="font-bold text-lg flex items-center gap-2">

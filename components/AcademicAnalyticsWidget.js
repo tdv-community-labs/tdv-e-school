@@ -45,10 +45,8 @@ export const AcademicAnalyticsWidget = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
-        {/* CHART SECTION */}
         <div className="lg:col-span-2">
           <div className="relative h-[200px] flex items-end gap-2 sm:gap-6 pt-10">
-            {/* Background grid lines */}
             <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
               <div className="w-full border-t border-dashed border-zinc-200 dark:border-zinc-800 h-0"></div>
               <div className="w-full border-t border-dashed border-zinc-200 dark:border-zinc-800 h-0"></div>
@@ -56,24 +54,20 @@ export const AcademicAnalyticsWidget = () => {
               <div className="w-full border-t border-dashed border-zinc-200 dark:border-zinc-800 h-0"></div>
             </div>
 
-            {/* Bars */}
             ${chartData.map((data, index) => {
               const heightPct = (data.value / maxValue) * 100;
               return html`
                 <div key=${index} className="relative flex flex-col items-center flex-1 group">
-                  {/* Tooltip */}
                   <div className="absolute -top-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-zinc-800 dark:bg-zinc-100 text-white dark:text-zinc-900 text-xs font-bold py-1 px-3 rounded-lg pointer-events-none z-10 whitespace-nowrap shadow-lg">
                     ${data.value}%
                     <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-zinc-800 dark:bg-zinc-100 rotate-45"></div>
                   </div>
                   
-                  {/* Bar fill */}
                   <div className="w-full max-w-[48px] rounded-t-xl transition-all duration-1000 ease-out relative overflow-hidden flex items-end"
                        style=${{ height: animated ? `${heightPct}%` : '0%', backgroundColor: data.color, minHeight: '4px' }}>
                     <div className="w-full h-full bg-gradient-to-t from-black/20 to-transparent"></div>
                   </div>
                   
-                  {/* Label */}
                   <span className="text-[10px] sm:text-xs font-medium text-zinc-500 dark:text-zinc-400 mt-3 uppercase tracking-wider">${data.label}</span>
                 </div>
               `;
@@ -81,7 +75,6 @@ export const AcademicAnalyticsWidget = () => {
           </div>
         </div>
 
-        {/* AI INSIGHTS SECTION */}
         <div className="flex flex-col gap-4">
           <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-950/20 dark:to-blue-950/20 border border-indigo-100 dark:border-indigo-900/30 p-5 rounded-2xl relative overflow-hidden">
             <i className="fa-brands fa-google text-indigo-500/10 text-6xl absolute -right-4 -bottom-4"></i>

@@ -16,7 +16,6 @@ export const LeaderboardView = () => {
   return html`
     <div className="max-w-4xl mx-auto w-full px-4 sm:px-6 py-8 animate-fadeIn pb-16">
       
-      {/* Header */}
       <div className="text-center mb-10">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-tr from-amber-400 to-orange-500 shadow-lg shadow-orange-500/30 text-white text-3xl mb-4">
           <i className="fa-solid fa-trophy"></i>
@@ -25,9 +24,7 @@ export const LeaderboardView = () => {
         <p className="text-zinc-500 mt-2">Məktəb üzrə ən yüksək XP (Təcrübə Xalı) toplayan şagirdlərin reytinqi</p>
       </div>
 
-      {/* Top 3 Podium */}
       <div className="flex flex-col sm:flex-row items-end justify-center gap-4 sm:gap-6 mb-12 h-64">
-        {/* Rank 2 */}
         <div className="w-full sm:w-1/3 flex flex-col items-center">
           <div className="text-4xl mb-2">\${students[1].avatar}</div>
           <div className="font-bold text-sm text-zinc-800 dark:text-zinc-200">\${students[1].name}</div>
@@ -36,7 +33,6 @@ export const LeaderboardView = () => {
             <span className="text-4xl font-black text-zinc-300 dark:text-zinc-700 mt-4">2</span>
           </div>
         </div>
-        {/* Rank 1 */}
         <div className="w-full sm:w-1/3 flex flex-col items-center">
           <div className="text-5xl mb-2 relative">
             \${students[0].avatar}
@@ -48,7 +44,6 @@ export const LeaderboardView = () => {
             <span className="text-5xl font-black text-amber-200 dark:text-amber-700/50 mt-4">1</span>
           </div>
         </div>
-        {/* Rank 3 */}
         <div className="w-full sm:w-1/3 flex flex-col items-center">
           <div className="text-3xl mb-2">\${students[2].avatar}</div>
           <div className="font-bold text-sm text-zinc-800 dark:text-zinc-200">\${students[2].name}</div>
@@ -59,7 +54,6 @@ export const LeaderboardView = () => {
         </div>
       </div>
 
-      {/* Leaderboard List */}
       <div className="bg-white dark:bg-[#080808] dark:backdrop-blur-xl rounded-3xl border border-zinc-200 dark:border-white/10 shadow-sm overflow-hidden">
         <div className="px-6 py-4 border-b border-zinc-100 dark:border-zinc-800 flex justify-between items-center bg-zinc-50 dark:bg-zinc-900/50">
           <div className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Bütün Şagirdlər</div>

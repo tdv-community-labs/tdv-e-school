@@ -93,7 +93,6 @@ export const WhiteboardView = () => {
   return html`
     <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8 animate-fadeIn pb-16">
       
-      {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
         <div>
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-xs font-medium text-cyan-600 dark:text-cyan-400 mb-4">
@@ -104,10 +103,8 @@ export const WhiteboardView = () => {
           <p className="text-zinc-500 mt-2">Düsturları yazın, sxemlər çəkin və nəticəni şəkil olaraq yaddaşda saxlayın.</p>
         </div>
 
-        {/* Toolbar */}
         <div className="flex flex-wrap items-center gap-3 bg-white dark:bg-zinc-900 p-2 sm:p-3 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
           
-          {/* Tools */}
           <div className="flex items-center gap-1 bg-zinc-100 dark:bg-zinc-950 p-1 rounded-xl">
             <button 
               onClick=\${() => setTool('pen')}
@@ -127,7 +124,6 @@ export const WhiteboardView = () => {
 
           <div className="w-px h-8 bg-zinc-200 dark:bg-zinc-800 mx-1"></div>
 
-          {/* Colors */}
           <div className="flex items-center gap-2 px-2">
             \${['#ffffff', '#fbbf24', '#34d399', '#60a5fa', '#f43f5e'].map(c => html\`
               <button 
@@ -141,7 +137,6 @@ export const WhiteboardView = () => {
 
           <div className="w-px h-8 bg-zinc-200 dark:bg-zinc-800 mx-1"></div>
 
-          {/* Actions */}
           <button 
             onClick=\${clearBoard}
             className="px-4 py-2 text-xs font-bold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20 rounded-xl transition-colors flex items-center gap-2"
@@ -158,9 +153,7 @@ export const WhiteboardView = () => {
         </div>
       </div>
 
-      {/* Canvas Area */}
       <div className="w-full bg-[#09090b] rounded-3xl overflow-hidden shadow-2xl border-4 border-[#27272a] relative touch-none cursor-crosshair">
-        {/* Decorative elements to look like a real blackboard frame */}
         <div className="absolute bottom-2 right-4 text-zinc-700/50 font-mono text-[10px] uppercase pointer-events-none tracking-widest">
           TDV Smart Board v1.0
         </div>

@@ -82,7 +82,6 @@ export const ShopView = ({ userStats }) => {
   return html`
     <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8 animate-fadeIn pb-16">
       
-      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 bg-gradient-to-r from-violet-900 to-fuchsia-900 rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden">
         <div className="absolute right-0 top-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
         <div className="relative z-10">
@@ -102,7 +101,6 @@ export const ShopView = ({ userStats }) => {
         </div>
       </div>
 
-      {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         ${shopItems.map((item) => {
           const isPurchased = purchasedItems.includes(item.id);

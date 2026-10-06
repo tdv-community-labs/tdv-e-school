@@ -42,11 +42,9 @@ export const AITutorWidget = () => {
   return html`
     <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end">
       
-      {/* Chat Window */}
       ${isOpen && html`
         <div className="bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 shadow-2xl rounded-2xl w-[320px] sm:w-[380px] h-[500px] max-h-[80vh] flex flex-col mb-4 overflow-hidden origin-bottom-right transition-all">
           
-          {/* Header */}
           <div className="bg-gradient-to-r from-indigo-600 to-blue-600 p-4 flex items-center justify-between shadow-md">
             <div className="flex items-center gap-3">
               <div className="relative">
@@ -65,7 +63,6 @@ export const AITutorWidget = () => {
             </button>
           </div>
 
-          {/* Messages */}
           <div ref=${chatRef} className="flex-1 overflow-y-auto p-4 flex flex-col gap-4 bg-zinc-50 dark:bg-zinc-900/50">
             ${messages.map(msg => html`
               <div key=${msg.id} className=\`flex \${msg.sender === 'user' ? 'justify-end' : 'justify-start'}\`>
@@ -79,7 +76,6 @@ export const AITutorWidget = () => {
               </div>
             `)}
             
-            {/* Typing Indicator */}
             ${isTyping && html`
               <div className="flex justify-start">
                 <div className="bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/50 rounded-2xl rounded-tl-sm p-4 shadow-sm flex gap-1.5 items-center w-16">
@@ -91,7 +87,6 @@ export const AITutorWidget = () => {
             `}
           </div>
 
-          {/* Input Area */}
           <form onSubmit=${handleSend} className="p-3 bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800 flex gap-2">
             <input 
               type="text" 
@@ -112,7 +107,6 @@ export const AITutorWidget = () => {
         </div>
       `}
 
-      {/* Floating Button */}
       <button 
         onClick=${() => setIsOpen(!isOpen)}
         className=\`w-14 h-14 rounded-full flex items-center justify-center text-white shadow-[0_10px_30px_rgba(79,70,229,0.4)] transition-all duration-300 hover:scale-110 \${
