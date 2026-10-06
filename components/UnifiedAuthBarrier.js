@@ -6,11 +6,11 @@
 
 import React, { useState } from 'react';
 import htm from 'htm';
-import { authService } from '../services/authService.js?v=20260912_0125';
+import { authService } from '../services/authService.js';
 
 const html = htm.bind(React.createElement);
 
-export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
+export function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
   const [tab, setTab] = useState('login'); // 'login' və ya 'register'
 
   // Daxilolma sahələri
@@ -30,8 +30,8 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
   const [successMsg, setSuccessMsg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const footballAvatars = ['⚽', '🏃‍♂️', '🧤', '🏆', '🥇', '⚡', '🔥', '🦁'];
-  const teamList = ['11A', '11B', '11C', '11D', '10A', '10B', '10C', '9A', '9B', '8A', '8B', '7A', '6A', 'Məşqçi'];
+  const schoolAvatars = ['🎓', '📚', '⚡', '🏆', '🥇', '🦁', '🦉', '🚀', '🧠', '⚽'];
+  const teamList = ['11A', '11B', '11C', '11D', '10A', '10B', '10C', '9A', '9B', '8A', '8B', '7A', '6A', 'Müəllim'];
 
   // Daxilolma göndərilməsi
   const handleLoginSubmit = (e) => {
@@ -40,14 +40,14 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
     setSuccessMsg('');
 
     if (!loginUsername.trim()) {
-      setError(lang === 'az' ? 'Zəhmət olmasa adınızı və ya oyunçu kodunuzu daxil edin.' : 'Please enter your name or player code.');
+      setError(lang === 'az' ? 'Zəhmət olmasa adınızı və ya istifadəçi adınızı daxil edin.' : 'Please enter your username or name.');
       return;
     }
 
     setIsLoading(true);
     setTimeout(() => {
       try {
-        const session = authService.login(loginUsername, loginTeamClass, loginPin, loginTeamClass === 'Məşqçi' ? 'coach' : 'player');
+        const session = authService.login(loginUsername, loginTeamClass, loginPin, (loginTeamClass === 'Müəllim' || loginTeamClass === 'Məşqçi') ? 'coach' : 'player');
         if (onLogin) onLogin(session);
       } catch (err) {
         setError(err.message || 'Giriş xətası');
@@ -85,9 +85,9 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
           teamClass: regTeamClass,
           avatar: regAvatar,
           pin: regPin,
-          role: regTeamClass === 'Məşqçi' ? 'coach' : 'player'
+          role: (regTeamClass === 'Müəllim' || regTeamClass === 'Məşqçi') ? 'coach' : 'player'
         });
-        setSuccessMsg(lang === 'az' ? 'Oyunçu profili yaradıldı! Turnirə daxil olunur...' : 'Player profile created! Entering tournament...');
+        setSuccessMsg(lang === 'az' ? 'Şagird profili yaradıldı! E-School portalına daxil olunur...' : 'Student profile created! Entering E-School...');
         setTimeout(() => {
           if (onLogin) onLogin(session);
         }, 500);
@@ -138,11 +138,11 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               ${lang === 'az' ? 'Vahid Ekosistem Profili • 1 Hesab = Bütün Ekosistem' : 'Unified Ecosystem Profile • 1 Account for All'}
             </div>
-            <h1 className="text-2xl font-black text-white tracking-tight">TDV SPORTS</h1>
+            <h1 className="text-2xl font-black text-white tracking-tight">TDV E-SCHOOL</h1>
             <p className="text-xs text-zinc-400 max-w-sm mx-auto leading-relaxed">
               ${lang === 'az' 
-                ? 'Tək 1 profil Futbol Turniri, E-School, Games və Mafia portallarının hamısına bəs edir! Vahid profilinizlə daxil olun və ya yeni vahid profil yaradın.' 
-                : 'One single profile is enough for Football, E-School, Games and Mafia! Sign in with your unified profile or create one.'}
+                ? 'Tək 1 profil E-School, Futbol Turniri, Games və Mafia portallarının hamısına bəs edir! Vahid profilinizlə daxil olun və ya yeni vahid profil yaradın.' 
+                : 'One single profile is enough for E-School, Football, Games and Mafia! Sign in with your unified profile or create one.'}
             </p>
           </div>
         </div>
@@ -206,7 +206,7 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
             <!-- Username / Name -->
             <div className="space-y-1">
               <label className="block text-xs font-bold text-zinc-300">
-                ${lang === 'az' ? 'Ad, Soyad və ya Oyunçu Kodu:' : 'Name or Player ID:'}
+                ${lang === 'az' ? 'Ad, Soyad və ya İstifadəçi Adı:' : 'Name or Username:'}
               </label>
               <div className="relative">
                 <i className="fas fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500 text-xs"></i>
@@ -216,7 +216,7 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
                   onChange=${(e) => setLoginUsername(e.target.value)}
                   placeholder=${lang === 'az' ? 'Məs: Orxan Əliyev' : 'e.g. Alex Green'}
                   required
-                  className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-zinc-800/80 border border-zinc-700/80 text-xs font-semibold text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition"
+                  className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-zinc-800/80 border border-zinc-700/80 text-xs font-semibold text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition"
                 />
               </div>
             </div>
@@ -224,17 +224,17 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
             <!-- Team / Class Selector -->
             <div className="space-y-1">
               <label className="block text-xs font-bold text-zinc-300">
-                ${lang === 'az' ? 'Sinif / Komanda:' : 'Class / Team:'}
+                ${lang === 'az' ? 'Məktəb Sinifi / Qrup:' : 'Class / Group:'}
               </label>
               <div className="relative">
-                <i className="fas fa-shield-halved absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500 text-xs"></i>
+                <i className="fas fa-graduation-cap absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500 text-xs"></i>
                 <select
                   value=${loginTeamClass}
                   onChange=${(e) => setLoginTeamClass(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-zinc-800/80 border border-zinc-700/80 text-xs font-semibold text-white focus:outline-none focus:border-emerald-500 transition appearance-none cursor-pointer"
+                  className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-zinc-800/80 border border-zinc-700/80 text-xs font-semibold text-white focus:outline-none focus:border-purple-500 transition appearance-none cursor-pointer"
                 >
                   ${teamList.map(cls => html`
-                    <option key=${cls} value=${cls} className="bg-zinc-900 text-white">${cls === 'Məşqçi' ? (lang === 'az' ? 'Məşqçi / Müəllim' : 'Coach / Teacher') : `${cls} Komandası`}</option>
+                    <option key=${cls} value=${cls} className="bg-zinc-900 text-white">${(cls === 'Müəllim' || cls === 'Məşqçi') ? (lang === 'az' ? 'Müəllim / Rəhbərlik' : 'Teacher / Staff') : `${cls} Sinifi`}</option>
                   `)}
                 </select>
               </div>
@@ -252,7 +252,7 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
                   value=${loginPin}
                   onChange=${(e) => setLoginPin(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-zinc-800/80 border border-zinc-700/80 text-xs font-semibold text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500 transition"
+                  className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-zinc-800/80 border border-zinc-700/80 text-xs font-semibold text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500 transition"
                 />
               </div>
             </div>
@@ -264,7 +264,7 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
               className="w-full py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs shadow-xs transition-all flex items-center justify-center space-x-2 cursor-pointer mt-1"
             >
               ${isLoading ? html`<i className="fas fa-circle-notch fa-spin text-xs"></i>` : html`<i className="fas fa-arrow-right-to-bracket text-xs"></i>`}
-              <span>${isLoading ? (lang === 'az' ? 'Yoxlanılır...' : 'Verifying...') : (lang === 'az' ? 'Turnirə Daxil Ol' : 'Enter Tournament')}</span>
+              <span>${isLoading ? (lang === 'az' ? 'Yoxlanılır...' : 'Verifying...') : (lang === 'az' ? 'Portala Daxil Ol' : 'Enter Portal')}</span>
             </button>
           </form>
         `}
@@ -305,15 +305,15 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
             <!-- Team / Class Selector -->
             <div className="space-y-1">
               <label className="block text-xs font-bold text-zinc-300">
-                ${lang === 'az' ? 'Komanda / Sinif:' : 'Team / Class:'}
+                ${lang === 'az' ? 'Sinif / Qrup:' : 'Class / Group:'}
               </label>
               <select
                 value=${regTeamClass}
                 onChange=${(e) => setRegTeamClass(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl bg-zinc-800/80 border border-zinc-700/80 text-xs font-semibold text-white focus:outline-none focus:border-emerald-500 cursor-pointer"
+                className="w-full px-3 py-2 rounded-xl bg-zinc-800/80 border border-zinc-700/80 text-xs font-semibold text-white focus:outline-none focus:border-purple-500 cursor-pointer"
               >
                 ${teamList.map(cls => html`
-                  <option key=${cls} value=${cls} className="bg-zinc-900 text-white">${cls === 'Məşqçi' ? (lang === 'az' ? 'Məşqçi / Müəllim' : 'Coach / Teacher') : `${cls} Komandası`}</option>
+                  <option key=${cls} value=${cls} className="bg-zinc-900 text-white">${(cls === 'Müəllim' || cls === 'Məşqçi') ? (lang === 'az' ? 'Müəllim / Rəhbərlik' : 'Teacher / Staff') : `${cls} Sinifi`}</option>
                 `)}
               </select>
             </div>
@@ -321,17 +321,17 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
             <!-- Avatar Selector -->
             <div className="space-y-1">
               <label className="block text-xs font-bold text-zinc-300">
-                ${lang === 'az' ? 'Oyunçu Emblemi / Avatar:' : 'Player Badge / Avatar:'}
+                ${lang === 'az' ? 'Şagird Emblemi / Avatar:' : 'Badge / Avatar:'}
               </label>
               <div className="flex items-center gap-2 overflow-x-auto py-1">
-                ${footballAvatars.map(av => html`
+                ${schoolAvatars.map(av => html`
                   <button
                     key=${av}
                     type="button"
                     onClick=${() => setRegAvatar(av)}
                     className=${`w-8 h-8 rounded-xl flex items-center justify-center text-base transition cursor-pointer ${
                       regAvatar === av
-                        ? 'bg-emerald-500 text-zinc-950 scale-110 shadow-xs ring-2 ring-emerald-400'
+                        ? 'bg-purple-600 text-white scale-110 shadow-xs ring-2 ring-purple-400'
                         : 'bg-zinc-800 hover:bg-zinc-700 text-zinc-300'
                     }`}
                   >
@@ -352,7 +352,7 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
                   value=${regPin}
                   onChange=${(e) => setRegPin(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full px-3 py-2 rounded-xl bg-zinc-800/80 border border-zinc-700/80 text-xs font-semibold text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500"
+                  className="w-full px-3 py-2 rounded-xl bg-zinc-800/80 border border-zinc-700/80 text-xs font-semibold text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500"
                 />
               </div>
               <div className="space-y-1">
@@ -364,7 +364,7 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
                   value=${regConfirmPin}
                   onChange=${(e) => setRegConfirmPin(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full px-3 py-2 rounded-xl bg-zinc-800/80 border border-zinc-700/80 text-xs font-semibold text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500"
+                  className="w-full px-3 py-2 rounded-xl bg-zinc-800/80 border border-zinc-700/80 text-xs font-semibold text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500"
                 />
               </div>
             </div>
@@ -373,10 +373,10 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
             <button
               type="submit"
               disabled=${isLoading}
-              className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xs transition-all flex items-center justify-center space-x-2 cursor-pointer mt-1"
+              className="w-full py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs shadow-xs transition-all flex items-center justify-center space-x-2 cursor-pointer mt-1"
             >
               ${isLoading ? html`<i className="fas fa-circle-notch fa-spin text-xs"></i>` : html`<i className="fas fa-user-check text-xs"></i>`}
-              <span>${isLoading ? (lang === 'az' ? 'Profil Yaradılır...' : 'Creating...') : (lang === 'az' ? 'Vahid Profil Yarat və Ekosistemə Daxil Ol' : 'Create Profile & Enter')}</span>
+              <span>${isLoading ? (lang === 'az' ? 'Profil Yaradılır...' : 'Creating...') : (lang === 'az' ? 'Vahid Profil Yarat və Portala Daxil Ol' : 'Create Profile & Enter')}</span>
             </button>
           </form>
         `}
@@ -384,7 +384,7 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
         <!-- Quick 1-Click Access -->
         <div className="pt-2.5 border-t border-zinc-800 space-y-1.5">
           <div className="text-[10px] font-bold text-zinc-400 text-center uppercase tracking-wider">
-            ${lang === 'az' ? 'Sürətli Oyunçu Girişi:' : 'Quick Player Access:'}
+            ${lang === 'az' ? 'Sürətli Giriş:' : 'Quick Access:'}
           </div>
           <div className="grid grid-cols-3 gap-2">
             <button
@@ -392,16 +392,16 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
               onClick=${() => handleQuickLogin('player-10a')}
               className="p-1.5 rounded-xl bg-zinc-800/80 hover:bg-zinc-700/80 border border-zinc-700/60 text-center transition group cursor-pointer"
             >
-              <span className="text-sm block">⚽</span>
-              <span className="text-[10px] font-bold text-zinc-300 block">10A Oyunçusu</span>
+              <span className="text-sm block">🎓</span>
+              <span className="text-[10px] font-bold text-zinc-300 block">10A Şagirdi</span>
             </button>
             <button
               type="button"
               onClick=${() => handleQuickLogin('player-11b')}
               className="p-1.5 rounded-xl bg-zinc-800/80 hover:bg-zinc-700/80 border border-zinc-700/60 text-center transition group cursor-pointer"
             >
-              <span className="text-sm block">🏆</span>
-              <span className="text-[10px] font-bold text-zinc-300 block">11B Oyunçusu</span>
+              <span className="text-sm block">⚡</span>
+              <span className="text-[10px] font-bold text-zinc-300 block">11B Şagirdi</span>
             </button>
             <button
               type="button"
@@ -409,7 +409,7 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
               className="p-1.5 rounded-xl bg-zinc-800/80 hover:bg-zinc-700/80 border border-zinc-700/60 text-center transition group cursor-pointer"
             >
               <span className="text-sm block">👨‍🏫</span>
-              <span className="text-[10px] font-bold text-zinc-300 block">Məşqçi</span>
+              <span className="text-[10px] font-bold text-zinc-300 block">Müəllim</span>
             </button>
           </div>
         </div>
@@ -417,8 +417,8 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
         <!-- Back to Hub -->
         <div className="text-center pt-1">
           <a
-            href="https://tdv-community-hubs.vercel.app/"
-            className="text-[11px] font-semibold text-zinc-400 hover:text-emerald-400 transition inline-flex items-center gap-1.5"
+            href="https://tdv-hub.vercel.app/"
+            className="text-[11px] font-semibold text-zinc-400 hover:text-purple-400 transition inline-flex items-center gap-1.5"
           >
             <i className="fas fa-arrow-left text-[10px]"></i>
             <span>${lang === 'az' ? 'TDV Community Labs Mərkəzi Qovşağına Qayıt' : 'Back to Central Hub'}</span>
@@ -429,3 +429,5 @@ export default function UnifiedAuthBarrier({ onLogin, lang = 'az' }) {
     </div>
   `;
 }
+
+export default UnifiedAuthBarrier;
