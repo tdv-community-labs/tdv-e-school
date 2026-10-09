@@ -168,5 +168,14 @@
     const root = createRoot(container);
     root.render(React.createElement(App));
   </script>
+
+  <!-- Service Worker Registration for PWA Offline Caching -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+  </script>
 </body>
 </html>

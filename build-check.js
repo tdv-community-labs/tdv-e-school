@@ -56,6 +56,7 @@ check('vercel.json is valid JSON with security headers', () => {
 
 // 4. Check JS syntax for all component and service files
 const jsFiles = [
+  'sw.js',
   'app.js',
   'components/ui.js',
   'components/Navbar.js',
