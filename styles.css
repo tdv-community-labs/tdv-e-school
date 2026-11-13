@@ -239,18 +239,14 @@ html:not(.dark) .bento-card:hover {
 
 :root {
   color-scheme: light dark;
-  --bg-base: light-dark(#ffffff, #09090b);
-  --bg-card: light-dark(#f8fafc, #18181b);
-  --border-card: light-dark(#e2e8f0, #27272a);
-  --accent-emerald: #10b981;
 }
 
 html {
   scrollbar-width: thin;
-  scrollbar-color: rgba(148, 163, 184, 0.4) transparent;
+  scrollbar-color: rgba(147, 51, 234, 0.4) transparent;
 }
 
-/* Səliqəli Xüsusi Scrollbar (Fallback) */
+/* Səliqəli Xüsusi Scrollbar */
 @supports not (scrollbar-color: auto) {
   ::-webkit-scrollbar {
     width: 6px;
@@ -267,7 +263,7 @@ html {
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(16, 185, 129, 0.6);
+    background: rgba(147, 51, 234, 0.6);
   }
 }
 

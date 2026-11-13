@@ -158,18 +158,29 @@ export default function App() {
   // Qaranlıq rejim sinifinin tətbiqi (Ekosistem ilə sinxron)
 
   useEffect(() => {
-    const meta = document.querySelector('meta[name="color-scheme"]');
+
+    const metaTheme = document.querySelector('meta[name="color-scheme"]');
 
     if (darkMode) {
-      if (meta) meta.content = 'dark';
+
       document.documentElement.classList.add('dark');
+
       localStorage.setItem('mekteb_plus_dark', 'true');
+
       localStorage.setItem('tdv_theme', 'dark');
+
+      if (metaTheme) metaTheme.setAttribute('content', 'dark');
+
     } else {
-      if (meta) meta.content = 'light';
+
       document.documentElement.classList.remove('dark');
+
       localStorage.setItem('mekteb_plus_dark', 'false');
+
       localStorage.setItem('tdv_theme', 'light');
+
+      if (metaTheme) metaTheme.setAttribute('content', 'light');
+
     }
 
   }, [darkMode]);
